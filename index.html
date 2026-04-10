@@ -1,25 +1,122 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Aplynx Investments</title>
+    <title>Aplynx Investments</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f5f7fa;
+        }
+
+        header {
+            background: #0f172a;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        section {
+            padding: 40px;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        h2 {
+            color: #0f172a;
+        }
+
+        .listings {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #0f172a;
+            color: white;
+        }
+    </style>
 </head>
 
 <body>
 
-  <h1>Aplynx Investments</h1>
+<header>
+    <h1>Aplynx Investments</h1>
+    <p>Professional property solutions built on trust</p>
+</header>
 
-  <h2>Tenant Portal</h2>
-  <p>Current residents can use the portal for rent payments and maintenance requests.</p>
+<section>
+    <h2>Tenant Portal</h2>
+    <p>Current residents can use the portal for rent payments and maintenance requests.</p>
+</section>
 
-  <<h2>Welcome to Aplynx Investments</h2>
-<p>
-Thank you for visiting our page. It would be our pleasure to serve you.
-Please leave your name and email address below, and a member of our team
-will get back to you as soon as possible.
-</p>
+<section>
+    <h2>Featured Properties</h2>
 
-  <p><strong>Phone:</strong> (470) 374-4384</p>
-  <p><strong>Email:</strong> info@aplynxinvestments.com</p>
+    <div class="listings">
+
+        <!-- ROW 1 -->
+        <div class="card">
+            <h3>Modern Apartment</h3>
+            <p>2 Bed • 2 Bath • Atlanta, GA</p>
+        </div>
+
+        <div class="card">
+            <h3>Downtown Loft</h3>
+            <p>1 Bed • 1 Bath • City Center</p>
+        </div>
+
+        <div class="card">
+            <h3>Family Home</h3>
+            <p>3 Bed • 2 Bath • Suburbs</p>
+        </div>
+
+        <!-- ROW 2 (NEW) -->
+        <div class="card">
+            <h3>Luxury Condo</h3>
+            <p>2 Bed • 2 Bath • Midtown</p>
+        </div>
+
+        <div class="card">
+            <h3>Cozy Studio</h3>
+            <p>1 Bed • 1 Bath • Downtown</p>
+        </div>
+
+        <div class="card">
+            <h3>Townhouse</h3>
+            <p>3 Bed • 3 Bath • Westside</p>
+        </div>
+
+    </div>
+</section>
+
+<section>
+    <h2>Welcome to Aplynx Investments</h2>
+    <p>
+        Thank you for visiting our page. It would be our pleasure to serve you.
+        Please leave your name and email address below, and a member of our team
+        will get back to you as soon as possible.
+    </p>
+
+    <p><strong>Phone:</strong> (470) 374-4384</p>
+    <p><strong>Email:</strong> info@aplynxinvestments.com</p>
+</section>
+
+<footer>
+    <p>© 2026 Aplynx Investments</p>
+</footer>
 
 </body>
 </html>
