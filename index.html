@@ -6,7 +6,7 @@
   <title>APLYNX Investments</title>
   <meta
     name="description"
-    content="APLYNX Investments provides real estate investment and property solutions with professionalism, trust, and responsive service."
+    content="APLYNX Investments provides real estate investment and property solutions."
   />
   <style>
     * {
@@ -15,20 +15,13 @@
 
     :root {
       --bg: #f8fafc;
-      --card: #ffffff;
+      --white: #ffffff;
       --text: #111827;
       --muted: #4b5563;
       --dark: #0f172a;
-      --dark-soft: rgba(15, 23, 42, 0.72);
-      --dark-glass: rgba(15, 23, 42, 0.68);
-      --line: #d1d5db;
-      --white: #ffffff;
-      --shadow: 0 18px 40px rgba(15, 23, 42, 0.14);
-      --radius: 24px;
-    }
-
-    html {
-      scroll-behavior: smooth;
+      --glass: rgba(15, 23, 42, 0.68);
+      --glass2: rgba(15, 23, 42, 0.60);
+      --shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
     }
 
     body {
@@ -45,43 +38,23 @@
     }
 
     a {
-      color: inherit;
       text-decoration: none;
+      color: inherit;
     }
 
     .container {
       max-width: 1180px;
       margin: 0 auto;
-      padding: 0 18px;
+      padding: 0 22px;
     }
 
     header {
-      position: relative;
-      overflow: hidden;
-      color: var(--white);
-      padding: 22px 0 80px;
+      color: white;
+      padding: 24px 0 34px;
       background:
-        linear-gradient(rgba(8, 15, 30, 0.58), rgba(8, 15, 30, 0.72)),
+        linear-gradient(rgba(10, 18, 34, 0.20), rgba(10, 18, 34, 0.24)),
         url("https://images.unsplash.com/photo-1460317442991-0ec209397118?auto=format&fit=crop&w=1800&q=80")
         center center / cover no-repeat;
-    }
-
-    header::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        90deg,
-        rgba(8, 15, 30, 0.18) 0%,
-        rgba(8, 15, 30, 0.12) 45%,
-        rgba(8, 15, 30, 0.34) 100%
-      );
-      pointer-events: none;
-    }
-
-    .hero-shell {
-      position: relative;
-      z-index: 2;
     }
 
     .topbar {
@@ -93,79 +66,78 @@
     .lang-btn {
       border: 1px solid rgba(255,255,255,0.35);
       background: rgba(255,255,255,0.10);
-      color: var(--white);
+      color: white;
       border-radius: 999px;
       padding: 10px 16px;
       font-size: 14px;
+      font-weight: 700;
       cursor: pointer;
     }
 
+    /* TOP SMALL BOX */
     .brand-panel {
-      width: min(820px, 100%);
-      background: rgba(10, 18, 34, 0.82);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 26px;
-      padding: 28px;
-      box-shadow: 0 18px 40px rgba(0,0,0,0.20);
-      margin-bottom: 22px;
+      width: 560px;
+      max-width: 100%;
+      background: rgba(15, 23, 42, 0.72);
+      border-radius: 18px;
+      padding: 18px 20px;
+      margin-bottom: 18px;
     }
 
     .brand-row {
       display: flex;
       align-items: center;
-      gap: 22px;
+      gap: 18px;
     }
 
     .brand-row img {
-      width: 150px;
-      height: 150px;
+      width: 92px;
+      height: 92px;
       object-fit: contain;
-      border-radius: 24px;
-      background: rgba(255,255,255,0.97);
-      padding: 12px;
-      box-shadow: 0 14px 34px rgba(0,0,0,0.24);
+      border-radius: 14px;
+      background: rgba(0,0,0,0.12);
       flex-shrink: 0;
     }
 
     .brand-text h1 {
-      margin: 0 0 10px;
-      font-size: 40px;
-      line-height: 1.05;
+      margin: 0 0 6px;
+      font-size: 28px;
+      line-height: 1.08;
+      font-weight: 800;
     }
 
     .brand-text p {
       margin: 0;
-      color: #e5e7eb;
-      font-size: 20px;
-      font-weight: 600;
+      color: #f3f4f6;
+      font-size: 15px;
+      font-weight: 700;
     }
 
+    /* SECOND WIDE BOX */
     .message-panel {
-      width: min(1000px, 100%);
-      min-height: 270px;
+      width: 100%;
+      min-height: 255px;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
-      background: rgba(10, 18, 34, 0.72);
-      border-top: 1px solid rgba(255,255,255,0.10);
-      border-bottom: 1px solid rgba(255,255,255,0.10);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
-      padding: 36px 24px;
+      background: rgba(15, 23, 42, 0.58);
+      padding: 34px 20px;
     }
 
     .hero h2 {
       margin: 0 0 14px;
-      font-size: 54px;
-      line-height: 1.08;
-      max-width: 820px;
+      font-size: 27px;
+      line-height: 1.15;
+      font-weight: 800;
+      color: white;
     }
 
     .hero p {
-      margin: 0 auto 24px;
-      font-size: 19px;
-      color: #e5e7eb;
+      margin: 0 auto 20px;
       max-width: 760px;
+      color: #e5e7eb;
+      font-size: 17px;
     }
 
     .buttons {
@@ -177,49 +149,32 @@
 
     .btn {
       display: inline-block;
-      padding: 13px 20px;
+      padding: 12px 18px;
       border-radius: 999px;
-      font-weight: bold;
+      font-weight: 700;
       font-size: 15px;
-      transition: 0.2s ease;
-    }
-
-    .btn:hover {
-      transform: translateY(-1px);
     }
 
     .btn-primary {
-      background: var(--white);
-      color: var(--dark);
+      background: white;
+      color: #0f172a;
     }
 
     .btn-secondary {
-      color: var(--white);
-      border: 1px solid rgba(255,255,255,0.45);
       background: transparent;
+      color: white;
+      border: 1px solid rgba(255,255,255,0.40);
     }
 
     section {
-      padding: 60px 0;
+      padding: 54px 0;
     }
 
     .card {
-      background: var(--card);
-      border-radius: var(--radius);
+      background: white;
+      border-radius: 20px;
       box-shadow: var(--shadow);
-      padding: 26px;
-    }
-
-    .section-title {
-      margin: 0 0 10px;
-      font-size: 34px;
-      color: var(--dark);
-    }
-
-    .section-copy {
-      margin: 0 0 24px;
-      color: var(--muted);
-      max-width: 780px;
+      padding: 24px;
     }
 
     .portal {
@@ -235,19 +190,32 @@
     .info-box h3 {
       margin: 0 0 8px;
       font-size: 28px;
-      color: var(--dark);
+      color: #0f172a;
     }
 
     .portal p,
     .contact-box p,
     .info-box p {
       margin: 0;
-      color: var(--muted);
+      color: #4b5563;
+    }
+
+    .section-title {
+      margin: 0 0 10px;
+      font-size: 32px;
+      color: #0f172a;
+    }
+
+    .section-copy {
+      margin: 0 0 24px;
+      color: #4b5563;
+      max-width: 760px;
     }
 
     .features-grid,
     .properties-grid,
-    .social-grid {
+    .social-grid,
+    .contact-grid {
       display: grid;
       gap: 22px;
     }
@@ -258,17 +226,22 @@
       grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
+    .contact-grid {
+      grid-template-columns: 1.1fr 0.9fr;
+    }
+
     .mini-card,
     .property,
     .social-card {
-      background: var(--card);
-      border-radius: 20px;
+      background: white;
+      border-radius: 18px;
       overflow: hidden;
       box-shadow: var(--shadow);
     }
 
-    .mini-card {
-      padding: 24px;
+    .mini-card,
+    .social-card {
+      padding: 22px;
     }
 
     .mini-card h4,
@@ -276,25 +249,24 @@
     .social-card h4 {
       margin: 0 0 8px;
       font-size: 22px;
-      color: var(--dark);
+      color: #0f172a;
     }
 
     .mini-card p,
     .property p,
     .social-card p {
       margin: 0 0 8px;
-      color: var(--muted);
+      color: #4b5563;
     }
 
     .property-image {
-      height: 220px;
+      height: 210px;
       background-size: cover;
       background-position: center;
     }
 
-    .property-body,
-    .social-card {
-      padding: 20px;
+    .property-body {
+      padding: 18px;
     }
 
     .tag {
@@ -304,8 +276,8 @@
       border-radius: 999px;
       background: #e5e7eb;
       font-size: 13px;
-      font-weight: bold;
-      color: var(--text);
+      font-weight: 700;
+      color: #111827;
     }
 
     .social-pill {
@@ -313,16 +285,10 @@
       margin-top: 10px;
       padding: 10px 14px;
       border-radius: 999px;
-      background: var(--dark);
-      color: var(--white);
-      font-weight: bold;
+      background: #0f172a;
+      color: white;
+      font-weight: 700;
       font-size: 14px;
-    }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 22px;
     }
 
     form {
@@ -335,11 +301,11 @@
     textarea {
       width: 100%;
       padding: 14px 16px;
-      border: 1px solid var(--line);
+      border: 1px solid #d1d5db;
       border-radius: 12px;
       font-size: 15px;
       font-family: inherit;
-      color: var(--text);
+      color: #111827;
       background: #fff;
     }
 
@@ -352,9 +318,9 @@
       border: none;
       border-radius: 12px;
       padding: 14px 18px;
-      background: var(--dark);
-      color: var(--white);
-      font-weight: bold;
+      background: #0f172a;
+      color: white;
+      font-weight: 700;
       font-size: 15px;
       cursor: pointer;
     }
@@ -370,12 +336,12 @@
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: #6b7280;
-      font-weight: bold;
+      font-weight: 700;
     }
 
     .contact-link {
-      font-weight: bold;
-      color: var(--dark);
+      font-weight: 700;
+      color: #0f172a;
     }
 
     .note {
@@ -385,8 +351,8 @@
     }
 
     footer {
-      background: var(--dark);
-      color: var(--white);
+      background: #0f172a;
+      color: white;
       text-align: center;
       padding: 36px 16px;
     }
@@ -400,12 +366,12 @@
     }
 
     .footer-socials a {
-      color: var(--white);
+      color: white;
       border: 1px solid rgba(255,255,255,0.18);
       background: rgba(255,255,255,0.08);
       padding: 10px 16px;
       border-radius: 999px;
-      font-weight: bold;
+      font-weight: 700;
       font-size: 14px;
     }
 
@@ -420,69 +386,44 @@
       .contact-grid {
         grid-template-columns: 1fr;
       }
-
-      .hero h2 {
-        font-size: 40px;
-      }
-
-      .brand-text h1 {
-        font-size: 32px;
-      }
-
-      .brand-text p {
-        font-size: 18px;
-      }
     }
 
     @media (max-width: 640px) {
-      header {
-        padding: 16px 0 54px;
-      }
-
-      .brand-panel {
-        padding: 20px;
-      }
-
-      .brand-row {
-        align-items: flex-start;
-        gap: 16px;
+      .container {
+        padding: 0 14px;
       }
 
       .brand-row img {
-        width: 110px;
-        height: 110px;
+        width: 82px;
+        height: 82px;
       }
 
       .brand-text h1 {
-        font-size: 28px;
+        font-size: 22px;
       }
 
       .brand-text p {
-        font-size: 16px;
-      }
-
-      .message-panel {
-        min-height: 220px;
-        padding: 28px 18px;
+        font-size: 14px;
       }
 
       .hero h2 {
-        font-size: 30px;
+        font-size: 24px;
       }
 
       .hero p {
-        font-size: 16px;
+        font-size: 15px;
       }
 
-      .section-title {
-        font-size: 28px;
+      .message-panel {
+        min-height: 210px;
+        padding: 26px 16px;
       }
     }
   </style>
 </head>
 <body>
   <header>
-    <div class="container hero-shell">
+    <div class="container">
       <div class="topbar">
         <button class="lang-btn" id="langBtn" onclick="toggleLanguage()">Español</button>
       </div>
@@ -502,24 +443,22 @@
           <div id="englishContent">
             <h2>Professional property solutions built on trust.</h2>
             <p>
-              Welcome to APLYNX Investments. We provide professional real estate
-              investment and property solutions with care, trust, and responsive service.
+              Professional property solutions built on trust, service, and responsiveness.
             </p>
             <div class="buttons">
               <a class="btn btn-primary" href="#contact">Contact Us</a>
-              <a class="btn btn-secondary" href="#socials">Follow Us</a>
+              <a class="btn btn-secondary" href="#properties">View Properties</a>
             </div>
           </div>
 
-          <div class="hide" id="spanishContent">
+          <div id="spanishContent" class="hide">
             <h2>Soluciones profesionales de propiedad construidas con confianza.</h2>
             <p>
-              Bienvenido a APLYNX Investments. Ofrecemos soluciones profesionales de
-              inversión inmobiliaria y propiedades con confianza, atención y rapidez.
+              Soluciones profesionales de propiedad construidas con confianza, servicio y rapidez.
             </p>
             <div class="buttons">
               <a class="btn btn-primary" href="#contact">Contáctenos</a>
-              <a class="btn btn-secondary" href="#socials">Síguenos</a>
+              <a class="btn btn-secondary" href="#properties">Ver Propiedades</a>
             </div>
           </div>
         </div>
@@ -536,39 +475,7 @@
             Current residents can use the portal for rent payments and maintenance requests.
           </p>
         </div>
-        <a class="btn btn-primary" href="#contact" id="portalBtn">Request Assistance</a>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="container">
-      <h2 class="section-title" id="servicesTitle">Why Choose APLYNX Investments</h2>
-      <p class="section-copy" id="servicesCopy">
-        We focus on clear communication, dependable service, and practical property solutions for residents, owners, and investment opportunities.
-      </p>
-
-      <div class="features-grid">
-        <div class="mini-card">
-          <h4 id="feature1Title">Trusted Service</h4>
-          <p id="feature1Text">
-            We believe professional property service starts with honesty, responsiveness, and follow-through.
-          </p>
-        </div>
-
-        <div class="mini-card">
-          <h4 id="feature2Title">Responsive Support</h4>
-          <p id="feature2Text">
-            From property questions to service requests, we work to respond quickly and clearly.
-          </p>
-        </div>
-
-        <div class="mini-card">
-          <h4 id="feature3Title">Property Solutions</h4>
-          <p id="feature3Text">
-            We offer real estate investment and property support designed around real needs and real results.
-          </p>
-        </div>
+        <a class="btn btn-primary" href="#contact" id="portalBtn">Access Portal</a>
       </div>
     </div>
   </section>
@@ -639,24 +546,6 @@
           <p id="xText">Post quick updates, business highlights, and important announcements.</p>
           <span class="social-pill" id="xBtn">Open X</span>
         </a>
-
-        <a class="social-card" href="#" target="_blank" rel="noopener noreferrer">
-          <h4 id="yelpTitle">Yelp</h4>
-          <p id="yelpText">Help people find your business and leave reviews about their experience.</p>
-          <span class="social-pill" id="yelpBtn">Open Yelp</span>
-        </a>
-
-        <a class="social-card" href="#" target="_blank" rel="noopener noreferrer">
-          <h4 id="googleTitle">Google Business</h4>
-          <p id="googleText">Improve local visibility and make it easy for customers to contact you.</p>
-          <span class="social-pill" id="googleBtn">Open Google</span>
-        </a>
-
-        <a class="social-card" href="#" target="_blank" rel="noopener noreferrer">
-          <h4 id="linkedinTitle">LinkedIn</h4>
-          <p id="linkedinText">Build credibility, partnerships, and business connections online.</p>
-          <span class="social-pill" id="linkedinBtn">Open LinkedIn</span>
-        </a>
       </div>
     </div>
   </section>
@@ -715,9 +604,6 @@
       <a href="#" target="_blank" rel="noopener noreferrer">Facebook</a>
       <a href="#" target="_blank" rel="noopener noreferrer">Instagram</a>
       <a href="#" target="_blank" rel="noopener noreferrer">X</a>
-      <a href="#" target="_blank" rel="noopener noreferrer">Yelp</a>
-      <a href="#" target="_blank" rel="noopener noreferrer">Google</a>
-      <a href="#" target="_blank" rel="noopener noreferrer">LinkedIn</a>
     </div>
     <p>© 2026 APLYNX Investments. All rights reserved.</p>
   </footer>
@@ -740,29 +626,7 @@
       document.getElementById("portalText").textContent = spanish
         ? "Los residentes actuales pueden usar el portal para pagos de renta y solicitudes de mantenimiento."
         : "Current residents can use the portal for rent payments and maintenance requests.";
-      document.getElementById("portalBtn").textContent = spanish ? "Solicitar Ayuda" : "Request Assistance";
-
-      document.getElementById("servicesTitle").textContent = spanish
-        ? "Por Qué Elegir APLYNX Investments"
-        : "Why Choose APLYNX Investments";
-      document.getElementById("servicesCopy").textContent = spanish
-        ? "Nos enfocamos en la comunicación clara, el servicio confiable y soluciones prácticas de propiedad para residentes, dueños y oportunidades de inversión."
-        : "We focus on clear communication, dependable service, and practical property solutions for residents, owners, and investment opportunities.";
-
-      document.getElementById("feature1Title").textContent = spanish ? "Servicio Confiable" : "Trusted Service";
-      document.getElementById("feature1Text").textContent = spanish
-        ? "Creemos que el servicio profesional de propiedad comienza con honestidad, rapidez y cumplimiento."
-        : "We believe professional property service starts with honesty, responsiveness, and follow-through.";
-
-      document.getElementById("feature2Title").textContent = spanish ? "Apoyo Rápido" : "Responsive Support";
-      document.getElementById("feature2Text").textContent = spanish
-        ? "Desde preguntas sobre propiedades hasta solicitudes de servicio, trabajamos para responder con rapidez y claridad."
-        : "From property questions to service requests, we work to respond quickly and clearly.";
-
-      document.getElementById("feature3Title").textContent = spanish ? "Soluciones de Propiedad" : "Property Solutions";
-      document.getElementById("feature3Text").textContent = spanish
-        ? "Ofrecemos apoyo de inversión inmobiliaria y propiedad diseñado para necesidades reales y resultados reales."
-        : "We offer real estate investment and property support designed around real needs and real results.";
+      document.getElementById("portalBtn").textContent = spanish ? "Acceder al Portal" : "Access Portal";
 
       document.getElementById("featuredTitle").textContent = spanish ? "Propiedades Destacadas" : "Featured Properties";
       document.getElementById("featuredCopy").textContent = spanish
@@ -788,21 +652,6 @@
         ? "Publique actualizaciones rápidas, logros del negocio y anuncios importantes."
         : "Post quick updates, business highlights, and important announcements.";
       document.getElementById("xBtn").textContent = spanish ? "Abrir X" : "Open X";
-
-      document.getElementById("yelpText").textContent = spanish
-        ? "Ayude a las personas a encontrar su negocio y dejar reseñas sobre su experiencia."
-        : "Help people find your business and leave reviews about their experience.";
-      document.getElementById("yelpBtn").textContent = spanish ? "Abrir Yelp" : "Open Yelp";
-
-      document.getElementById("googleText").textContent = spanish
-        ? "Mejore la visibilidad local y haga más fácil que los clientes se comuniquen con usted."
-        : "Improve local visibility and make it easy for customers to contact you.";
-      document.getElementById("googleBtn").textContent = spanish ? "Abrir Google" : "Open Google";
-
-      document.getElementById("linkedinText").textContent = spanish
-        ? "Construya credibilidad, alianzas y conexiones comerciales en línea."
-        : "Build credibility, partnerships, and business connections online.";
-      document.getElementById("linkedinBtn").textContent = spanish ? "Abrir LinkedIn" : "Open LinkedIn";
 
       document.getElementById("welcomeTitle").textContent = spanish
         ? "Bienvenido a APLYNX Investments"
@@ -831,8 +680,6 @@
       document.getElementById("availabilityCopy").textContent = spanish
         ? "Respondemos lo más pronto posible durante el horario normal de oficina."
         : "We respond as promptly as possible during normal business hours.";
-
-      document.getElementById("footerTitle").textContent = spanish ? "Conéctese Con Nosotros" : "Connect With Us";
     }
 
     document.getElementById("contactForm").addEventListener("submit", function (e) {
