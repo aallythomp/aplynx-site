@@ -3,28 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <img src="logo.png" alt="Aplynx Investments Logo" style="height: 80px; margin-bottom: 15px;">
-<header>
-  <div style="display: flex; align-items: center; gap: 15px;">
-    
-   
-    
-    <div>
-      <h1 style="margin: 0;">APLYNX Investments</h1>
-      <p style="margin: 0;">Real estate investment and property solutions</p>
-    </div>
-
-  </div>
-
-  <h2 style="margin-top: 40px;">
-    Professional property solutions built on trust.
-  </h2>
-</header>
+  <title>Aplynx Investments</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
       font-family: Arial, sans-serif;
@@ -32,49 +14,81 @@
       color: #111827;
       line-height: 1.6;
     }
-
     header {
       background:
         linear-gradient(rgba(15, 23, 42, 0.72), rgba(15, 23, 42, 0.72)),
         url("https://images.unsplash.com/photo-1460317442991-0ec209397118?auto=format&fit=crop&w=1600&q=80")
         center/cover no-repeat;
       color: white;
-      padding: 80px 20px;
+      padding: 24px 20px 80px;
     }
-
     .container {
       max-width: 1100px;
       margin: 0 auto;
     }
-
+    .topbar {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 20px;
+    }
+    .lang-toggle {
+      background: rgba(255,255,255,0.12);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.35);
+      border-radius: 999px;
+      padding: 10px 16px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 14px;
+    }
     .hero-card {
-      max-width: 700px;
+      max-width: 850px;
       background: rgba(255, 255, 255, 0.08);
       border: 1px solid rgba(255,255,255,0.18);
       backdrop-filter: blur(6px);
       border-radius: 18px;
-      padding: 32px;
+      padding: 28px;
     }
-
-    .hero-card h1 {
-      margin: 0 0 12px;
-      font-size: 48px;
+    .brand-row {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 26px;
+      flex-wrap: wrap;
+    }
+    .brand-row img {
+      height: 86px;
+      width: auto;
+      display: block;
+      border-radius: 12px;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.25);
+    }
+    .brand-text h1 {
+      margin: 0;
+      font-size: 28px;
       line-height: 1.1;
     }
-
-    .hero-card p {
+    .brand-text p {
+      margin: 6px 0 0;
+      font-size: 16px;
+      color: #e5e7eb;
+    }
+    .hero-headline {
+      margin: 0 0 12px;
+      font-size: 44px;
+      line-height: 1.1;
+    }
+    .hero-copy {
       margin: 0 0 20px;
       font-size: 18px;
       color: #e5e7eb;
     }
-
     .hero-buttons {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
       margin-top: 22px;
     }
-
     .btn {
       display: inline-block;
       padding: 12px 20px;
@@ -82,43 +96,39 @@
       text-decoration: none;
       font-weight: bold;
       font-size: 15px;
+      transition: 0.2s ease;
     }
-
+    .btn:hover { opacity: 0.92; transform: translateY(-1px); }
     .btn-primary {
       background: #ffffff;
       color: #0f172a;
     }
-
     .btn-secondary {
       background: transparent;
       color: white;
       border: 1px solid rgba(255,255,255,0.4);
     }
-
     section {
       padding: 56px 20px;
     }
-
     .section-title {
       font-size: 32px;
       margin: 0 0 12px;
       color: #0f172a;
     }
-
     .section-subtitle {
       margin: 0 0 30px;
       color: #4b5563;
       max-width: 720px;
     }
-
     .portal-box,
-    .welcome-box {
+    .contact-card,
+    .details-card {
       background: white;
       border-radius: 18px;
       padding: 30px;
       box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
     }
-
     .portal-box {
       display: flex;
       justify-content: space-between;
@@ -126,56 +136,49 @@
       gap: 20px;
       flex-wrap: wrap;
     }
-
     .portal-box h3,
-    .welcome-box h3 {
+    .contact-card h3,
+    .details-card h3 {
       margin-top: 0;
       margin-bottom: 10px;
       font-size: 28px;
       color: #0f172a;
     }
-
     .portal-box p,
-    .welcome-box p {
+    .contact-card p,
+    .details-card p {
       margin: 0;
       color: #4b5563;
     }
-
     .listings {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 22px;
       margin-top: 30px;
     }
-
     .card {
       background: white;
       border-radius: 18px;
       overflow: hidden;
       box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
     }
-
     .card-image {
       height: 190px;
       background-size: cover;
       background-position: center;
     }
-
     .card-body {
       padding: 20px;
     }
-
     .card h3 {
       margin: 0 0 8px;
       color: #0f172a;
       font-size: 22px;
     }
-
     .card p {
       margin: 0 0 8px;
       color: #4b5563;
     }
-
     .tag {
       display: inline-block;
       margin-top: 10px;
@@ -186,55 +189,40 @@
       font-weight: bold;
       color: #111827;
     }
-
     .contact-grid {
       display: grid;
       grid-template-columns: 1.1fr 0.9fr;
       gap: 24px;
       margin-top: 20px;
     }
-
-    .contact-card,
-    .details-card {
-      background: white;
-      border-radius: 18px;
-      padding: 30px;
-      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+    .details-row {
+      margin-bottom: 16px;
     }
-
-    .contact-card h3,
-    .details-card h3 {
-      margin-top: 0;
-      margin-bottom: 14px;
-      color: #0f172a;
-      font-size: 28px;
+    .details-label {
+      display: block;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #6b7280;
+      margin-bottom: 4px;
+      font-weight: bold;
     }
-
-    .contact-card p,
-    .details-card p {
-      color: #4b5563;
-    }
-
     form {
       display: grid;
       gap: 14px;
       margin-top: 20px;
     }
-
-    input,
-    textarea {
+    input, textarea {
       width: 100%;
       padding: 14px 16px;
       border-radius: 12px;
       border: 1px solid #d1d5db;
       font-size: 15px;
     }
-
     textarea {
       min-height: 130px;
       resize: vertical;
     }
-
     .submit-btn {
       background: #0f172a;
       color: white;
@@ -245,33 +233,27 @@
       font-size: 15px;
       cursor: pointer;
     }
-
-    .details-row {
-      margin-bottom: 16px;
-    }
-
-    .details-label {
-      display: block;
-      font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: #6b7280;
-      margin-bottom: 4px;
-      font-weight: bold;
-    }
-
     .socials {
       display: flex;
-      gap: 14px;
+      gap: 18px;
       margin-top: 18px;
       flex-wrap: wrap;
+      align-items: center;
     }
-
     .socials a {
-      font-size: 30px;
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       text-decoration: none;
+      font-size: 24px;
+      background: #f3f4f6;
+      box-shadow: 0 4px 10px rgba(15,23,42,0.08);
+      transition: 0.2s ease;
     }
-
+    .socials a:hover { transform: translateY(-2px); }
     footer {
       background: #0f172a;
       color: white;
@@ -279,43 +261,52 @@
       padding: 24px 20px;
       margin-top: 40px;
     }
+    .hide { display: none; }
 
     @media (max-width: 900px) {
-      .listings,
-      .contact-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-card h1 {
-        font-size: 38px;
-      }
+      .listings, .contact-grid { grid-template-columns: 1fr; }
+      .hero-headline { font-size: 36px; }
     }
-
     @media (max-width: 600px) {
-      .hero-card {
-        padding: 24px;
-      }
-
-      .hero-card h1 {
-        font-size: 32px;
-      }
-
-      .section-title {
-        font-size: 28px;
-      }
+      .hero-card { padding: 22px; }
+      .brand-row img { height: 74px; }
+      .hero-headline { font-size: 30px; }
+      .section-title { font-size: 28px; }
     }
   </style>
 </head>
 <body>
-
   <header>
     <div class="container">
+      <div class="topbar">
+        <button class="lang-toggle" id="langBtn" onclick="toggleLanguage()">Español</button>
+      </div>
+
       <div class="hero-card">
-        <h1>Aplynx Investments</h1>
-        <p>Professional property solutions built on trust, service, and responsiveness.</p>
-        <div class="hero-buttons">
-          <a class="btn btn-primary" href="#contact">Contact Us</a>
-          <a class="btn btn-secondary" href="#properties">View Properties</a>
+        <div class="brand-row">
+          <img src="logo.png" alt="Aplynx Investments Logo">
+          <div class="brand-text">
+            <h1>APLYNX Investments</h1>
+            <p id="tagline">Real estate investment and property solutions</p>
+          </div>
+        </div>
+
+        <div id="en-content">
+          <h2 class="hero-headline">Professional property solutions built on trust.</h2>
+          <p class="hero-copy">Professional property solutions built on trust, service, and responsiveness.</p>
+          <div class="hero-buttons">
+            <a class="btn btn-primary" href="#contact">Contact Us</a>
+            <a class="btn btn-secondary" href="#properties">View Properties</a>
+          </div>
+        </div>
+
+        <div id="es-content" class="hide">
+          <h2 class="hero-headline">Soluciones profesionales de propiedad construidas con confianza.</h2>
+          <p class="hero-copy">Soluciones profesionales de propiedad con confianza, servicio y capacidad de respuesta.</p>
+          <div class="hero-buttons">
+            <a class="btn btn-primary" href="#contact">Contáctenos</a>
+            <a class="btn btn-secondary" href="#properties">Ver Propiedades</a>
+          </div>
         </div>
       </div>
     </div>
@@ -325,8 +316,8 @@
     <div class="container">
       <div class="portal-box">
         <div>
-          <h3>Tenant Portal</h3>
-          <p>Current residents can use the portal for rent payments and maintenance requests.</p>
+          <h3 id="portalTitle">Tenant Portal</h3>
+          <p id="portalText">Current residents can use the portal for rent payments and maintenance requests.</p>
         </div>
         <a class="btn btn-primary" href="#">Access Portal</a>
       </div>
@@ -335,8 +326,8 @@
 
   <section id="properties">
     <div class="container">
-      <h2 class="section-title">Featured Properties</h2>
-      <p class="section-subtitle">
+      <h2 class="section-title" id="featuredTitle">Featured Properties</h2>
+      <p class="section-subtitle" id="featuredText">
         Explore a selection of beautifully maintained rental opportunities curated for comfort, convenience, and long-term value.
       </p>
 
@@ -406,48 +397,47 @@
 
   <section id="contact">
     <div class="container">
-      <h2 class="section-title">Welcome to Aplynx Investments</h2>
-      <p class="section-subtitle">
+      <h2 class="section-title" id="welcomeTitle">Welcome to Aplynx Investments</h2>
+      <p class="section-subtitle" id="welcomeText">
         Thank you for visiting our page. It would be our pleasure to serve you. Please leave your name and email address below, and a member of our team will get back to you as soon as possible.
       </p>
 
       <div class="contact-grid">
         <div class="contact-card">
-          <h3>Let’s Connect</h3>
-          <p>We’re here to answer questions, discuss opportunities, and help you take the next step with confidence.</p>
+          <h3 id="connectTitle">Let’s Connect</h3>
+          <p id="connectText">We’re here to answer questions, discuss opportunities, and help you take the next step with confidence.</p>
 
           <form>
-            <input type="text" placeholder="Full Name" />
-            <input type="email" placeholder="Email Address" />
-            <textarea placeholder="How can we help you?"></textarea>
-            <button type="button" class="submit-btn">Send Inquiry</button>
+            <input type="text" id="namePlaceholder" placeholder="Full Name" />
+            <input type="email" id="emailPlaceholder" placeholder="Email Address" />
+            <textarea id="messagePlaceholder" placeholder="How can we help you?"></textarea>
+            <button type="button" class="submit-btn" id="submitText">Send Inquiry</button>
           </form>
         </div>
 
         <div class="details-card">
-          <h3>Contact Information</h3>
+          <h3 id="contactInfoTitle">Contact Information</h3>
 
           <div class="details-row">
-            <span class="details-label">Phone</span>
+            <span class="details-label" id="phoneLabel">Phone</span>
             <div>(470) 374-4384</div>
           </div>
 
           <div class="details-row">
-            <span class="details-label">Email</span>
+            <span class="details-label" id="emailLabel">Email</span>
             <div>info@aplynxinvestments.com</div>
           </div>
 
           <div class="details-row">
-            <span class="details-label">Availability</span>
-            <div>We respond as promptly as possible during normal business hours.</div>
+            <span class="details-label" id="availabilityLabel">Availability</span>
+            <div id="availabilityText">We respond as promptly as possible during normal business hours.</div>
           </div>
 
           <div class="socials">
-            <a href="#">📘</a>
-            <a href="#">📸</a>
-            <a href="#">✖️</a>
-            <a href="#">🟢</a>
-            <a href="#">⭐</a>
+            <a href="https://facebook.com" target="_blank" aria-label="Facebook">📘</a>
+            <a href="https://instagram.com" target="_blank" aria-label="Instagram">📸</a>
+            <a href="https://yelp.com" target="_blank" aria-label="Yelp">⭐</a>
+            <a href="https://google.com" target="_blank" aria-label="Google">🔍</a>
           </div>
         </div>
       </div>
@@ -458,5 +448,53 @@
     © 2026 Aplynx Investments. All rights reserved.
   </footer>
 
+  <script>
+    let isSpanish = false;
+
+    function toggleLanguage() {
+      isSpanish = !isSpanish;
+
+      document.getElementById('en-content').classList.toggle('hide', isSpanish);
+      document.getElementById('es-content').classList.toggle('hide', !isSpanish);
+      document.getElementById('langBtn').textContent = isSpanish ? 'English' : 'Español';
+
+      document.getElementById('tagline').textContent = isSpanish
+        ? 'Inversión inmobiliaria y soluciones de propiedad'
+        : 'Real estate investment and property solutions';
+
+      document.getElementById('portalTitle').textContent = isSpanish ? 'Portal de Inquilinos' : 'Tenant Portal';
+      document.getElementById('portalText').textContent = isSpanish
+        ? 'Los residentes actuales pueden usar el portal para pagos de renta y solicitudes de mantenimiento.'
+        : 'Current residents can use the portal for rent payments and maintenance requests.';
+
+      document.getElementById('featuredTitle').textContent = isSpanish ? 'Propiedades Destacadas' : 'Featured Properties';
+      document.getElementById('featuredText').textContent = isSpanish
+        ? 'Explore una selección de oportunidades de renta bellamente mantenidas, seleccionadas para comodidad, conveniencia y valor a largo plazo.'
+        : 'Explore a selection of beautifully maintained rental opportunities curated for comfort, convenience, and long-term value.';
+
+      document.getElementById('welcomeTitle').textContent = isSpanish ? 'Bienvenido a Aplynx Investments' : 'Welcome to Aplynx Investments';
+      document.getElementById('welcomeText').textContent = isSpanish
+        ? 'Gracias por visitar nuestra página. Será un placer servirle. Por favor deje su nombre y dirección de correo electrónico abajo, y un miembro de nuestro equipo se comunicará con usted lo antes posible.'
+        : 'Thank you for visiting our page. It would be our pleasure to serve you. Please leave your name and email address below, and a member of our team will get back to you as soon as possible.';
+
+      document.getElementById('connectTitle').textContent = isSpanish ? 'Conectemos' : 'Let’s Connect';
+      document.getElementById('connectText').textContent = isSpanish
+        ? 'Estamos aquí para responder preguntas, hablar sobre oportunidades y ayudarle a dar el siguiente paso con confianza.'
+        : 'We’re here to answer questions, discuss opportunities, and help you take the next step with confidence.';
+
+      document.getElementById('namePlaceholder').placeholder = isSpanish ? 'Nombre Completo' : 'Full Name';
+      document.getElementById('emailPlaceholder').placeholder = isSpanish ? 'Correo Electrónico' : 'Email Address';
+      document.getElementById('messagePlaceholder').placeholder = isSpanish ? '¿Cómo podemos ayudarle?' : 'How can we help you?';
+      document.getElementById('submitText').textContent = isSpanish ? 'Enviar Consulta' : 'Send Inquiry';
+
+      document.getElementById('contactInfoTitle').textContent = isSpanish ? 'Información de Contacto' : 'Contact Information';
+      document.getElementById('phoneLabel').textContent = isSpanish ? 'Teléfono' : 'Phone';
+      document.getElementById('emailLabel').textContent = isSpanish ? 'Correo' : 'Email';
+      document.getElementById('availabilityLabel').textContent = isSpanish ? 'Disponibilidad' : 'Availability';
+      document.getElementById('availabilityText').textContent = isSpanish
+        ? 'Respondemos lo más pronto posible durante el horario normal de oficina.'
+        : 'We respond as promptly as possible during normal business hours.';
+    }
+  </script>
 </body>
 </html>
