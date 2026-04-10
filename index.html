@@ -5,505 +5,574 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Aplynx Investments</title>
   <style>
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #f7f8fa;
       color: #111827;
-      line-height: 1.6;
+      background: #f8fafc;
+      line-height: 1.5;
     }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
     header {
       background:
         linear-gradient(rgba(15, 23, 42, 0.72), rgba(15, 23, 42, 0.72)),
         url("https://images.unsplash.com/photo-1460317442991-0ec209397118?auto=format&fit=crop&w=1600&q=80")
         center/cover no-repeat;
       color: white;
-      padding: 24px 20px 80px;
+      padding: 18px 16px 56px;
     }
+
     .container {
-      max-width: 1100px;
+      max-width: 1120px;
       margin: 0 auto;
     }
+
     .topbar {
       display: flex;
       justify-content: flex-end;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
-    .lang-toggle {
-      background: rgba(255,255,255,0.16);
-      color: white;
+
+    .lang-btn {
       border: 1px solid rgba(255,255,255,0.35);
+      background: rgba(255,255,255,0.12);
+      color: white;
       border-radius: 999px;
       padding: 10px 16px;
+      font-size: 14px;
       cursor: pointer;
-      font-weight: bold;
     }
+
     .hero-card {
-      max-width: 760px;
       background: rgba(255,255,255,0.08);
       border: 1px solid rgba(255,255,255,0.18);
-      backdrop-filter: blur(6px);
+      backdrop-filter: blur(8px);
       border-radius: 20px;
-      padding: 28px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      padding: 22px;
+      max-width: 760px;
     }
+
     .brand-row {
       display: flex;
       align-items: center;
-      gap: 18px;
-      margin-bottom: 24px;
-      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 22px;
     }
+
     .brand-row img {
-      height: 110px;
-      width: auto;
-      display: block;
-      border-radius: 14px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+      width: 96px;
+      height: 96px;
+      object-fit: cover;
+      border-radius: 16px;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.35);
+      flex-shrink: 0;
     }
+
     .brand-text h1 {
-      margin: 0;
-      font-size: 32px;
+      margin: 0 0 6px;
+      font-size: 24px;
       line-height: 1.1;
     }
+
     .brand-text p {
-      margin: 6px 0 0;
-      font-size: 17px;
+      margin: 0;
       color: #e5e7eb;
-    }
-    .hero-headline {
-      margin: 0 0 12px;
-      font-size: 48px;
-      line-height: 1.08;
-    }
-    .hero-copy {
-      margin: 0 0 20px;
-      font-size: 18px;
-      color: #e5e7eb;
-      max-width: 680px;
-    }
-    .hero-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 22px;
-    }
-    .btn {
-      display: inline-block;
-      padding: 12px 20px;
-      border-radius: 999px;
-      text-decoration: none;
-      font-weight: bold;
       font-size: 15px;
     }
+
+    .hero h2 {
+      margin: 0 0 12px;
+      font-size: 40px;
+      line-height: 1.08;
+    }
+
+    .hero p {
+      margin: 0 0 22px;
+      font-size: 18px;
+      color: #e5e7eb;
+      max-width: 620px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      text-decoration: none;
+      padding: 12px 18px;
+      border-radius: 999px;
+      font-weight: bold;
+      font-size: 15px;
+      display: inline-block;
+    }
+
     .btn-primary {
       background: white;
       color: #0f172a;
     }
+
     .btn-secondary {
-      background: transparent;
       color: white;
       border: 1px solid rgba(255,255,255,0.45);
+      background: transparent;
     }
+
     section {
-      padding: 56px 20px;
+      padding: 48px 16px;
     }
+
+    .card {
+      background: white;
+      border-radius: 18px;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+      padding: 24px;
+    }
+
     .section-title {
-      font-size: 34px;
-      margin: 0 0 12px;
+      margin: 0 0 10px;
+      font-size: 32px;
       color: #0f172a;
     }
-    .section-subtitle {
-      margin: 0 0 30px;
+
+    .section-copy {
+      margin: 0 0 24px;
       color: #4b5563;
       max-width: 760px;
     }
-    .box,
-    .contact-card,
-    .details-card {
-      background: white;
-      border-radius: 18px;
-      padding: 30px;
-      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
-    }
-    .portal-box {
+
+    .portal {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 20px;
+      gap: 18px;
       flex-wrap: wrap;
     }
-    .portal-box h3,
-    .contact-card h3,
-    .details-card h3 {
-      margin-top: 0;
-      margin-bottom: 10px;
+
+    .portal h3,
+    .contact-box h3,
+    .info-box h3 {
+      margin: 0 0 8px;
       font-size: 28px;
       color: #0f172a;
     }
-    .portal-box p,
-    .contact-card p,
-    .details-card p {
+
+    .portal p,
+    .contact-box p,
+    .info-box p {
       margin: 0;
       color: #4b5563;
     }
-    .listings {
+
+    .properties-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 22px;
-      margin-top: 30px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
     }
-    .card {
+
+    .property {
       background: white;
       border-radius: 18px;
       overflow: hidden;
       box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
     }
-    .card-image {
-      height: 210px;
+
+    .property-image {
+      height: 200px;
       background-size: cover;
       background-position: center;
     }
-    .card-body {
-      padding: 20px;
+
+    .property-body {
+      padding: 18px;
     }
-    .card h3 {
+
+    .property h4 {
       margin: 0 0 8px;
-      color: #0f172a;
       font-size: 22px;
+      color: #0f172a;
     }
-    .card p {
+
+    .property p {
       margin: 0 0 8px;
       color: #4b5563;
     }
+
     .tag {
       display: inline-block;
-      margin-top: 10px;
+      margin-top: 8px;
       padding: 6px 12px;
-      background: #e5e7eb;
       border-radius: 999px;
+      background: #e5e7eb;
       font-size: 13px;
       font-weight: bold;
       color: #111827;
     }
+
     .contact-grid {
       display: grid;
       grid-template-columns: 1.1fr 0.9fr;
-      gap: 24px;
-      margin-top: 20px;
+      gap: 20px;
     }
-    .details-row {
-      margin-bottom: 16px;
-    }
-    .details-label {
-      display: block;
-      font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: #6b7280;
-      margin-bottom: 4px;
-      font-weight: bold;
-    }
+
     form {
       display: grid;
-      gap: 14px;
-      margin-top: 20px;
+      gap: 12px;
+      margin-top: 18px;
     }
-    input, textarea {
+
+    input,
+    textarea {
       width: 100%;
       padding: 14px 16px;
-      border-radius: 12px;
       border: 1px solid #d1d5db;
+      border-radius: 12px;
       font-size: 15px;
+      font-family: inherit;
     }
+
     textarea {
       min-height: 130px;
       resize: vertical;
     }
-    .submit-btn {
+
+    .submit {
+      border: none;
+      border-radius: 12px;
+      padding: 14px 18px;
       background: #0f172a;
       color: white;
-      border: none;
-      padding: 14px 18px;
-      border-radius: 12px;
       font-weight: bold;
       font-size: 15px;
       cursor: pointer;
     }
+
+    .info-row {
+      margin-bottom: 16px;
+    }
+
+    .label {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #6b7280;
+      font-weight: bold;
+    }
+
     footer {
       background: #0f172a;
       color: white;
       text-align: center;
-      padding: 38px 20px;
-      margin-top: 30px;
+      padding: 34px 16px;
     }
+
     .socials {
       display: flex;
       justify-content: center;
-      gap: 18px;
       flex-wrap: wrap;
+      gap: 12px;
       margin: 16px 0 8px;
     }
+
     .socials a {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 120px;
-      padding: 12px 16px;
-      border-radius: 999px;
       text-decoration: none;
-      background: rgba(255,255,255,0.1);
       color: white;
-      font-weight: bold;
       border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.08);
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-weight: bold;
+      font-size: 14px;
     }
-    .hide { display: none; }
+
+    .hide {
+      display: none;
+    }
 
     @media (max-width: 900px) {
-      .listings,
+      .properties-grid,
       .contact-grid {
         grid-template-columns: 1fr;
       }
-      .hero-headline {
-        font-size: 38px;
+
+      .hero h2 {
+        font-size: 34px;
       }
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 640px) {
+      header {
+        padding: 14px 12px 42px;
+      }
+
+      .hero-card {
+        padding: 18px;
+      }
+
+      .brand-row {
+        align-items: flex-start;
+      }
+
       .brand-row img {
-        height: 86px;
+        width: 78px;
+        height: 78px;
       }
-      .hero-headline {
-        font-size: 31px;
+
+      .brand-text h1 {
+        font-size: 21px;
       }
+
+      .hero h2 {
+        font-size: 28px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
       .section-title {
         font-size: 28px;
+      }
+
+      .portal h3,
+      .contact-box h3,
+      .info-box h3 {
+        font-size: 24px;
       }
     }
   </style>
 </head>
 <body>
+  <header>
+    <div class="container">
+      <div class="topbar">
+        <button class="lang-btn" id="langBtn" onclick="toggleLanguage()">Español</button>
+      </div>
 
-<header>
-  <div class="container">
-    <div class="topbar">
-      <button class="lang-toggle" id="langBtn" onclick="toggleLanguage()">Español</button>
-    </div>
-
-    <div class="hero-card">
-      <div class="brand-row">
-        <img src="logo.png" alt="Aplynx Investments Logo">
-        <div class="brand-text">
-          <h1>APLYNX Investments</h1>
-          <p id="tagline">Real estate investment and property solutions</p>
+      <div class="hero-card">
+        <div class="brand-row">
+          <img src="logo.png" alt="Aplynx Investments Logo">
+          <div class="brand-text">
+            <h1>APLYNX Investments</h1>
+            <p id="tagline">Real estate investment and property solutions</p>
+          </div>
         </div>
-      </div>
 
-      <div id="en-content">
-        <h2 class="hero-headline">Professional property solutions built on trust.</h2>
-        <p class="hero-copy">Welcome to Aplynx Investments. It would be our pleasure to serve you. We provide professional real estate investment and property solutions with responsiveness, care, and trust.</p>
-        <div class="hero-buttons">
-          <a class="btn btn-primary" href="#contact">Contact Us</a>
-          <a class="btn btn-secondary" href="#properties">View Properties</a>
+        <div class="hero" id="englishContent">
+          <h2>Professional property solutions built on trust.</h2>
+          <p>Welcome to Aplynx Investments. It would be our pleasure to serve you. We provide professional real estate investment and property solutions with care, trust, and responsiveness.</p>
+          <div class="buttons">
+            <a class="btn btn-primary" href="#contact">Contact Us</a>
+            <a class="btn btn-secondary" href="#properties">View Properties</a>
+          </div>
         </div>
-      </div>
 
-      <div id="es-content" class="hide">
-        <h2 class="hero-headline">Soluciones profesionales de propiedad construidas con confianza.</h2>
-        <p class="hero-copy">Bienvenido a Aplynx Investments. Será un placer servirle. Ofrecemos soluciones profesionales de inversión inmobiliaria y propiedades con confianza, atención y rapidez.</p>
-        <div class="hero-buttons">
-          <a class="btn btn-primary" href="#contact">Contáctenos</a>
-          <a class="btn btn-secondary" href="#properties">Ver Propiedades</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</header>
-
-<section>
-  <div class="container">
-    <div class="box portal-box">
-      <div>
-        <h3 id="portalTitle">Tenant Portal</h3>
-        <p id="portalText">Current residents can use the portal for rent payments and maintenance requests.</p>
-      </div>
-      <a class="btn btn-primary" href="#">Access Portal</a>
-    </div>
-  </div>
-</section>
-
-<section id="properties">
-  <div class="container">
-    <h2 class="section-title" id="featuredTitle">Featured Properties</h2>
-    <p class="section-subtitle" id="featuredText">Explore sample listings below. These are placeholder properties you can replace with your real listings later.</p>
-
-    <div class="listings">
-      <div class="card">
-        <div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=80');"></div>
-        <div class="card-body">
-          <h3>Modern Apartment</h3>
-          <p>2 Bed • 2 Bath • Atlanta, GA</p>
-          <p>Bright interiors with updated finishes and convenient city access.</p>
-          <span class="tag">Now Leasing</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=900&q=80');"></div>
-        <div class="card-body">
-          <h3>Downtown Loft</h3>
-          <p>1 Bed • 1 Bath • City Center</p>
-          <p>Open concept living with sleek style in a prime downtown location.</p>
-          <span class="tag">Featured</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1448630360428-65456885c650?auto=format&fit=crop&w=900&q=80');"></div>
-        <div class="card-body">
-          <h3>Family Home</h3>
-          <p>3 Bed • 2 Bath • Suburbs</p>
-          <p>Comfortable family living with spacious rooms and a welcoming layout.</p>
-          <span class="tag">Available</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=900&q=80');"></div>
-        <div class="card-body">
-          <h3>Luxury Condo</h3>
-          <p>2 Bed • 2 Bath • Midtown</p>
-          <p>Stylish design, upscale finishes, and premium access to city amenities.</p>
-          <span class="tag">Premium</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=900&q=80');"></div>
-        <div class="card-body">
-          <h3>Townhouse</h3>
-          <p>3 Bed • 3 Bath • Westside</p>
-          <p>Modern townhome living with generous space and neighborhood charm.</p>
-          <span class="tag">Move-In Ready</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1460317442991-0ec209397118?auto=format&fit=crop&w=900&q=80');"></div>
-        <div class="card-body">
-          <h3>Cozy Studio</h3>
-          <p>1 Bed • 1 Bath • Downtown</p>
-          <p>Efficient, modern, and perfect for convenient city living.</p>
-          <span class="tag">Just Listed</span>
+        <div class="hero hide" id="spanishContent">
+          <h2>Soluciones profesionales de propiedad construidas con confianza.</h2>
+          <p>Bienvenido a Aplynx Investments. Será un placer servirle. Ofrecemos soluciones profesionales de inversión inmobiliaria y propiedades con confianza, atención y rapidez.</p>
+          <div class="buttons">
+            <a class="btn btn-primary" href="#contact">Contáctenos</a>
+            <a class="btn btn-secondary" href="#properties">Ver Propiedades</a>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </header>
 
-<section id="contact">
-  <div class="container">
-    <h2 class="section-title" id="welcomeTitle">Welcome to Aplynx Investments</h2>
-    <p class="section-subtitle" id="welcomeText">Thank you for visiting our page. Please leave your name, email, and message below, and a member of our team will get back to you as soon as possible.</p>
-
-    <div class="contact-grid">
-      <div class="contact-card">
-        <h3 id="connectTitle">Let’s Connect</h3>
-        <p id="connectText">We’re here to answer questions, discuss opportunities, and help you take the next step with confidence.</p>
-
-        <form>
-          <input type="text" id="namePlaceholder" placeholder="Full Name">
-          <input type="email" id="emailPlaceholder" placeholder="Email Address">
-          <textarea id="messagePlaceholder" placeholder="How can we help you?"></textarea>
-          <button type="button" class="submit-btn" id="submitText">Send Inquiry</button>
-        </form>
+  <section>
+    <div class="container">
+      <div class="card portal">
+        <div>
+          <h3 id="portalTitle">Tenant Portal</h3>
+          <p id="portalText">Current residents can use the portal for rent payments and maintenance requests.</p>
+        </div>
+        <a class="btn btn-primary" href="#">Access Portal</a>
       </div>
+    </div>
+  </section>
 
-      <div class="details-card">
-        <h3 id="contactInfoTitle">Contact Information</h3>
+  <section id="properties">
+    <div class="container">
+      <h2 class="section-title" id="featuredTitle">Featured Properties</h2>
+      <p class="section-copy" id="featuredCopy">Explore sample listings below. These are placeholder properties you can replace with your real listings later.</p>
 
-        <div class="details-row">
-          <span class="details-label" id="phoneLabel">Phone</span>
-          <div>(470) 374-4384</div>
+      <div class="properties-grid">
+        <div class="property">
+          <div class="property-image" style="background-image:url('https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=80');"></div>
+          <div class="property-body">
+            <h4>Modern Apartment</h4>
+            <p>2 Bed • 2 Bath • Atlanta, GA</p>
+            <p>Bright interiors with updated finishes and convenient city access.</p>
+            <span class="tag">Now Leasing</span>
+          </div>
         </div>
 
-        <div class="details-row">
-          <span class="details-label" id="emailLabel">Email</span>
-          <div>info@aplynxinvestments.com</div>
+        <div class="property">
+          <div class="property-image" style="background-image:url('https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=900&q=80');"></div>
+          <div class="property-body">
+            <h4>Downtown Loft</h4>
+            <p>1 Bed • 1 Bath • City Center</p>
+            <p>Open concept living with sleek style in a prime downtown location.</p>
+            <span class="tag">Featured</span>
+          </div>
         </div>
 
-        <div class="details-row">
-          <span class="details-label" id="availabilityLabel">Availability</span>
-          <div id="availabilityText">We respond as promptly as possible during normal business hours.</div>
+        <div class="property">
+          <div class="property-image" style="background-image:url('https://images.unsplash.com/photo-1448630360428-65456885c650?auto=format&fit=crop&w=900&q=80');"></div>
+          <div class="property-body">
+            <h4>Family Home</h4>
+            <p>3 Bed • 2 Bath • Suburbs</p>
+            <p>Comfortable family living with spacious rooms and a welcoming layout.</p>
+            <span class="tag">Available</span>
+          </div>
+        </div>
+
+        <div class="property">
+          <div class="property-image" style="background-image:url('https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=900&q=80');"></div>
+          <div class="property-body">
+            <h4>Luxury Condo</h4>
+            <p>2 Bed • 2 Bath • Midtown</p>
+            <p>Stylish design, upscale finishes, and premium access to city amenities.</p>
+            <span class="tag">Premium</span>
+          </div>
+        </div>
+
+        <div class="property">
+          <div class="property-image" style="background-image:url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=900&q=80');"></div>
+          <div class="property-body">
+            <h4>Townhouse</h4>
+            <p>3 Bed • 3 Bath • Westside</p>
+            <p>Modern townhome living with generous space and neighborhood charm.</p>
+            <span class="tag">Move-In Ready</span>
+          </div>
+        </div>
+
+        <div class="property">
+          <div class="property-image" style="background-image:url('https://images.unsplash.com/photo-1460317442991-0ec209397118?auto=format&fit=crop&w=900&q=80');"></div>
+          <div class="property-body">
+            <h4>Cozy Studio</h4>
+            <p>1 Bed • 1 Bath • Downtown</p>
+            <p>Efficient, modern, and perfect for convenient city living.</p>
+            <span class="tag">Just Listed</span>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<footer>
-  <h3 id="footerTitle">Connect With Us</h3>
-  <div class="socials">
-    <a href="https://facebook.com" target="_blank">Facebook</a>
-    <a href="https://instagram.com" target="_blank">Instagram</a>
-    <a href="https://x.com" target="_blank">X</a>
-    <a href="https://yelp.com" target="_blank">Yelp</a>
-    <a href="https://google.com" target="_blank">Google</a>
-  </div>
-  <p>© 2026 Aplynx Investments</p>
-</footer>
+  <section id="contact">
+    <div class="container">
+      <h2 class="section-title" id="welcomeTitle">Welcome to Aplynx Investments</h2>
+      <p class="section-copy" id="welcomeCopy">Thank you for visiting our page. Please leave your name, email, and message below, and a member of our team will get back to you as soon as possible.</p>
 
-<script>
-  let isSpanish = false;
+      <div class="contact-grid">
+        <div class="card contact-box">
+          <h3 id="connectTitle">Let’s Connect</h3>
+          <p id="connectCopy">We’re here to answer questions, discuss opportunities, and help you take the next step with confidence.</p>
 
-  function toggleLanguage() {
-    isSpanish = !isSpanish;
+          <form>
+            <input id="nameInput" type="text" placeholder="Full Name">
+            <input id="emailInput" type="email" placeholder="Email Address">
+            <textarea id="messageInput" placeholder="How can we help you?"></textarea>
+            <button class="submit" type="button" id="submitBtn">Send Inquiry</button>
+          </form>
+        </div>
 
-    document.getElementById('en-content').classList.toggle('hide', isSpanish);
-    document.getElementById('es-content').classList.toggle('hide', !isSpanish);
-    document.getElementById('langBtn').textContent = isSpanish ? 'English' : 'Español';
+        <div class="card info-box">
+          <h3 id="infoTitle">Contact Information</h3>
 
-    document.getElementById('tagline').textContent = isSpanish
-      ? 'Inversión inmobiliaria y soluciones de propiedad'
-      : 'Real estate investment and property solutions';
+          <div class="info-row">
+            <span class="label" id="phoneLabel">Phone</span>
+            <div>(470) 374-4384</div>
+          </div>
 
-    document.getElementById('portalTitle').textContent = isSpanish ? 'Portal de Inquilinos' : 'Tenant Portal';
-    document.getElementById('portalText').textContent = isSpanish
-      ? 'Los residentes actuales pueden usar el portal para pagos de renta y solicitudes de mantenimiento.'
-      : 'Current residents can use the portal for rent payments and maintenance requests.';
+          <div class="info-row">
+            <span class="label" id="emailLabel">Email</span>
+            <div>info@aplynxinvestments.com</div>
+          </div>
 
-    document.getElementById('featuredTitle').textContent = isSpanish ? 'Propiedades Destacadas' : 'Featured Properties';
-    document.getElementById('featuredText').textContent = isSpanish
-      ? 'Explore propiedades de ejemplo abajo. Estas son propiedades temporales que puede reemplazar con sus listados reales más adelante.'
-      : 'Explore sample listings below. These are placeholder properties you can replace with your real listings later.';
+          <div class="info-row">
+            <span class="label" id="availabilityLabel">Availability</span>
+            <div id="availabilityCopy">We respond as promptly as possible during normal business hours.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    document.getElementById('welcomeTitle').textContent = isSpanish ? 'Bienvenido a Aplynx Investments' : 'Welcome to Aplynx Investments';
-    document.getElementById('welcomeText').textContent = isSpanish
-      ? 'Gracias por visitar nuestra página. Por favor deje su nombre, correo electrónico y mensaje abajo, y un miembro de nuestro equipo se comunicará con usted lo antes posible.'
-      : 'Thank you for visiting our page. Please leave your name, email, and message below, and a member of our team will get back to you as soon as possible.';
+  <footer>
+    <h3 id="footerTitle">Connect With Us</h3>
+    <div class="socials">
+      <a href="https://facebook.com" target="_blank">Facebook</a>
+      <a href="https://instagram.com" target="_blank">Instagram</a>
+      <a href="https://x.com" target="_blank">X</a>
+      <a href="https://yelp.com" target="_blank">Yelp</a>
+      <a href="https://google.com" target="_blank">Google</a>
+    </div>
+    <p>© 2026 Aplynx Investments</p>
+  </footer>
 
-    document.getElementById('connectTitle').textContent = isSpanish ? 'Conectemos' : 'Let’s Connect';
-    document.getElementById('connectText').textContent = isSpanish
-      ? 'Estamos aquí para responder preguntas, hablar sobre oportunidades y ayudarle a dar el siguiente paso con confianza.'
-      : 'We’re here to answer questions, discuss opportunities, and help you take the next step with confidence.';
+  <script>
+    let spanish = false;
 
-    document.getElementById('namePlaceholder').placeholder = isSpanish ? 'Nombre Completo' : 'Full Name';
-    document.getElementById('emailPlaceholder').placeholder = isSpanish ? 'Correo Electrónico' : 'Email Address';
-    document.getElementById('messagePlaceholder').placeholder = isSpanish ? '¿Cómo podemos ayudarle?' : 'How can we help you?';
-    document.getElementById('submitText').textContent = isSpanish ? 'Enviar Consulta' : 'Send Inquiry';
+    function toggleLanguage() {
+      spanish = !spanish;
 
-    document.getElementById('contactInfoTitle').textContent = isSpanish ? 'Información de Contacto' : 'Contact Information';
-    document.getElementById('phoneLabel').textContent = isSpanish ? 'Teléfono' : 'Phone';
-    document.getElementById('emailLabel').textContent = isSpanish ? 'Correo' : 'Email';
-    document.getElementById('availabilityLabel').textContent = isSpanish ? 'Disponibilidad' : 'Availability';
-    document.getElementById('availabilityText').textContent = isSpanish
-      ? 'Respondemos lo más pronto posible durante el horario normal de oficina.'
-      : 'We respond as promptly as possible during normal business hours.';
+      document.getElementById('englishContent').classList.toggle('hide', spanish);
+      document.getElementById('spanishContent').classList.toggle('hide', !spanish);
+      document.getElementById('langBtn').textContent = spanish ? 'English' : 'Español';
 
-    document.getElementById('footerTitle').textContent = isSpanish ? 'Conéctese Con Nosotros' : 'Connect With Us';
-  }
-</script>
+      document.getElementById('tagline').textContent = spanish
+        ? 'Inversión inmobiliaria y soluciones de propiedad'
+        : 'Real estate investment and property solutions';
 
+      document.getElementById('portalTitle').textContent = spanish ? 'Portal de Inquilinos' : 'Tenant Portal';
+      document.getElementById('portalText').textContent = spanish
+        ? 'Los residentes actuales pueden usar el portal para pagos de renta y solicitudes de mantenimiento.'
+        : 'Current residents can use the portal for rent payments and maintenance requests.';
+
+      document.getElementById('featuredTitle').textContent = spanish ? 'Propiedades Destacadas' : 'Featured Properties';
+      document.getElementById('featuredCopy').textContent = spanish
+        ? 'Explore propiedades de ejemplo abajo. Estas son propiedades temporales que puede reemplazar con sus listados reales más adelante.'
+        : 'Explore sample listings below. These are placeholder properties you can replace with your real listings later.';
+
+      document.getElementById('welcomeTitle').textContent = spanish ? 'Bienvenido a Aplynx Investments' : 'Welcome to Aplynx Investments';
+      document.getElementById('welcomeCopy').textContent = spanish
+        ? 'Gracias por visitar nuestra página. Por favor deje su nombre, correo electrónico y mensaje abajo, y un miembro de nuestro equipo se comunicará con usted lo antes posible.'
+        : 'Thank you for visiting our page. Please leave your name, email, and message below, and a member of our team will get back to you as soon as possible.';
+
+      document.getElementById('connectTitle').textContent = spanish ? 'Conectemos' : 'Let’s Connect';
+      document.getElementById('connectCopy').textContent = spanish
+        ? 'Estamos aquí para responder preguntas, hablar sobre oportunidades y ayudarle a dar el siguiente paso con confianza.'
+        : 'We’re here to answer questions, discuss opportunities, and help you take the next step with confidence.';
+
+      document.getElementById('nameInput').placeholder = spanish ? 'Nombre Completo' : 'Full Name';
+      document.getElementById('emailInput').placeholder = spanish ? 'Correo Electrónico' : 'Email Address';
+      document.getElementById('messageInput').placeholder = spanish ? '¿Cómo podemos ayudarle?' : 'How can we help you?';
+      document.getElementById('submitBtn').textContent = spanish ? 'Enviar Consulta' : 'Send Inquiry';
+
+      document.getElementById('infoTitle').textContent = spanish ? 'Información de Contacto' : 'Contact Information';
+      document.getElementById('phoneLabel').textContent = spanish ? 'Teléfono' : 'Phone';
+      document.getElementById('emailLabel').textContent = spanish ? 'Correo' : 'Email';
+      document.getElementById('availabilityLabel').textContent = spanish ? 'Disponibilidad' : 'Availability';
+      document.getElementById('availabilityCopy').textContent = spanish
+        ? 'Respondemos lo más pronto posible durante el horario normal de oficina.'
+        : 'We respond as promptly as possible during normal business hours.';
+
+      document.getElementById('footerTitle').textContent = spanish ? 'Conéctese Con Nosotros' : 'Connect With Us';
+    }
+  </script>
 </body>
 </html>
