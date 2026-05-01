@@ -1,34 +1,337 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>APLYNX Investments</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>APLYNX Investments</title>
+
+<style>
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f7f7f2;
+  color: #111827;
+}
+a { text-decoration: none; }
+
+header {
+  min-height: 95vh;
+  background:
+    linear-gradient(rgba(0,0,0,.35), rgba(0,0,0,.6)),
+    url("https://images.unsplash.com/photo-1460317442991-0ec209397118?auto=format&fit=crop&w=1800&q=80")
+    center/cover no-repeat;
+  color: white;
+  padding: 30px;
+}
+
+.topbar {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.lang-btn {
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: 1px solid white;
+  background: rgba(255,255,255,.15);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.hero-card {
+  margin-top: 60px;
+  max-width: 760px;
+  background: rgba(0,0,0,.65);
+  padding: 35px;
+  border-radius: 22px;
+}
+
+.logo {
+  width: 180px;
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-size: 42px;
+  margin: 0;
+}
+
+h2 {
+  font-size: 34px;
+  margin-bottom: 10px;
+}
+
+p {
+  line-height: 1.6;
+}
+
+.btn {
+  display: inline-block;
+  padding: 14px 22px;
+  border-radius: 999px;
+  font-weight: bold;
+  margin: 8px 6px;
+}
+
+.btn-light {
+  background: white;
+  color: #111827;
+}
+
+.btn-dark {
+  background: #111827;
+  color: white;
+}
+
+section {
+  padding: 60px 20px;
+}
+
+.container {
+  max-width: 1150px;
+  margin: auto;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.card {
+  background: white;
+  padding: 25px;
+  border-radius: 18px;
+  box-shadow: 0 10px 25px rgba(0,0,0,.08);
+}
+
+.card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 14px;
+  margin-bottom: 15px;
+}
+
+.price {
+  font-size: 34px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.socials {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.socials a {
+  background: white;
+  padding: 18px;
+  border-radius: 16px;
+  text-align: center;
+  color: #111827;
+  font-weight: bold;
+  box-shadow: 0 8px 18px rgba(0,0,0,.08);
+}
+
+footer {
+  background: #0f172a;
+  color: white;
+  text-align: center;
+  padding: 35px;
+}
+
+.hide { display: none; }
+
+@media(max-width: 850px) {
+  .grid, .socials { grid-template-columns: 1fr; }
+  h1 { font-size: 32px; }
+  .hero-card { margin-top: 35px; }
+}
+</style>
 </head>
 
-<body style="font-family: Arial; text-align: center; padding: 50px; background:#f5f5f5;">
+<body>
 
-  <img src="logo.png" style="width:200px; margin-bottom:20px;" />
-
-  <h1>APLYNX Investments</h1>
-  <p>Digital lease platform for property owners.</p>
-
-  <h2>Choose Your Plan</h2>
-
-  <div style="margin-top:30px;">
-
-    <a href="https://buy.stripe.com/YOUR_LINK_29">
-      <button style="padding:15px; margin:10px;">$29 DIY Lease</button>
-    </a>
-
-    <a href="https://buy.stripe.com/YOUR_LINK_79">
-      <button style="padding:15px; margin:10px;">$79 Guided Help</button>
-    </a>
-
-    <a href="https://buy.stripe.com/YOUR_LINK_99">
-      <button style="padding:15px; margin:10px;">$99 Monthly Plan</button>
-    </a>
-
+<header>
+  <div class="topbar">
+    <button class="lang-btn" onclick="toggleLang()" id="langBtn">Español</button>
   </div>
+
+  <div class="hero-card">
+    <img class="logo" src="logo.png" alt="APLYNX Investments Logo" />
+
+    <div class="en">
+      <h1>APLYNX Investments</h1>
+      <h2>Leases, landlord tools, and real human help.</h2>
+      <p>
+        APLYNX helps property owners access lease tools, guided support, and ongoing lease updates.
+        We serve landlords in English and Spanish.
+      </p>
+      <a class="btn btn-light" href="#plans">View Plans</a>
+      <a class="btn btn-light" href="#contact">Contact Us</a>
+    </div>
+
+    <div class="es hide">
+      <h1>APLYNX Investments</h1>
+      <h2>Contratos, herramientas y ayuda humana real.</h2>
+      <p>
+        APLYNX ayuda a propietarios con contratos de arrendamiento, asistencia guiada y actualizaciones continuas.
+        Servimos a propietarios en inglés y español.
+      </p>
+      <a class="btn btn-light" href="#plans">Ver Planes</a>
+      <a class="btn btn-light" href="#contact">Contáctenos</a>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="container">
+    <h2 class="en">Our Services</h2>
+    <h2 class="es hide">Nuestros Servicios</h2>
+
+    <div class="grid">
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=900&q=80">
+        <h3 class="en">Lease Access</h3>
+        <h3 class="es hide">Acceso a Contratos</h3>
+        <p class="en">Access lease tools by state for property owners and landlords.</p>
+        <p class="es hide">Acceda a herramientas de contratos por estado para propietarios.</p>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1560520653-9e0e4c89eb11?auto=format&fit=crop&w=900&q=80">
+        <h3 class="en">Guided Help</h3>
+        <h3 class="es hide">Ayuda Guiada</h3>
+        <p class="en">Get live online help completing your lease correctly.</p>
+        <p class="es hide">Reciba ayuda en vivo para completar su contrato correctamente.</p>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=900&q=80">
+        <h3 class="en">Ongoing Updates</h3>
+        <h3 class="es hide">Actualizaciones Continuas</h3>
+        <p class="en">Stay current with lease updates and owner reminders.</p>
+        <p class="es hide">Manténgase actualizado con contratos y recordatorios.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="plans">
+  <div class="container">
+    <h2 class="en">Choose Your Plan</h2>
+    <h2 class="es hide">Elija Su Plan</h2>
+
+    <div class="grid">
+      <div class="card">
+        <h3>DIY Lease Access</h3>
+        <div class="price">$29</div>
+        <p class="en">Access lease tools and start your lease process.</p>
+        <p class="es hide">Acceda herramientas de contratos y comience el proceso.</p>
+        <a class="btn btn-dark" href="YOUR_STRIPE_LINK_29" target="_blank">Pay / Pagar</a>
+      </div>
+
+      <div class="card">
+        <h3>Guided Lease Help</h3>
+        <div class="price">$79</div>
+        <p class="en">Live online assistance to complete your lease step by step.</p>
+        <p class="es hide">Asistencia en vivo para completar su contrato paso a paso.</p>
+        <a class="btn btn-dark" href="YOUR_STRIPE_LINK_79" target="_blank">Pay / Pagar</a>
+      </div>
+
+      <div class="card">
+        <h3>Lease Protection Plan</h3>
+        <div class="price">$99/mo</div>
+        <p class="en">Monthly lease updates, reminders, and ongoing support.</p>
+        <p class="es hide">Actualizaciones mensuales, recordatorios y soporte continuo.</p>
+        <a class="btn btn-dark" href="YOUR_STRIPE_LINK_99" target="_blank">Subscribe / Suscribirse</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h2 class="en">Featured Property Solutions</h2>
+    <h2 class="es hide">Soluciones de Propiedad</h2>
+
+    <div class="grid">
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=80">
+        <h3>Residential Leasing</h3>
+        <p class="en">Support for residential lease setup and owner organization.</p>
+        <p class="es hide">Apoyo para contratos residenciales y organización de propietarios.</p>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=900&q=80">
+        <h3>Property Support</h3>
+        <p class="en">Tools for owners managing rental properties.</p>
+        <p class="es hide">Herramientas para propietarios que administran rentas.</p>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80">
+        <h3>Bilingual Service</h3>
+        <p class="en">English and Spanish support for landlords and owners.</p>
+        <p class="es hide">Servicio en inglés y español para propietarios.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h2 class="en">Follow APLYNX</h2>
+    <h2 class="es hide">Síganos</h2>
+
+    <div class="socials">
+      <a href="#" target="_blank">Facebook</a>
+      <a href="#" target="_blank">Instagram</a>
+      <a href="#" target="_blank">TikTok</a>
+      <a href="#" target="_blank">X / Twitter</a>
+      <a href="#" target="_blank">YouTube</a>
+      <a href="#" target="_blank">LinkedIn</a>
+      <a href="#" target="_blank">Yelp</a>
+      <a href="#" target="_blank">Google Business</a>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <div class="card">
+      <h2 class="en">Contact APLYNX</h2>
+      <h2 class="es hide">Contacte a APLYNX</h2>
+
+      <p><strong>Email:</strong> <a href="mailto:info@Aplynxinvestments.com">info@Aplynxinvestments.com</a></p>
+      <p><strong>Phone:</strong> <a href="tel:+14703744384">(470) 374-4384</a></p>
+
+      <a class="btn btn-dark" href="mailto:info@Aplynxinvestments.com">Email Us / Enviar Correo</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 APLYNX Investments</p>
+  <p>Lease support, landlord tools, and property solutions.</p>
+</footer>
+
+<script>
+function toggleLang() {
+  const en = document.querySelectorAll(".en");
+  const es = document.querySelectorAll(".es");
+  en.forEach(x => x.classList.toggle("hide"));
+  es.forEach(x => x.classList.toggle("hide"));
+
+  const btn = document.getElementById("langBtn");
+  btn.textContent = btn.textContent === "Español" ? "English" : "Español";
+}
+</script>
 
 </body>
 </html>
