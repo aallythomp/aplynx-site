@@ -427,17 +427,26 @@ footer {
       <p class="en">Tell me your budget, preferred areas, move date, and must-haves. I’ll research apartments that fit, put together a focused shortlist, check key details with properties when possible, and help you plan the next steps.</p>
       <p class="es hide">Indíqueme su presupuesto, zonas preferidas, fecha de mudanza y requisitos. Buscaré apartamentos adecuados, prepararé una lista de opciones, confirmaré detalles importantes cuando sea posible y le ayudaré con los próximos pasos.</p>
       <div class="listing">
-        <h3 class="en">Apartment Search Package</h3><h3 class="es hide">Paquete de Búsqueda</h3>
-        <div class="search-price">$149 <span class="small-note en">proposed flat fee</span><span class="small-note es hide">tarifa fija propuesta</span></div>
-        <p class="en">Includes an intake review, research and a shortlist of up to five matching options, availability checks when properties respond, and one follow-up round of questions. Search is focused on the areas and budget you provide.</p>
-        <p class="es hide">Incluye revisión de sus necesidades, investigación y una lista de hasta cinco opciones, consultas de disponibilidad cuando respondan las propiedades y una ronda de preguntas de seguimiento.</p>
-        <p class="small-note en">Tours, transportation, application fees, deposits, and a guaranteed approval or placement are not included. The fee and payment link will be finalized after brokerage review.</p>
-        <p class="small-note es hide">No incluye visitas, transporte, cargos de solicitud, depósitos ni garantía de aprobación o colocación. La tarifa y el enlace de pago se finalizarán después de la revisión de la correduría.</p>
+        <h3 class="en">Choose how I search for you</h3><h3 class="es hide">Elija cómo buscaré por usted</h3>
+        <p class="en"><strong>Participating apartment communities: Free to you.</strong> I search properties that work with my services and may compensate my brokerage if you lease there. Your choices depend on those communities' availability and criteria.</p>
+        <p class="es hide"><strong>Comunidades participantes: Sin costo para usted.</strong> Buscaré propiedades que colaboran con mis servicios y podrían pagar a mi correduría si firma un contrato. Las opciones dependen de disponibilidad y requisitos.</p>
+        <div class="search-price">$149 <span class="small-note en">proposed independent-search fee</span><span class="small-note es hide">tarifa propuesta de búsqueda independiente</span></div>
+        <p class="en"><strong>Broader custom search:</strong> If you want me to search outside participating communities, the proposed fee covers an intake review, research and a shortlist of up to five matching options, availability checks when properties respond, and one follow-up round of questions.</p>
+        <p class="es hide"><strong>Búsqueda más amplia:</strong> Si desea que busque fuera de las comunidades participantes, la tarifa propuesta cubre una consulta inicial, investigación, hasta cinco opciones, consultas de disponibilidad y una ronda de seguimiento.</p>
+        <p class="small-note en">You choose the path before work begins. I will disclose any property-paid compensation and confirm the final fee terms. Tours, transportation, property application fees, deposits, and approval or placement are not included or guaranteed.</p>
+        <p class="small-note es hide">Usted elige antes de iniciar. Le informaré de cualquier compensación pagada por la propiedad y confirmaré las condiciones finales. Visitas, transporte, cargos de solicitud y depósitos son aparte; no se garantiza aprobación ni colocación.</p>
       </div>
     </div>
     <div class="intake-card">
       <h3 class="en">Tell me what you need</h3><h3 class="es hide">Cuénteme qué necesita</h3>
       <form id="search-form">
+        <div class="field"><label for="s-path">How would you like me to search? / ¿Cómo desea que busque?</label>
+          <select id="s-path" required>
+            <option value="">Choose / Seleccione</option>
+            <option value="Participating communities — free to renter">Participating communities — free / Comunidades participantes — gratis</option>
+            <option value="Broader custom search — proposed $149 fee">Broader custom search — proposed $149 / Búsqueda amplia — $149 propuestos</option>
+          </select>
+        </div>
         <div class="form-grid">
           <div class="field"><label for="s-name">Name / Nombre</label><input id="s-name" name="name" autocomplete="name" required></div>
           <div class="field"><label for="s-email">Email / Correo</label><input id="s-email" name="email" type="email" autocomplete="email" required></div>
@@ -451,23 +460,23 @@ footer {
         <div class="disclosure">
           <strong class="en">Service acknowledgment</strong><strong class="es hide">Reconocimiento del servicio</strong>
           <ul class="en">
-            <li>I understand the proposed $149 covers research and a shortlist of up to five options plus one follow-up round, subject to brokerage approval.</li>
+            <li>I choose either the free participating-community search or the proposed $149 broader search above. The final terms will be confirmed before paid work begins.</li>
             <li>Availability, prices, screening decisions, and leases are set by the properties and may change. Placement is not guaranteed.</li>
-            <li>Property application fees, deposits, tours, and transportation are separate. Any property-paid compensation will be disclosed as required before I engage the service.</li>
+            <li>Property application fees, deposits, tours, and transportation are separate. A participating property may compensate the brokerage if I lease there; this will be disclosed as required.</li>
             <li>This request does not create a brokerage relationship. A separate brokerage agreement and final fee terms may be required before paid work begins.</li>
           </ul>
           <ul class="es hide">
-            <li>Entiendo que la tarifa propuesta de $149 cubre investigación, hasta cinco opciones y una ronda de seguimiento, sujeta a aprobación de la correduría.</li>
+            <li>Elijo la búsqueda gratuita en comunidades participantes o la búsqueda más amplia con tarifa propuesta de $149. Confirmaremos las condiciones antes de iniciar un servicio pagado.</li>
             <li>Las propiedades fijan disponibilidad, precios, decisiones de aprobación y contratos; no se garantiza una colocación.</li>
-            <li>Solicitudes, depósitos, visitas y transporte son aparte. Se informará sobre cualquier compensación de la propiedad según corresponda.</li>
+            <li>Solicitudes, depósitos, visitas y transporte son aparte. Una propiedad participante podría compensar a la correduría si alquilo allí; se informará según corresponda.</li>
             <li>Esta solicitud no crea una relación de representación. Podría requerirse un acuerdo de corretaje y condiciones finales antes de iniciar el servicio pagado.</li>
           </ul>
         </div>
         <label class="checkline"><input id="s-agree" type="checkbox" required><span class="en">I have read and acknowledge the service details above.</span><span class="es hide">He leído y acepto los detalles del servicio.</span></label>
         <div class="field"><label for="s-sign">Type your full name / Escriba su nombre completo</label><input id="s-sign" required></div>
         <button class="btn btn-dark" type="submit">Send my request / Enviar solicitud</button>
-        <p class="small-note en">Your email app opens with your answers and acknowledgment. Send the message to complete the request. Payment is arranged after the final terms are approved.</p>
-        <p class="small-note es hide">Su correo se abrirá con sus respuestas y aceptación. Envíe el mensaje para completar la solicitud. El pago se organizará después de aprobar las condiciones finales.</p>
+        <p class="small-note en">Your email app opens with your answers and acknowledgment. Send the message to complete the request. The free path has no search fee; payment for a broader search is arranged only after the final terms are approved.</p>
+        <p class="small-note es hide">Su correo se abrirá con sus respuestas y aceptación. Envíe el mensaje para completar la solicitud. La opción de comunidades participantes no tiene tarifa de búsqueda; el pago de una búsqueda amplia se organiza después de confirmar las condiciones.</p>
       </form>
     </div>
   </div>
@@ -541,7 +550,7 @@ document.getElementById("rental-form").addEventListener("submit", function(e) {
 document.getElementById("search-form").addEventListener("submit", function(e) {
   e.preventDefault();
   const v = id => document.getElementById(id).value.trim();
-  emailRequest("Apartment search service request", [["Name",v("s-name")],["Email",v("s-email")],["Phone",v("s-phone")],["Desired move date",v("s-date")],["Maximum monthly rent",v("s-budget")],["Bedrooms",v("s-beds")],["Areas",v("s-areas")],["Must-haves",v("s-needs")],["Service acknowledgment","I read and acknowledge the proposed scope and terms displayed on the APLYNX website."],["Typed name",v("s-sign")],["Acknowledged at",new Date().toISOString()]]);
+  emailRequest("Apartment search service request", [["Name",v("s-name")],["Email",v("s-email")],["Phone",v("s-phone")],["Desired move date",v("s-date")],["Search choice",v("s-path")],["Maximum monthly rent",v("s-budget")],["Bedrooms",v("s-beds")],["Areas",v("s-areas")],["Must-haves",v("s-needs")],["Service acknowledgment","I read and acknowledge the selected service path and scope displayed on the APLYNX website."],["Typed name",v("s-sign")],["Acknowledged at",new Date().toISOString()]]);
 });
 
 function toggleLang() {
