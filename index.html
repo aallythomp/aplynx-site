@@ -192,6 +192,44 @@ footer {
   h1 { font-size: 32px; }
   .hero-card { margin-top: 35px; }
 }
+
+:root { --ink:#18241f; --forest:#1c3b34; --gold:#d7ac55; --cream:#faf5e9; }
+body { background: var(--cream); color: var(--ink); }
+header {
+  min-height: 95vh;
+  background: linear-gradient(90deg, rgba(10,28,24,.76) 0%, rgba(10,28,24,.48) 47%, rgba(10,28,24,.1) 100%),
+    url("assets/georgia-apartments-hero.webp") center/cover no-repeat;
+}
+.hero-card { background: rgba(9,27,23,.79); border: 1px solid rgba(236,200,124,.48); box-shadow: 0 24px 65px rgba(0,0,0,.26); }
+.hero-card h2 { color: #f1d393; font-family: Georgia, serif; line-height: 1.15; }
+h2 { font-family: Georgia, serif; }
+.btn-dark { background: var(--forest); color: #fff; }
+.btn-light { background: #f4d28c; color: #13231e; }
+.btn, .socials a { transition: transform .18s ease, box-shadow .18s ease; }
+.btn:hover, .socials a:hover { transform: translateY(-2px); box-shadow: 0 12px 25px rgba(0,0,0,.17); }
+.card, .listing, .intake-card, .owner-intro, .owner-steps { border: 1px solid rgba(75,94,77,.12); }
+.owner-section { background: linear-gradient(135deg,#e7efe9,#f6e9cf); }
+.section-muted { background: linear-gradient(140deg,#f6ebd5,#e5ece6); }
+#apartment-search {
+  background: linear-gradient(90deg,rgba(15,42,34,.96),rgba(18,49,39,.87)),
+    url("assets/georgia-apartments-hero.webp") center/cover no-repeat;
+}
+#apartment-search > .container > div:first-child > h2,
+#apartment-search > .container > div:first-child > p { color: #fff; }
+#apartment-search > .container > div:first-child > .eyebrow { color: #f0c877; }
+#apartment-search .listing { color: var(--ink); }
+#apartment-search .listing p { color: var(--ink); }
+#apartment-search .small-note { color: #49574f; }
+#apartment-search .intake-card { color: var(--ink); }
+.socials { grid-template-columns: repeat(3,1fr); }
+.socials a { background: var(--forest); color: #fff; border: 1px solid #c3a265; display: flex; align-items: center; justify-content: center; gap: 12px; }
+.social-mark { color: #f0c877; font-size: 28px; line-height: 1; }
+footer { border-top: 5px solid var(--gold); }
+@media(max-width:850px) {
+  header { min-height: 80vh; background-position: 58% center; }
+  .socials { grid-template-columns: 1fr; }
+}
+
 </style>
 </head>
 
@@ -430,7 +468,7 @@ footer {
         <h3 class="en">Choose how I search for you</h3><h3 class="es hide">Elija cómo buscaré por usted</h3>
         <p class="en"><strong>Participating apartment communities: Free to you.</strong> I search properties that work with my services and may compensate my brokerage if you lease there. Your choices depend on those communities' availability and criteria.</p>
         <p class="es hide"><strong>Comunidades participantes: Sin costo para usted.</strong> Buscaré propiedades que colaboran con mis servicios y podrían pagar a mi correduría si firma un contrato. Las opciones dependen de disponibilidad y requisitos.</p>
-        <div class="search-price">$149 <span class="small-note en">proposed independent-search fee</span><span class="small-note es hide">tarifa propuesta de búsqueda independiente</span></div>
+        <div class="search-price">$300 <span class="small-note en">proposed independent-search fee</span><span class="small-note es hide">tarifa propuesta de búsqueda independiente</span></div>
         <p class="en"><strong>Broader custom search:</strong> If you want me to search outside participating communities, the proposed fee covers an intake review, research and a shortlist of up to five matching options, availability checks when properties respond, and one follow-up round of questions.</p>
         <p class="es hide"><strong>Búsqueda más amplia:</strong> Si desea que busque fuera de las comunidades participantes, la tarifa propuesta cubre una consulta inicial, investigación, hasta cinco opciones, consultas de disponibilidad y una ronda de seguimiento.</p>
         <p class="small-note en">You choose the path before work begins. I will disclose any property-paid compensation and confirm the final fee terms. Tours, transportation, property application fees, deposits, and approval or placement are not included or guaranteed.</p>
@@ -444,7 +482,7 @@ footer {
           <select id="s-path" required>
             <option value="">Choose / Seleccione</option>
             <option value="Participating communities — free to renter">Participating communities — free / Comunidades participantes — gratis</option>
-            <option value="Broader custom search — proposed $149 fee">Broader custom search — proposed $149 / Búsqueda amplia — $149 propuestos</option>
+            <option value="Broader custom search — proposed $300 fee">Broader custom search — proposed $300 / Búsqueda amplia — $300 propuestos</option>
           </select>
         </div>
         <div class="form-grid">
@@ -460,13 +498,13 @@ footer {
         <div class="disclosure">
           <strong class="en">Service acknowledgment</strong><strong class="es hide">Reconocimiento del servicio</strong>
           <ul class="en">
-            <li>I choose either the free participating-community search or the proposed $149 broader search above. The final terms will be confirmed before paid work begins.</li>
+            <li>I choose either the free participating-community search or the proposed $300 broader search above. The final terms will be confirmed before paid work begins.</li>
             <li>Availability, prices, screening decisions, and leases are set by the properties and may change. Placement is not guaranteed.</li>
             <li>Property application fees, deposits, tours, and transportation are separate. A participating property may compensate the brokerage if I lease there; this will be disclosed as required.</li>
             <li>This request does not create a brokerage relationship. A separate brokerage agreement and final fee terms may be required before paid work begins.</li>
           </ul>
           <ul class="es hide">
-            <li>Elijo la búsqueda gratuita en comunidades participantes o la búsqueda más amplia con tarifa propuesta de $149. Confirmaremos las condiciones antes de iniciar un servicio pagado.</li>
+            <li>Elijo la búsqueda gratuita en comunidades participantes o la búsqueda más amplia con tarifa propuesta de $300. Confirmaremos las condiciones antes de iniciar un servicio pagado.</li>
             <li>Las propiedades fijan disponibilidad, precios, decisiones de aprobación y contratos; no se garantiza una colocación.</li>
             <li>Solicitudes, depósitos, visitas y transporte son aparte. Una propiedad participante podría compensar a la correduría si alquilo allí; se informará según corresponda.</li>
             <li>Esta solicitud no crea una relación de representación. Podría requerirse un acuerdo de corretaje y condiciones finales antes de iniciar el servicio pagado.</li>
@@ -488,14 +526,9 @@ footer {
     <h2 class="es hide">Síganos</h2>
 
     <div class="socials">
-      <a href="#" target="_blank">Facebook</a>
-      <a href="#" target="_blank">Instagram</a>
-      <a href="#" target="_blank">TikTok</a>
-      <a href="#" target="_blank">X / Twitter</a>
-      <a href="#" target="_blank">YouTube</a>
-      <a href="#" target="_blank">LinkedIn</a>
-      <a href="#" target="_blank">Yelp</a>
-      <a href="#" target="_blank">Google Business</a>
+      <a href="https://www.facebook.com/profile.php?id=61584846179965" target="_blank" rel="noopener noreferrer" aria-label="Follow Allyn on Facebook"><span class="social-mark">f</span>Facebook</a>
+      <a href="https://www.instagram.com/allynsantiago.realtor/" target="_blank" rel="noopener noreferrer" aria-label="Follow Allyn on Instagram"><span class="social-mark">◎</span>Instagram</a>
+      <a href="https://www.tiktok.com/@allynthegarealtor?_r=1&amp;_t=ZT-9A7ov2jX4DG" target="_blank" rel="noopener noreferrer" aria-label="Follow Allyn on TikTok"><span class="social-mark">♪</span>TikTok</a>
     </div>
   </div>
 </section>
