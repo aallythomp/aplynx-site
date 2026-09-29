@@ -607,12 +607,8 @@ footer { border-top: 5px solid var(--gold); }
       <p class="small-note en">This is a request for a call, not a confirmed appointment. We’ll discuss your search, next steps, and any applicable service terms before work begins.</p>
       <p class="small-note es hide">Esta es una solicitud de llamada, no una cita confirmada. Hablaremos de su búsqueda, próximos pasos y condiciones aplicables antes de comenzar.</p>
     </div>
-    <form class="intake-card" action="https://formsubmit.co/allynsantiago.realtor@gmail.com" method="POST">
+    <form class="intake-card" id="book-search-form">
       <h3 class="en">Request a time with Allyn</h3><h3 class="es hide">Solicite una hora con Allyn</h3>
-      <input type="hidden" name="_subject" value="New APLYNX property search call request">
-      <input type="hidden" name="_url" value="https://www.aplynxinvestments.com/#book-search">
-      <input type="hidden" name="_next" value="https://www.aplynxinvestments.com/booking-thanks.html">
-      <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true">
       <div class="form-grid">
         <div class="field wide"><label for="b-service">What are you looking for? / ¿Qué busca?</label><select id="b-service" name="search_type" required><option value="">Choose / Seleccione</option><option value="Apartment search">Apartment / Apartamento</option><option value="Rental home search">Rental home / Casa en alquiler</option><option value="Buy a home">Buy a home / Comprar casa</option></select></div>
         <div class="field"><label for="b-name">Name / Nombre</label><input id="b-name" name="name" autocomplete="name" required></div>
@@ -626,8 +622,8 @@ footer { border-top: 5px solid var(--gold); }
       </div>
       <label class="checkline"><input type="checkbox" name="contact_consent" value="Yes" required><span class="en">Allyn Santiago-Thompson at Veribas Real Estate LLC may contact me about this request.</span><span class="es hide">Allyn Santiago-Thompson de Veribas Real Estate LLC puede contactarme sobre esta solicitud.</span></label>
       <button class="btn btn-dark" type="submit">Request my call / Solicitar llamada</button>
-      <p class="small-note en">Your request is sent by email through <a href="https://formsubmit.co/privacy.pdf" target="_blank" rel="noopener noreferrer">FormSubmit</a>. Please don’t include Social Security numbers or financial documents.</p>
-      <p class="small-note es hide">Su solicitud se enviará por correo mediante <a href="https://formsubmit.co/privacy.pdf" target="_blank" rel="noopener noreferrer">FormSubmit</a>. No incluya números de Seguro Social ni documentos financieros.</p>
+      <p class="small-note en">Your email app will open with your request. Please send the prepared email to complete it. You can also <a href="tel:+14703744384">call Allyn</a>. Don’t include Social Security numbers or financial documents.</p>
+      <p class="small-note es hide">Su correo se abrirá con la solicitud preparada. Envíe el mensaje para completarla. También puede <a href="tel:+14703744384">llamar a Allyn</a>. No incluya números de Seguro Social ni documentos financieros.</p>
     </form>
   </div>
 </section>
@@ -785,6 +781,11 @@ function emailRequest(subject, lines) {
   const body = lines.map(([label, value]) => label + ": " + value).join("\n");
   window.location.href = "mailto:allynsantiago.realtor@gmail.com?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
 }
+document.getElementById("book-search-form").addEventListener("submit", function(e) {
+  e.preventDefault();
+  const v = id => document.getElementById(id).value.trim();
+  emailRequest("APLYNX property search call request", [["Name",v("b-name")],["Email",v("b-email")],["Phone",v("b-phone")],["Search type",v("b-service")],["Search area",v("b-area")],["Budget",v("b-budget")],["Preferred call date",v("b-date")],["Best time (Eastern)",v("b-window")],["Notes",v("b-notes")],["Contact consent","Yes"]]);
+});
 document.getElementById("rental-form").addEventListener("submit", function(e) {
   e.preventDefault();
   const v = id => document.getElementById(id).value.trim();
