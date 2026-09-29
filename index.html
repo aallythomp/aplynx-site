@@ -149,6 +149,35 @@ section {
 .owner-note { font-size: 14px; color: #4b5563; }
 .owner-cta { margin-left: 0; }
 
+
+/* Rental listings and apartment search */
+.section-muted { background: #eef0ec; }
+.eyebrow { color: #315b50; font-size: 13px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+.split { display: grid; grid-template-columns: 1.05fr .95fr; gap: 26px; align-items: start; }
+.listing, .intake-card { background: #fff; border-radius: 20px; padding: 28px; box-shadow: 0 10px 25px rgba(0,0,0,.07); }
+.listing h3 { font-size: 26px; margin-bottom: 8px; }
+.gallery { background: #e4e8e3; border-radius: 16px; min-height: 260px; display: flex; align-items: center; justify-content: center; text-align: center; overflow: hidden; }
+.gallery img { width: 100%; height: 300px; object-fit: cover; display: block; }
+.gallery-empty { padding: 32px; color: #45534e; }
+.gallery-empty strong { display: block; font-size: 20px; margin-bottom: 8px; }
+.gallery-controls { display: flex; gap: 12px; align-items: center; justify-content: center; margin: 14px 0 20px; }
+.gallery-controls button { border: 1px solid #b6c2b9; background: #fff; border-radius: 50%; width: 38px; height: 38px; cursor: pointer; }
+.gallery-controls button:disabled { opacity: .4; cursor: default; }
+.small-note { color: #56615c; font-size: 14px; line-height: 1.5; }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.field { display: flex; flex-direction: column; gap: 6px; margin: 0 0 14px; }
+.field.wide { grid-column: 1 / -1; }
+.field label { font-weight: 700; font-size: 14px; }
+.field input, .field select, .field textarea { font: inherit; padding: 12px; border: 1px solid #b8c4bc; border-radius: 10px; width: 100%; }
+.field textarea { min-height: 92px; resize: vertical; }
+button.btn { border: 0; cursor: pointer; font-size: 15px; }
+.search-price { font-size: 34px; font-weight: 700; margin: 12px 0; }
+.disclosure { border: 1px solid #b8c4bc; background: #f6f8f4; border-radius: 12px; padding: 18px; margin: 20px 0; }
+.disclosure ul { line-height: 1.6; padding-left: 22px; }
+.checkline { display: flex; gap: 10px; line-height: 1.5; margin: 12px 0; }
+.checkline input { width: 18px; height: 18px; flex: none; }
+@media(max-width: 850px) { .split, .form-grid { grid-template-columns: 1fr; } .field.wide { grid-column: auto; } }
+
 footer {
   background: #0f172a;
   color: white;
@@ -185,6 +214,8 @@ footer {
       </p>
       <a class="btn btn-light" href="#plans">View Plans</a>
       <a class="btn btn-light" href="#owners">Property Owners</a>
+      <a class="btn btn-light" href="#rentals">Available Rentals</a>
+      <a class="btn btn-light" href="#apartment-search">Apartment Search</a>
       <a class="btn btn-light" href="#contact">Contact Us</a>
     </div>
 
@@ -197,6 +228,8 @@ footer {
       </p>
       <a class="btn btn-light" href="#plans">Ver Planes</a>
       <a class="btn btn-light" href="#owners">Propietarios</a>
+      <a class="btn btn-light" href="#rentals">Alquileres</a>
+      <a class="btn btn-light" href="#apartment-search">Búsqueda de Apartamentos</a>
       <a class="btn btn-light" href="#contact">Contáctenos</a>
     </div>
   </div>
@@ -340,6 +373,106 @@ footer {
   </div>
 </section>
 
+
+<section id="rentals" class="section-muted">
+  <div class="container">
+    <span class="eyebrow en">Homes I manage</span><span class="eyebrow es hide">Propiedades que administro</span>
+    <h2 class="en">Find your next place</h2><h2 class="es hide">Encuentre su próximo hogar</h2>
+    <p class="en">Explore current rentals and ask for the application. New photos and listings are added as they become available.</p>
+    <p class="es hide">Conozca los alquileres disponibles y solicite la solicitud. Agregaremos fotos y nuevas propiedades cuando estén disponibles.</p>
+    <div class="split">
+      <article class="listing">
+        <div id="fern-gallery" class="gallery" aria-live="polite">
+          <div class="gallery-empty"><strong>1266 Fern Hill Drive</strong><span class="en">Property photos coming soon</span><span class="es hide">Próximamente fotos de la propiedad</span></div>
+        </div>
+        <div class="gallery-controls">
+          <button type="button" id="fern-prev" aria-label="Previous photo" disabled>‹</button>
+          <span id="fern-count" class="small-note">Photos coming soon</span>
+          <button type="button" id="fern-next" aria-label="Next photo" disabled>›</button>
+        </div>
+        <span class="eyebrow en">Lawrenceville, Georgia</span><span class="eyebrow es hide">Lawrenceville, Georgia</span>
+        <h3>1266 Fern Hill Drive</h3>
+        <p class="en">Furnished room rental with utilities and Wi-Fi included. Ask about current availability, rent, deposit, and a tour.</p>
+        <p class="es hide">Habitación amueblada con servicios y Wi-Fi incluidos. Consulte la disponibilidad, la renta, el depósito y una visita.</p>
+        <p class="small-note en">Availability and terms are confirmed before an application is sent. Equal Housing Opportunity.</p>
+        <p class="small-note es hide">Confirmaremos la disponibilidad y las condiciones antes de enviar la solicitud. Igualdad de oportunidades de vivienda.</p>
+      </article>
+      <div class="intake-card">
+        <h3 class="en">Start your application</h3><h3 class="es hide">Comience su solicitud</h3>
+        <p class="en">Tell me how to reach you and when you hope to move. I’ll send the current application and screening instructions for this property.</p>
+        <p class="es hide">Dígame cómo contactarle y cuándo desea mudarse. Le enviaré la solicitud y las instrucciones de evaluación actuales.</p>
+        <form id="rental-form">
+          <div class="form-grid">
+            <div class="field"><label for="r-name">Name / Nombre</label><input id="r-name" name="name" autocomplete="name" required></div>
+            <div class="field"><label for="r-email">Email / Correo</label><input id="r-email" name="email" type="email" autocomplete="email" required></div>
+            <div class="field"><label for="r-phone">Phone / Teléfono</label><input id="r-phone" name="phone" type="tel" autocomplete="tel" required></div>
+            <div class="field"><label for="r-date">Move-in date / Fecha</label><input id="r-date" name="date" type="date" required></div>
+            <div class="field wide"><label for="r-note">Questions / Preguntas</label><textarea id="r-note" name="note"></textarea></div>
+          </div>
+          <button class="btn btn-dark" type="submit">Request application / Solicitar solicitud</button>
+          <p class="small-note en">This opens your email app. Send the prepared message to complete your request. Do not send a Social Security number or documents here.</p>
+          <p class="small-note es hide">Se abrirá su correo. Envíe el mensaje preparado para completar su solicitud. No envíe su número de Seguro Social ni documentos aquí.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="apartment-search">
+  <div class="container split">
+    <div>
+      <span class="eyebrow en">Done-for-you apartment search</span><span class="eyebrow es hide">Búsqueda de apartamentos por usted</span>
+      <h2 class="en">Too busy to apartment hunt? Let me do the searching.</h2>
+      <h2 class="es hide">¿No tiene tiempo para buscar apartamento? Yo hago la búsqueda por usted.</h2>
+      <p class="en">Tell me your budget, preferred areas, move date, and must-haves. I’ll research apartments that fit, put together a focused shortlist, check key details with properties when possible, and help you plan the next steps.</p>
+      <p class="es hide">Indíqueme su presupuesto, zonas preferidas, fecha de mudanza y requisitos. Buscaré apartamentos adecuados, prepararé una lista de opciones, confirmaré detalles importantes cuando sea posible y le ayudaré con los próximos pasos.</p>
+      <div class="listing">
+        <h3 class="en">Apartment Search Package</h3><h3 class="es hide">Paquete de Búsqueda</h3>
+        <div class="search-price">$149 <span class="small-note en">proposed flat fee</span><span class="small-note es hide">tarifa fija propuesta</span></div>
+        <p class="en">Includes an intake review, research and a shortlist of up to five matching options, availability checks when properties respond, and one follow-up round of questions. Search is focused on the areas and budget you provide.</p>
+        <p class="es hide">Incluye revisión de sus necesidades, investigación y una lista de hasta cinco opciones, consultas de disponibilidad cuando respondan las propiedades y una ronda de preguntas de seguimiento.</p>
+        <p class="small-note en">Tours, transportation, application fees, deposits, and a guaranteed approval or placement are not included. The fee and payment link will be finalized after brokerage review.</p>
+        <p class="small-note es hide">No incluye visitas, transporte, cargos de solicitud, depósitos ni garantía de aprobación o colocación. La tarifa y el enlace de pago se finalizarán después de la revisión de la correduría.</p>
+      </div>
+    </div>
+    <div class="intake-card">
+      <h3 class="en">Tell me what you need</h3><h3 class="es hide">Cuénteme qué necesita</h3>
+      <form id="search-form">
+        <div class="form-grid">
+          <div class="field"><label for="s-name">Name / Nombre</label><input id="s-name" name="name" autocomplete="name" required></div>
+          <div class="field"><label for="s-email">Email / Correo</label><input id="s-email" name="email" type="email" autocomplete="email" required></div>
+          <div class="field"><label for="s-phone">Phone / Teléfono</label><input id="s-phone" name="phone" type="tel" autocomplete="tel" required></div>
+          <div class="field"><label for="s-date">Move-in date / Fecha</label><input id="s-date" name="date" type="date" required></div>
+          <div class="field"><label for="s-budget">Maximum monthly rent / Renta máxima</label><input id="s-budget" name="budget" type="number" min="1" required></div>
+          <div class="field"><label for="s-beds">Bedrooms / Habitaciones</label><select id="s-beds" name="beds" required><option value="">Select / Seleccione</option><option>Studio / Estudio</option><option>1</option><option>2</option><option>3+</option></select></div>
+          <div class="field wide"><label for="s-areas">Cities or neighborhoods / Ciudades o zonas</label><input id="s-areas" name="areas" required></div>
+          <div class="field wide"><label for="s-needs">Must-haves, pets, transit, other needs / Requisitos</label><textarea id="s-needs" name="needs"></textarea></div>
+        </div>
+        <div class="disclosure">
+          <strong class="en">Service acknowledgment</strong><strong class="es hide">Reconocimiento del servicio</strong>
+          <ul class="en">
+            <li>I understand the proposed $149 covers research and a shortlist of up to five options plus one follow-up round, subject to brokerage approval.</li>
+            <li>Availability, prices, screening decisions, and leases are set by the properties and may change. Placement is not guaranteed.</li>
+            <li>Property application fees, deposits, tours, and transportation are separate. Any property-paid compensation will be disclosed as required before I engage the service.</li>
+            <li>This request does not create a brokerage relationship. A separate brokerage agreement and final fee terms may be required before paid work begins.</li>
+          </ul>
+          <ul class="es hide">
+            <li>Entiendo que la tarifa propuesta de $149 cubre investigación, hasta cinco opciones y una ronda de seguimiento, sujeta a aprobación de la correduría.</li>
+            <li>Las propiedades fijan disponibilidad, precios, decisiones de aprobación y contratos; no se garantiza una colocación.</li>
+            <li>Solicitudes, depósitos, visitas y transporte son aparte. Se informará sobre cualquier compensación de la propiedad según corresponda.</li>
+            <li>Esta solicitud no crea una relación de representación. Podría requerirse un acuerdo de corretaje y condiciones finales antes de iniciar el servicio pagado.</li>
+          </ul>
+        </div>
+        <label class="checkline"><input id="s-agree" type="checkbox" required><span class="en">I have read and acknowledge the service details above.</span><span class="es hide">He leído y acepto los detalles del servicio.</span></label>
+        <div class="field"><label for="s-sign">Type your full name / Escriba su nombre completo</label><input id="s-sign" required></div>
+        <button class="btn btn-dark" type="submit">Send my request / Enviar solicitud</button>
+        <p class="small-note en">Your email app opens with your answers and acknowledgment. Send the message to complete the request. Payment is arranged after the final terms are approved.</p>
+        <p class="small-note es hide">Su correo se abrirá con sus respuestas y aceptación. Envíe el mensaje para completar la solicitud. El pago se organizará después de aprobar las condiciones finales.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
 <section>
   <div class="container">
     <h2 class="en">Follow APLYNX</h2>
@@ -378,6 +511,39 @@ footer {
 </footer>
 
 <script>
+
+const fernPhotos = []; // Add owner-provided image paths here after upload.
+let fernPhotoIndex = 0;
+function renderFernGallery() {
+  if (!fernPhotos.length) return;
+  const gallery = document.getElementById("fern-gallery");
+  const photo = fernPhotos[fernPhotoIndex];
+  gallery.replaceChildren();
+  const img = document.createElement("img");
+  img.src = photo.src; img.alt = photo.alt;
+  gallery.appendChild(img);
+  document.getElementById("fern-count").textContent = (fernPhotoIndex + 1) + " / " + fernPhotos.length;
+  document.getElementById("fern-prev").disabled = fernPhotos.length < 2;
+  document.getElementById("fern-next").disabled = fernPhotos.length < 2;
+}
+document.getElementById("fern-prev").addEventListener("click", () => { fernPhotoIndex = (fernPhotoIndex - 1 + fernPhotos.length) % fernPhotos.length; renderFernGallery(); });
+document.getElementById("fern-next").addEventListener("click", () => { fernPhotoIndex = (fernPhotoIndex + 1) % fernPhotos.length; renderFernGallery(); });
+renderFernGallery();
+function emailRequest(subject, lines) {
+  const body = lines.map(([label, value]) => label + ": " + value).join("\n");
+  window.location.href = "mailto:allynsantiago.realtor@gmail.com?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+}
+document.getElementById("rental-form").addEventListener("submit", function(e) {
+  e.preventDefault();
+  const v = id => document.getElementById(id).value.trim();
+  emailRequest("1266 Fern Hill application request", [["Property","1266 Fern Hill Drive, Lawrenceville GA"],["Name",v("r-name")],["Email",v("r-email")],["Phone",v("r-phone")],["Desired move date",v("r-date")],["Questions",v("r-note")]]);
+});
+document.getElementById("search-form").addEventListener("submit", function(e) {
+  e.preventDefault();
+  const v = id => document.getElementById(id).value.trim();
+  emailRequest("Apartment search service request", [["Name",v("s-name")],["Email",v("s-email")],["Phone",v("s-phone")],["Desired move date",v("s-date")],["Maximum monthly rent",v("s-budget")],["Bedrooms",v("s-beds")],["Areas",v("s-areas")],["Must-haves",v("s-needs")],["Service acknowledgment","I read and acknowledge the proposed scope and terms displayed on the APLYNX website."],["Typed name",v("s-sign")],["Acknowledged at",new Date().toISOString()]]);
+});
+
 function toggleLang() {
   const en = document.querySelectorAll(".en");
   const es = document.querySelectorAll(".es");
