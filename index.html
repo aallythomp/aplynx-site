@@ -777,8 +777,7 @@ function renderFernGallery() {
 document.getElementById("fern-prev").addEventListener("click", () => { fernPhotoIndex = (fernPhotoIndex - 1 + fernPhotos.length) % fernPhotos.length; renderFernGallery(); });
 document.getElementById("fern-next").addEventListener("click", () => { fernPhotoIndex = (fernPhotoIndex + 1) % fernPhotos.length; renderFernGallery(); });
 renderFernGallery();
-// Add the email-verified Web3Forms access key before publishing.
-const INQUIRY_ACCESS_KEY = "";
+const INQUIRY_ACCESS_KEY = "d2516862-f49f-48dc-ab2b-f2e757be281e";
 async function submitInquiry(form, subject, lines) {
   const button = form.querySelector('button[type="submit"]');
   let status = form.querySelector(".inquiry-status");
