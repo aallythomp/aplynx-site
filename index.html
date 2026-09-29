@@ -203,6 +203,8 @@ header {
 }
 .hero-card { background: rgba(9,27,23,.79); border: 1px solid rgba(236,200,124,.48); box-shadow: 0 24px 65px rgba(0,0,0,.26); }
 .hero-card h2 { color: #f1d393; font-family: Georgia, serif; line-height: 1.15; }
+.broker-line { color: #fff; font-size: 15px; margin: 18px 6px 0; }
+.broker-line a, footer a { color: #f4d28c; text-decoration: underline; }
 h2 { font-family: Georgia, serif; }
 .btn-dark { background: var(--forest); color: #fff; }
 .btn-light { background: #f4d28c; color: #13231e; }
@@ -246,29 +248,28 @@ footer { border-top: 5px solid var(--gold); }
 
     <div class="en">
       <h1>APLYNX Investments</h1>
-      <h2>Leases, landlord tools, and real human help.</h2>
+      <h2>Find a home. Sell with confidence. Manage your rental.</h2>
       <p>
-        APLYNX helps property owners access lease tools, guided support, and ongoing lease updates.
-        We serve landlords in English and Spanish.
+        I help people across the Atlanta area buy, sell, and rent homes, and support rental owners through APLYNX Investments. Service is available in English and Spanish.
       </p>
       <a class="btn btn-light" href="https://members.smartapartmentdata.com/web-idx/9925ade4-ea93-492c-944e-57cab33712e7" target="_blank" rel="noopener noreferrer">Search Atlanta Apartments</a>
-      <a class="btn btn-light" href="#apartment-search">Get Search Help</a>
+      <a class="btn btn-light" href="#buy-sell">Buy or Sell a Home</a>
       <a class="btn btn-light" href="#rentals">Available Rentals</a>
       <a class="btn btn-light" href="#owners">Property Management</a>
     </div>
 
     <div class="es hide">
       <h1>APLYNX Investments</h1>
-      <h2>Contratos, herramientas y ayuda humana real.</h2>
+      <h2>Compre, venda o alquile con apoyo personal.</h2>
       <p>
-        APLYNX ayuda a propietarios con contratos de arrendamiento, asistencia guiada y actualizaciones continuas.
-        Servimos a propietarios en inglés y español.
+        Ayudo a clientes del área de Atlanta a comprar, vender y alquilar viviendas, y apoyo a propietarios mediante APLYNX Investments. Atención en inglés y español.
       </p>
       <a class="btn btn-light" href="https://members.smartapartmentdata.com/web-idx/9925ade4-ea93-492c-944e-57cab33712e7" target="_blank" rel="noopener noreferrer">Buscar Apartamentos en Atlanta</a>
-      <a class="btn btn-light" href="#apartment-search">Ayuda con la Búsqueda</a>
+      <a class="btn btn-light" href="#buy-sell">Comprar o Vender Casa</a>
       <a class="btn btn-light" href="#rentals">Alquileres Disponibles</a>
       <a class="btn btn-light" href="#owners">Administración de Propiedades</a>
     </div>
+    <p class="broker-line">Real estate brokerage services through <strong>Veribas Real Estate LLC</strong> · Office: <a href="tel:+18338374227">(833) 837-4227</a></p>
   </div>
 </header>
 
@@ -380,35 +381,51 @@ footer { border-top: 5px solid var(--gold); }
   </div>
 </section>
 
-<section>
+<section id="buy-sell">
   <div class="container">
-    <h2 class="en">Atlanta-area Property Support</h2>
-    <h2 class="es hide">Apoyo para Propiedades de Atlanta</h2>
-
-    <div class="grid">
+    <span class="eyebrow en">Greater Atlanta real estate</span><span class="eyebrow es hide">Bienes raíces en el área de Atlanta</span>
+    <h2 class="en">Buying or selling a home?</h2>
+    <h2 class="es hide">¿Quiere comprar o vender una casa?</h2>
+    <p class="en">I’m Allyn Santiago-Thompson, a Georgia real estate agent affiliated with Veribas Real Estate LLC. Let’s talk about your plans and the next step that makes sense for you.</p>
+    <p class="es hide">Soy Allyn Santiago-Thompson, agente de bienes raíces en Georgia afiliada a Veribas Real Estate LLC. Hablemos de sus planes y del próximo paso adecuado para usted.</p>
+    <div class="split">
       <div class="card">
-        <img src="assets/atlanta-apartment-community.webp" alt="Illustration of an Atlanta area apartment community" loading="lazy">
-        <h3>Residential Leasing</h3>
-        <p class="en">Support for residential lease setup and owner organization.</p>
-        <p class="es hide">Apoyo para contratos residenciales y organización de propietarios.</p>
+        <img src="assets/atlanta-area-homes.webp" alt="Illustrative Atlanta area homes" loading="lazy">
+        <h3 class="en">Buy a home</h3><h3 class="es hide">Compre una casa</h3>
+        <p class="en">Tell me your preferred areas, budget, timing, and must-haves. I can help you plan your search, tour suitable homes, and navigate offers and closing.</p>
+        <p class="es hide">Dígame las zonas que prefiere, su presupuesto, sus fechas y lo que necesita. Puedo ayudarle con la búsqueda, las visitas, las ofertas y el cierre.</p>
+        <a class="btn btn-dark en" href="#home-lead-form">Tell me about your search</a>
+        <a class="btn btn-dark es hide" href="#home-lead-form">Cuénteme su búsqueda</a>
       </div>
-
       <div class="card">
-        <img src="assets/atlanta-area-homes.webp" alt="Illustration of Atlanta area homes" loading="lazy">
-        <h3>Property Support</h3>
-        <p class="en">Tools for owners managing rental properties.</p>
-        <p class="es hide">Herramientas para propietarios que administran rentas.</p>
-      </div>
-
-      <div class="card">
-        <img src="assets/atlanta-apartment-community.webp" alt="Illustration of an Atlanta area apartment community" loading="lazy">
-        <h3>Bilingual Service</h3>
-        <p class="en">English and Spanish support for landlords and owners.</p>
-        <p class="es hide">Servicio en inglés y español para propietarios.</p>
+        <img src="assets/atlanta-area-homes.webp" alt="Illustrative Atlanta area homes" loading="lazy">
+        <h3 class="en">Sell a home</h3><h3 class="es hide">Venda una casa</h3>
+        <p class="en">We can discuss your home’s condition, timing, pricing strategy, and a marketing plan before you decide to list.</p>
+        <p class="es hide">Podemos hablar del estado de su casa, sus fechas, la estrategia de precio y un plan de mercadeo antes de decidir ponerla en venta.</p>
+        <a class="btn btn-dark en" href="#home-lead-form">Tell me about your home</a>
+        <a class="btn btn-dark es hide" href="#home-lead-form">Cuénteme sobre su casa</a>
       </div>
     </div>
-    <p class="small-note en">Area images are illustrative and do not depict currently available listings. Photos of individual rentals appear with their listing when provided.</p>
-    <p class="small-note es hide">Las imágenes de la zona son ilustrativas y no representan propiedades disponibles. Las fotos de cada alquiler se mostrarán con su anuncio cuando estén disponibles.</p>
+    <form id="home-lead-form" class="intake-card" action="mailto:allynsantiago.realtor@gmail.com" method="POST" enctype="text/plain" style="margin-top:26px">
+      <h3 class="en">Are you looking to buy or sell?</h3><h3 class="es hide">¿Quiere comprar o vender?</h3>
+      <p class="en">Send me a few details and I’ll follow up with you personally.</p>
+      <p class="es hide">Envíeme algunos detalles y me comunicaré personalmente con usted.</p>
+      <div class="form-grid">
+        <div class="field"><label for="h-interest">I want to / Quiero</label><select id="h-interest" name="interest" required><option value="">Choose / Seleccione</option><option value="Buy a home">Buy a home / Comprar casa</option><option value="Sell a home">Sell a home / Vender casa</option></select></div>
+        <div class="field"><label for="h-timing">Timeline / ¿Cuándo?</label><select id="h-timing" name="timeline" required><option value="">Choose / Seleccione</option><option value="As soon as possible">As soon as possible / Lo antes posible</option><option value="Within 3 months">Within 3 months / Dentro de 3 meses</option><option value="3 to 6 months">3 to 6 months / De 3 a 6 meses</option><option value="Just exploring">Just exploring / Explorando opciones</option></select></div>
+        <div class="field"><label for="h-name">Name / Nombre</label><input id="h-name" name="name" autocomplete="name" required></div>
+        <div class="field"><label for="h-email">Email / Correo</label><input id="h-email" name="email" type="email" autocomplete="email" required></div>
+        <div class="field"><label for="h-phone">Phone / Teléfono</label><input id="h-phone" name="phone" type="tel" autocomplete="tel" required></div>
+        <div class="field"><label for="h-area">City or area / Ciudad o zona</label><input id="h-area" name="area" required></div>
+        <div class="field wide"><label for="h-details">Budget, home details, or questions / Presupuesto, detalles o preguntas</label><textarea id="h-details" name="details"></textarea></div>
+      </div>
+      <label class="checkline"><input type="checkbox" name="contact_consent" value="Yes" required><span class="en">I agree to be contacted by Allyn Santiago-Thompson at Veribas Real Estate LLC about my request.</span><span class="es hide">Acepto que Allyn Santiago-Thompson de Veribas Real Estate LLC me contacte sobre mi solicitud.</span></label>
+      <button class="btn btn-dark" type="submit">Send my inquiry / Enviar consulta</button>
+      <p class="small-note en">This opens your email app with your answers. Send the prepared message to complete your inquiry. Please do not include Social Security numbers or financial documents.</p>
+      <p class="small-note es hide">Se abrirá su correo con sus respuestas. Envíe el mensaje preparado para completar su consulta. No incluya números de Seguro Social ni documentos financieros.</p>
+    </form>
+    <p class="small-note en">Images illustrate the Atlanta area and are not active listings. A brokerage relationship begins only with a separate written agreement. Brokerage: Veribas Real Estate LLC · Office: <a href="tel:+18338374227">(833) 837-4227</a>.</p>
+    <p class="small-note es hide">Las imágenes ilustran la zona de Atlanta y no son anuncios activos. Una relación de representación comienza con un acuerdo escrito por separado. Correduría: Veribas Real Estate LLC · Oficina: <a href="tel:+18338374227">(833) 837-4227</a>.</p>
   </div>
 </section>
 
@@ -556,7 +573,8 @@ footer { border-top: 5px solid var(--gold); }
 
 <footer>
   <p>© 2026 APLYNX Investments</p>
-  <p>Lease support, landlord tools, and property solutions.</p>
+  <p>Homes, apartments, leases, and rental management.</p>
+  <p>Real estate brokerage services: <strong>Veribas Real Estate LLC</strong> · Office: <a href="tel:+18338374227">(833) 837-4227</a></p>
 </footer>
 
 <script>
@@ -586,6 +604,11 @@ function emailRequest(subject, lines) {
   const body = lines.map(([label, value]) => label + ": " + value).join("\n");
   window.location.href = "mailto:allynsantiago.realtor@gmail.com?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
 }
+document.getElementById("home-lead-form").addEventListener("submit", function(e) {
+  e.preventDefault();
+  const v = id => document.getElementById(id).value.trim();
+  emailRequest("New APLYNX buyer or seller inquiry", [["Interested in",v("h-interest")],["Timeline",v("h-timing")],["Name",v("h-name")],["Email",v("h-email")],["Phone",v("h-phone")],["City or area",v("h-area")],["Details",v("h-details")],["Contact consent","Yes — requested follow-up about this inquiry"]]);
+});
 document.getElementById("rental-form").addEventListener("submit", function(e) {
   e.preventDefault();
   const v = id => document.getElementById(id).value.trim();
