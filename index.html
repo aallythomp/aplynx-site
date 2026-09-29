@@ -419,20 +419,20 @@ footer { border-top: 5px solid var(--gold); }
   <div class="container">
     <span class="eyebrow en">Homes I manage</span><span class="eyebrow es hide">Propiedades que administro</span>
     <h2 class="en">Find your next place</h2><h2 class="es hide">Encuentre su próximo hogar</h2>
-    <p class="en">Explore current rentals and ask for the application. New photos and listings are added as they become available.</p>
-    <p class="es hide">Conozca los alquileres disponibles y solicite la solicitud. Agregaremos fotos y nuevas propiedades cuando estén disponibles.</p>
+    <p class="en">Explore the Fern Hill rental photos and ask for the current application. New listings are added as they become available.</p>
+    <p class="es hide">Vea las fotos del alquiler en Fern Hill y solicite la solicitud actual. Agregaremos nuevas propiedades cuando estén disponibles.</p>
     <div class="split">
       <article class="listing">
         <div id="fern-gallery" class="gallery" aria-live="polite">
-          <div class="gallery-empty"><strong>1266 Fern Hill Drive</strong><span class="en">See current property photos on the listing page</span><span class="es hide">Vea las fotos actuales en la página del anuncio</span></div>
+          <img src="assets/fern-hill-1.webp" alt="Bedroom at 1266 Fern Hill Drive, virtually staged">
         </div>
         <div class="gallery-controls" hidden>
           <button type="button" id="fern-prev" aria-label="Previous photo" disabled>‹</button>
-          <span id="fern-count" class="small-note">Photos coming soon</span>
+          <span id="fern-count" class="small-note">1 / 2</span>
           <button type="button" id="fern-next" aria-label="Next photo" disabled>›</button>
         </div>
-        <a class="btn btn-dark en" href="https://www.zillow.com/homedetails/1266-Fern-Hill-Dr-Lawrenceville-GA-30044/14806805_zpid/" target="_blank" rel="noopener noreferrer">View property photos</a>
-        <a class="btn btn-dark es hide" href="https://www.zillow.com/homedetails/1266-Fern-Hill-Dr-Lawrenceville-GA-30044/14806805_zpid/" target="_blank" rel="noopener noreferrer">Ver fotos de la propiedad</a>
+        <p class="small-note en">The bedroom image is virtually staged; furnishings may differ. Photos from the current property listing. <a href="https://www.zillow.com/homedetails/1266-Fern-Hill-Dr-Lawrenceville-GA-30044/14806805_zpid/" target="_blank" rel="noopener noreferrer">View the source listing</a>.</p>
+        <p class="small-note es hide">La imagen de la habitación está decorada virtualmente; los muebles pueden ser diferentes. Fotos del anuncio actual. <a href="https://www.zillow.com/homedetails/1266-Fern-Hill-Dr-Lawrenceville-GA-30044/14806805_zpid/" target="_blank" rel="noopener noreferrer">Ver el anuncio original</a>.</p>
         <span class="eyebrow en">Lawrenceville, Georgia</span><span class="eyebrow es hide">Lawrenceville, Georgia</span>
         <h3>1266 Fern Hill Drive</h3>
         <p class="en">Furnished room rental with utilities and Wi-Fi included. Ask about current availability, rent, deposit, and a tour.</p>
@@ -563,7 +563,10 @@ footer { border-top: 5px solid var(--gold); }
 
 <script>
 
-const fernPhotos = []; // Add owner-provided image paths here after upload.
+const fernPhotos = [
+  { src: "assets/fern-hill-1.webp", alt: "Bedroom at 1266 Fern Hill Drive, virtually staged" },
+  { src: "assets/fern-hill-2.webp", alt: "Living area at 1266 Fern Hill Drive" }
+];
 let fernPhotoIndex = 0;
 function renderFernGallery() {
   if (!fernPhotos.length) return;
