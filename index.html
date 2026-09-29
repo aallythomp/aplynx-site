@@ -406,10 +406,14 @@ footer { border-top: 5px solid var(--gold); }
         <a class="btn btn-dark es hide" href="#home-lead-form">Cuénteme sobre su casa</a>
       </div>
     </div>
-    <form id="home-lead-form" class="intake-card" action="mailto:allynsantiago.realtor@gmail.com" method="POST" enctype="text/plain" style="margin-top:26px">
+    <form id="home-lead-form" class="intake-card" action="https://formsubmit.co/allynsantiago.realtor@gmail.com" method="POST" style="margin-top:26px">
       <h3 class="en">Are you looking to buy or sell?</h3><h3 class="es hide">¿Quiere comprar o vender?</h3>
       <p class="en">Send me a few details and I’ll follow up with you personally.</p>
       <p class="es hide">Envíeme algunos detalles y me comunicaré personalmente con usted.</p>
+      <input type="hidden" name="_subject" value="New APLYNX buyer or seller inquiry">
+      <input type="hidden" name="_url" value="https://www.aplynxinvestments.com/#buy-sell">
+      <input type="hidden" name="_next" value="https://www.aplynxinvestments.com/thanks.html">
+      <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true">
       <div class="form-grid">
         <div class="field"><label for="h-interest">I want to / Quiero</label><select id="h-interest" name="interest" required><option value="">Choose / Seleccione</option><option value="Buy a home">Buy a home / Comprar casa</option><option value="Sell a home">Sell a home / Vender casa</option></select></div>
         <div class="field"><label for="h-timing">Timeline / ¿Cuándo?</label><select id="h-timing" name="timeline" required><option value="">Choose / Seleccione</option><option value="As soon as possible">As soon as possible / Lo antes posible</option><option value="Within 3 months">Within 3 months / Dentro de 3 meses</option><option value="3 to 6 months">3 to 6 months / De 3 a 6 meses</option><option value="Just exploring">Just exploring / Explorando opciones</option></select></div>
@@ -421,8 +425,8 @@ footer { border-top: 5px solid var(--gold); }
       </div>
       <label class="checkline"><input type="checkbox" name="contact_consent" value="Yes" required><span class="en">I agree to be contacted by Allyn Santiago-Thompson at Veribas Real Estate LLC about my request.</span><span class="es hide">Acepto que Allyn Santiago-Thompson de Veribas Real Estate LLC me contacte sobre mi solicitud.</span></label>
       <button class="btn btn-dark" type="submit">Send my inquiry / Enviar consulta</button>
-      <p class="small-note en">This opens your email app with your answers. Send the prepared message to complete your inquiry. Please do not include Social Security numbers or financial documents.</p>
-      <p class="small-note es hide">Se abrirá su correo con sus respuestas. Envíe el mensaje preparado para completar su consulta. No incluya números de Seguro Social ni documentos financieros.</p>
+      <p class="small-note en">Your inquiry is sent to me by email through <a href="https://formsubmit.co/privacy.pdf" target="_blank" rel="noopener noreferrer">FormSubmit</a>. I’ll use it to respond. Do not include Social Security numbers or financial documents.</p>
+      <p class="small-note es hide">Su consulta se me enviará por correo mediante <a href="https://formsubmit.co/privacy.pdf" target="_blank" rel="noopener noreferrer">FormSubmit</a>. La usaré para responder. No incluya números de Seguro Social ni documentos financieros.</p>
     </form>
     <p class="small-note en">Images illustrate the Atlanta area and are not active listings. A brokerage relationship begins only with a separate written agreement. Brokerage: Veribas Real Estate LLC · Office: <a href="tel:+18338374227">(833) 837-4227</a>.</p>
     <p class="small-note es hide">Las imágenes ilustran la zona de Atlanta y no son anuncios activos. Una relación de representación comienza con un acuerdo escrito por separado. Correduría: Veribas Real Estate LLC · Oficina: <a href="tel:+18338374227">(833) 837-4227</a>.</p>
@@ -604,11 +608,6 @@ function emailRequest(subject, lines) {
   const body = lines.map(([label, value]) => label + ": " + value).join("\n");
   window.location.href = "mailto:allynsantiago.realtor@gmail.com?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
 }
-document.getElementById("home-lead-form").addEventListener("submit", function(e) {
-  e.preventDefault();
-  const v = id => document.getElementById(id).value.trim();
-  emailRequest("New APLYNX buyer or seller inquiry", [["Interested in",v("h-interest")],["Timeline",v("h-timing")],["Name",v("h-name")],["Email",v("h-email")],["Phone",v("h-phone")],["City or area",v("h-area")],["Details",v("h-details")],["Contact consent","Yes — requested follow-up about this inquiry"]]);
-});
 document.getElementById("rental-form").addEventListener("submit", function(e) {
   e.preventDefault();
   const v = id => document.getElementById(id).value.trim();
