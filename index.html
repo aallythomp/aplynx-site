@@ -137,6 +137,18 @@ section {
   box-shadow: 0 8px 18px rgba(0,0,0,.08);
 }
 
+
+.owner-section { background: #e9eee9; }
+.owner-layout { display: grid; grid-template-columns: 1.15fr .85fr; gap: 28px; align-items: stretch; }
+.owner-intro, .owner-steps { background: white; padding: 34px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,.06); }
+.owner-kicker { color: #315b50; font-size: 13px; font-weight: bold; letter-spacing: .12em; text-transform: uppercase; }
+.owner-intro h2 { margin-top: 12px; }
+.owner-steps h3 { font-size: 24px; margin-top: 0; }
+.owner-steps ol { padding-left: 22px; line-height: 1.65; }
+.owner-steps li { padding-left: 5px; margin-bottom: 13px; }
+.owner-note { font-size: 14px; color: #4b5563; }
+.owner-cta { margin-left: 0; }
+
 footer {
   background: #0f172a;
   color: white;
@@ -147,7 +159,7 @@ footer {
 .hide { display: none; }
 
 @media(max-width: 850px) {
-  .grid, .socials { grid-template-columns: 1fr; }
+  .grid, .socials, .owner-layout { grid-template-columns: 1fr; }
   h1 { font-size: 32px; }
   .hero-card { margin-top: 35px; }
 }
@@ -172,6 +184,7 @@ footer {
         We serve landlords in English and Spanish.
       </p>
       <a class="btn btn-light" href="#plans">View Plans</a>
+      <a class="btn btn-light" href="#owners">Property Owners</a>
       <a class="btn btn-light" href="#contact">Contact Us</a>
     </div>
 
@@ -183,6 +196,7 @@ footer {
         Servimos a propietarios en inglés y español.
       </p>
       <a class="btn btn-light" href="#plans">Ver Planes</a>
+      <a class="btn btn-light" href="#owners">Propietarios</a>
       <a class="btn btn-light" href="#contact">Contáctenos</a>
     </div>
   </div>
@@ -216,6 +230,48 @@ footer {
         <h3 class="es hide">Actualizaciones Continuas</h3>
         <p class="en">Stay current with lease updates and owner reminders.</p>
         <p class="es hide">Manténgase actualizado con contratos y recordatorios.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="owners" class="owner-section">
+  <div class="container owner-layout">
+    <div class="owner-intro">
+      <div class="en">
+        <span class="owner-kicker">For rental property owners</span>
+        <h2>Need help managing your rental?</h2>
+        <p>APLYNX offers lease tools and owner support. When you need a property management team, I can introduce you to Blue Spade Property Management to discuss your property and the services you need.</p>
+        <p>Tell me a little about your rental, and I’ll help make the connection.</p>
+        <a class="btn btn-dark owner-cta" href="mailto:info@aplynxinvestments.com?subject=Property%20Management%20Introduction&amp;body=Hello%20Allyn%2C%0A%0AI%27d%20like%20to%20discuss%20property%20management.%0A%0AProperty%20city%3A%20%0AType%20of%20rental%3A%20%0ABest%20phone%20number%3A%20">Request an Introduction</a>
+      </div>
+      <div class="es hide">
+        <span class="owner-kicker">Para propietarios de alquileres</span>
+        <h2>¿Necesita ayuda para administrar su propiedad?</h2>
+        <p>APLYNX ofrece herramientas para contratos y apoyo a propietarios. Si necesita un equipo de administración, puedo ponerle en contacto con Blue Spade Property Management para conversar sobre su propiedad y los servicios que necesita.</p>
+        <p>Cuénteme un poco sobre su propiedad y le ayudaré a establecer el contacto.</p>
+        <a class="btn btn-dark owner-cta" href="mailto:info@aplynxinvestments.com?subject=Consulta%20sobre%20administraci%C3%B3n%20de%20propiedad&amp;body=Hola%20Allyn%2C%0A%0AMe%20gustar%C3%ADa%20hablar%20sobre%20la%20administraci%C3%B3n%20de%20mi%20propiedad.%0A%0ACiudad%3A%20%0ATipo%20de%20propiedad%3A%20%0AMejor%20n%C3%BAmero%20de%20tel%C3%A9fono%3A%20">Solicitar una Presentación</a>
+      </div>
+    </div>
+    <div class="owner-steps">
+      <div class="en">
+        <h3>How the introduction works</h3>
+        <ol>
+          <li>Share your property location and what help you’re looking for.</li>
+          <li>I’ll connect you with Blue Spade Property Management.</li>
+          <li>Their team will discuss its services and next steps with you directly.</li>
+        </ol>
+        <p class="owner-note">Management services, availability, and pricing are discussed directly with Blue Spade.</p>
+      </div>
+      <div class="es hide">
+        <h3>Cómo funciona</h3>
+        <ol>
+          <li>Indíqueme dónde está su propiedad y qué tipo de ayuda necesita.</li>
+          <li>Le pondré en contacto con Blue Spade Property Management.</li>
+          <li>Su equipo hablará con usted directamente sobre sus servicios y los próximos pasos.</li>
+        </ol>
+        <p class="owner-note">Los servicios, la disponibilidad y los precios se consultan directamente con Blue Spade.</p>
       </div>
     </div>
   </div>
