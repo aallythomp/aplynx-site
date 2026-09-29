@@ -4,6 +4,20 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>APLYNX Investments</title>
+<meta name="description" content="Work with Allyn Santiago-Thompson for apartment searches, buying and selling homes, room rentals, and rental property management in the Greater Atlanta area." />
+<link rel="canonical" href="https://www.aplynxinvestments.com/" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://www.aplynxinvestments.com/" />
+<meta property="og:title" content="APLYNX Investments | Homes &amp; Apartments in Greater Atlanta" />
+<meta property="og:description" content="Apartment searches, buying and selling homes, room rentals, and property management with Allyn Santiago-Thompson. English and Spanish service." />
+<meta property="og:image" content="https://www.aplynxinvestments.com/assets/aplynx-social-preview.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Atlanta skyline and apartment community at sunset, representing APLYNX Investments services" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="APLYNX Investments | Homes &amp; Apartments in Greater Atlanta" />
+<meta name="twitter:description" content="Apartment searches, buying and selling homes, room rentals, and property management with Allyn Santiago-Thompson." />
+<meta name="twitter:image" content="https://www.aplynxinvestments.com/assets/aplynx-social-preview.jpg" />
 
 <style>
 * { box-sizing: border-box; }
@@ -203,6 +217,8 @@ header {
 }
 .hero-card { background: rgba(9,27,23,.79); border: 1px solid rgba(236,200,124,.48); box-shadow: 0 24px 65px rgba(0,0,0,.26); }
 .hero-card h2 { color: #f1d393; font-family: Georgia, serif; line-height: 1.15; }
+.broker-line { color: #fff; font-size: 15px; margin: 18px 6px 0; }
+.broker-line a, footer a { color: #f4d28c; text-decoration: underline; }
 h2 { font-family: Georgia, serif; }
 .btn-dark { background: var(--forest); color: #fff; }
 .btn-light { background: #f4d28c; color: #13231e; }
@@ -226,9 +242,37 @@ h2 { font-family: Georgia, serif; }
 .socials a { background: var(--forest); color: #fff; border: 1px solid #c3a265; display: flex; align-items: center; justify-content: center; gap: 12px; }
 .social-mark { color: #f0c877; font-size: 28px; line-height: 1; }
 footer { border-top: 5px solid var(--gold); }
+.agent-intro { display: grid; grid-template-columns: minmax(0,1fr) 230px; align-items: center; gap: 28px; margin-bottom: 25px; }
+.agent-intro h2 { margin-top: 8px; }
+.agent-intro p { max-width: 750px; }
+.agent-portrait { display: block; width: 100%; height: auto; border-radius: 18px; box-shadow: 12px 12px 0 #e7d09c; }
+.chat-launch { position: fixed; z-index: 1000; right: 20px; bottom: 20px; border: 0; border-radius: 999px; padding: 15px 20px; background: #173e31; color: #fff; box-shadow: 0 8px 26px #0004; font: 700 15px Arial,sans-serif; cursor: pointer; }
+.chat-panel { position: fixed; z-index: 1001; right: 20px; bottom: 80px; width: min(380px, calc(100vw - 24px)); height: min(560px, calc(100dvh - 105px)); display: flex; flex-direction: column; background: #fff; border: 1px solid #d5d8ce; border-radius: 18px; box-shadow: 0 18px 55px #0005; overflow: hidden; }
+.chat-panel[hidden] { display: none; }
+.chat-head { display: flex; justify-content: space-between; align-items: center; padding: 15px 18px; background: #173e31; color: #fff; }
+.chat-head strong { font-size: 17px; }
+.chat-head button { background: transparent; color: #fff; border: 0; font-size: 25px; cursor: pointer; }
+.chat-log { flex: 1; overflow-y: auto; padding: 17px; background: #faf8f2; }
+.chat-message { max-width: 93%; padding: 10px 13px; margin: 0 0 12px; border-radius: 14px; line-height: 1.45; white-space: pre-wrap; overflow-wrap: anywhere; font-size: 14px; }
+.chat-message.agent { background: #e4ece5; color: #173e31; }
+.chat-message.agent a { color: #115a47; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+.chat-message.agent a:focus-visible { outline: 3px solid #115a47; outline-offset: 3px; border-radius: 2px; }
+.chat-message.visitor { background: #173e31; color: #fff; margin-left: auto; }
+.chat-suggestions { display: flex; gap: 7px; flex-wrap: wrap; padding: 4px 14px 10px; background: #faf8f2; }
+.chat-suggestions button { border: 1px solid #b8c4bc; background: #fff; border-radius: 999px; padding: 7px 10px; color: #173e31; cursor: pointer; font-size: 12px; }
+.chat-form { display: flex; gap: 7px; padding: 12px; border-top: 1px solid #e0e5df; }
+.chat-form input { min-width: 0; flex: 1; border: 1px solid #aab8af; border-radius: 9px; padding: 10px; font: inherit; }
+.chat-form button { border: 0; border-radius: 9px; padding: 0 14px; background: #173e31; color: #fff; font-weight: bold; cursor: pointer; }
+.chat-form button:disabled { opacity: .5; cursor: wait; }
+.chat-note { margin: 0; padding: 0 14px 12px; font-size: 11px; color: #4b5750; line-height: 1.4; }
+.chat-note a { color: #173e31; text-decoration: underline; }
 @media(max-width:850px) {
   header { min-height: 80vh; background-position: 58% center; }
   .socials { grid-template-columns: 1fr; }
+  .agent-intro { grid-template-columns: 1fr; }
+  .agent-portrait { width: min(220px,70vw); margin: 0 auto 12px; }
+  .chat-launch { right: 12px; bottom: 12px; }
+  .chat-panel { right: 12px; bottom: 70px; }
 }
 
 </style>
@@ -246,31 +290,30 @@ footer { border-top: 5px solid var(--gold); }
 
     <div class="en">
       <h1>APLYNX Investments</h1>
-      <h2>Leases, landlord tools, and real human help.</h2>
+      <h2>Find a home. Sell with confidence. Manage your rental.</h2>
       <p>
-        APLYNX helps property owners access lease tools, guided support, and ongoing lease updates.
-        We serve landlords in English and Spanish.
+        I help people across the Atlanta area buy, sell, and rent homes, and support rental owners through APLYNX Investments. Service is available in English and Spanish.
       </p>
-      <a class="btn btn-light" href="#plans">Open a Georgia Lease</a>
-      <a class="btn btn-light" href="#owners">Property Owners</a>
-      <a class="btn btn-light" href="#rentals">Available Rentals</a>
-      <a class="btn btn-light" href="#apartment-search">Apartment Search</a>
-      <a class="btn btn-light" href="#contact">Contact Us</a>
+      <a class="btn btn-light" href="https://members.smartapartmentdata.com/web-idx/9925ade4-ea93-492c-944e-57cab33712e7" target="_blank" rel="noopener noreferrer">Search Atlanta Apartments</a>
+      <a class="btn btn-light" href="#buy-sell">Buy or Sell a Home</a>
+      <a class="btn btn-light" href="#book-search">Book a Search Call</a>
+      <a class="btn btn-light" href="#rentals">Rooms for Rent</a>
+      <a class="btn btn-light" href="#owners">Property Management</a>
     </div>
 
     <div class="es hide">
       <h1>APLYNX Investments</h1>
-      <h2>Contratos, herramientas y ayuda humana real.</h2>
+      <h2>Compre, venda o alquile con apoyo personal.</h2>
       <p>
-        APLYNX ayuda a propietarios con contratos de arrendamiento, asistencia guiada y actualizaciones continuas.
-        Servimos a propietarios en inglés y español.
+        Ayudo a clientes del área de Atlanta a comprar, vender y alquilar viviendas, y apoyo a propietarios mediante APLYNX Investments. Atención en inglés y español.
       </p>
-      <a class="btn btn-light" href="#plans">Abrir Contrato de Georgia</a>
-      <a class="btn btn-light" href="#owners">Propietarios</a>
-      <a class="btn btn-light" href="#rentals">Alquileres</a>
-      <a class="btn btn-light" href="#apartment-search">Búsqueda de Apartamentos</a>
-      <a class="btn btn-light" href="#contact">Contáctenos</a>
+      <a class="btn btn-light" href="https://members.smartapartmentdata.com/web-idx/9925ade4-ea93-492c-944e-57cab33712e7" target="_blank" rel="noopener noreferrer">Buscar Apartamentos en Atlanta</a>
+      <a class="btn btn-light" href="#buy-sell">Comprar o Vender Casa</a>
+      <a class="btn btn-light" href="#book-search">Solicitar una Llamada</a>
+      <a class="btn btn-light" href="#rentals">Habitaciones en Alquiler</a>
+      <a class="btn btn-light" href="#owners">Administración de Propiedades</a>
     </div>
+    <p class="broker-line">Call Allyn: <a href="tel:+14703744384">(470) 374-4384</a> · Real estate brokerage: <strong>Veribas Real Estate LLC</strong> · Office: <a href="tel:+14706880871">(470) 688-0871</a></p>
   </div>
 </header>
 
@@ -297,7 +340,7 @@ footer { border-top: 5px solid var(--gold); }
       </div>
 
       <div class="card">
-        <img src="assets/atlanta-apartment-community.webp" alt="Illustration of an Atlanta area apartment community" loading="lazy">
+        <img src="assets/owner-updates-office.webp" alt="Illustration of a property management calendar and keys in a home office" loading="lazy">
         <h3 class="en">Ongoing Updates</h3>
         <h3 class="es hide">Actualizaciones Continuas</h3>
         <p class="en">Stay current with lease updates and owner reminders.</p>
@@ -382,45 +425,70 @@ footer { border-top: 5px solid var(--gold); }
   </div>
 </section>
 
-<section>
+<section id="buy-sell">
   <div class="container">
-    <h2 class="en">Atlanta-area Property Support</h2>
-    <h2 class="es hide">Apoyo para Propiedades de Atlanta</h2>
-
-    <div class="grid">
-      <div class="card">
-        <img src="assets/atlanta-apartment-community.webp" alt="Illustration of an Atlanta area apartment community" loading="lazy">
-        <h3>Residential Leasing</h3>
-        <p class="en">Support for residential lease setup and owner organization.</p>
-        <p class="es hide">Apoyo para contratos residenciales y organización de propietarios.</p>
+    <div class="agent-intro">
+      <div>
+        <span class="eyebrow en">Greater Atlanta real estate</span><span class="eyebrow es hide">Bienes raíces en el área de Atlanta</span>
+        <h2 class="en">Buying or selling a home?</h2>
+        <h2 class="es hide">¿Quiere comprar o vender una casa?</h2>
+        <p class="en">I’m Allyn Santiago-Thompson, a Georgia real estate agent affiliated with Veribas Real Estate LLC. Let’s talk about your plans and the next step that makes sense for you.</p>
+        <p class="es hide">Soy Allyn Santiago-Thompson, agente de bienes raíces en Georgia afiliada a Veribas Real Estate LLC. Hablemos de sus planes y del próximo paso adecuado para usted.</p>
       </div>
-
+      <img class="agent-portrait" src="assets/allyn-portrait.jpeg" alt="Allyn Santiago-Thompson" width="1150" height="1367" loading="lazy">
+    </div>
+    <div class="split">
       <div class="card">
-        <img src="assets/atlanta-area-homes.webp" alt="Illustration of Atlanta area homes" loading="lazy">
-        <h3>Property Support</h3>
-        <p class="en">Tools for owners managing rental properties.</p>
-        <p class="es hide">Herramientas para propietarios que administran rentas.</p>
+        <img src="assets/atlanta-area-homes.webp" alt="Illustrative Atlanta area homes" loading="lazy">
+        <h3 class="en">Buy a home</h3><h3 class="es hide">Compre una casa</h3>
+        <p class="en">Tell me your preferred areas, budget, timing, and must-haves. I can help you plan your search, tour suitable homes, and navigate offers and closing.</p>
+        <p class="es hide">Dígame las zonas que prefiere, su presupuesto, sus fechas y lo que necesita. Puedo ayudarle con la búsqueda, las visitas, las ofertas y el cierre.</p>
+        <a class="btn btn-dark en" href="#home-lead-form">Tell me about your search</a>
+        <a class="btn btn-dark es hide" href="#home-lead-form">Cuénteme su búsqueda</a>
       </div>
-
       <div class="card">
-        <img src="assets/atlanta-apartment-community.webp" alt="Illustration of an Atlanta area apartment community" loading="lazy">
-        <h3>Bilingual Service</h3>
-        <p class="en">English and Spanish support for landlords and owners.</p>
-        <p class="es hide">Servicio en inglés y español para propietarios.</p>
+        <img src="assets/sell-home-interior.webp" alt="Illustrative staged living room in a home" loading="lazy">
+        <h3 class="en">Sell a home</h3><h3 class="es hide">Venda una casa</h3>
+        <p class="en">We can discuss your home’s condition, timing, pricing strategy, and a marketing plan before you decide to list.</p>
+        <p class="es hide">Podemos hablar del estado de su casa, sus fechas, la estrategia de precio y un plan de mercadeo antes de decidir ponerla en venta.</p>
+        <a class="btn btn-dark en" href="#home-lead-form">Tell me about your home</a>
+        <a class="btn btn-dark es hide" href="#home-lead-form">Cuénteme sobre su casa</a>
       </div>
     </div>
-    <p class="small-note en">Area images are illustrative and do not depict currently available listings. Photos of individual rentals appear with their listing when provided.</p>
-    <p class="small-note es hide">Las imágenes de la zona son ilustrativas y no representan propiedades disponibles. Las fotos de cada alquiler se mostrarán con su anuncio cuando estén disponibles.</p>
+    <form id="home-lead-form" class="intake-card" action="https://formsubmit.co/allynsantiago.realtor@gmail.com" method="POST" style="margin-top:26px">
+      <h3 class="en">Are you looking to buy or sell?</h3><h3 class="es hide">¿Quiere comprar o vender?</h3>
+      <p class="en">Send me a few details and I’ll follow up with you personally.</p>
+      <p class="es hide">Envíeme algunos detalles y me comunicaré personalmente con usted.</p>
+      <input type="hidden" name="_subject" value="New APLYNX buyer or seller inquiry">
+      <input type="hidden" name="_url" value="https://www.aplynxinvestments.com/#buy-sell">
+      <input type="hidden" name="_next" value="https://www.aplynxinvestments.com/thanks.html">
+      <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true">
+      <div class="form-grid">
+        <div class="field"><label for="h-interest">I want to / Quiero</label><select id="h-interest" name="interest" required><option value="">Choose / Seleccione</option><option value="Buy a home">Buy a home / Comprar casa</option><option value="Sell a home">Sell a home / Vender casa</option></select></div>
+        <div class="field"><label for="h-timing">Timeline / ¿Cuándo?</label><select id="h-timing" name="timeline" required><option value="">Choose / Seleccione</option><option value="As soon as possible">As soon as possible / Lo antes posible</option><option value="Within 3 months">Within 3 months / Dentro de 3 meses</option><option value="3 to 6 months">3 to 6 months / De 3 a 6 meses</option><option value="Just exploring">Just exploring / Explorando opciones</option></select></div>
+        <div class="field"><label for="h-name">Name / Nombre</label><input id="h-name" name="name" autocomplete="name" required></div>
+        <div class="field"><label for="h-email">Email / Correo</label><input id="h-email" name="email" type="email" autocomplete="email" required></div>
+        <div class="field"><label for="h-phone">Phone / Teléfono</label><input id="h-phone" name="phone" type="tel" autocomplete="tel" required></div>
+        <div class="field"><label for="h-area">City or area / Ciudad o zona</label><input id="h-area" name="area" required></div>
+        <div class="field wide"><label for="h-details">Budget, home details, or questions / Presupuesto, detalles o preguntas</label><textarea id="h-details" name="details"></textarea></div>
+      </div>
+      <label class="checkline"><input type="checkbox" name="contact_consent" value="Yes" required><span class="en">I agree to be contacted by Allyn Santiago-Thompson at Veribas Real Estate LLC about my request.</span><span class="es hide">Acepto que Allyn Santiago-Thompson de Veribas Real Estate LLC me contacte sobre mi solicitud.</span></label>
+      <button class="btn btn-dark" type="submit">Send my inquiry / Enviar consulta</button>
+      <p class="small-note en">Your inquiry is sent to me by email through <a href="https://formsubmit.co/privacy.pdf" target="_blank" rel="noopener noreferrer">FormSubmit</a>. I’ll use it to respond. Do not include Social Security numbers or financial documents.</p>
+      <p class="small-note es hide">Su consulta se me enviará por correo mediante <a href="https://formsubmit.co/privacy.pdf" target="_blank" rel="noopener noreferrer">FormSubmit</a>. La usaré para responder. No incluya números de Seguro Social ni documentos financieros.</p>
+    </form>
+    <p class="small-note en">Images illustrate the Atlanta area and are not active listings. A brokerage relationship begins only with a separate written agreement. Brokerage: Veribas Real Estate LLC · Office: <a href="tel:+14706880871">(470) 688-0871</a>.</p>
+    <p class="small-note es hide">Las imágenes ilustran la zona de Atlanta y no son anuncios activos. Una relación de representación comienza con un acuerdo escrito por separado. Correduría: Veribas Real Estate LLC · Oficina: <a href="tel:+14706880871">(470) 688-0871</a>.</p>
   </div>
 </section>
 
 
 <section id="rentals" class="section-muted">
   <div class="container">
-    <span class="eyebrow en">Homes I manage</span><span class="eyebrow es hide">Propiedades que administro</span>
-    <h2 class="en">Find your next place</h2><h2 class="es hide">Encuentre su próximo hogar</h2>
-    <p class="en">Explore the Fern Hill rental photos and ask for the current application. New listings are added as they become available.</p>
-    <p class="es hide">Vea las fotos del alquiler en Fern Hill y solicite la solicitud actual. Agregaremos nuevas propiedades cuando estén disponibles.</p>
+    <span class="eyebrow en">Rooms I manage</span><span class="eyebrow es hide">Habitaciones que administro</span>
+    <h2 class="en">Rooms for rent in Lawrenceville</h2><h2 class="es hide">Habitaciones en alquiler en Lawrenceville</h2>
+    <p class="en">Explore the Fern Hill photos and ask for the current room application. These are individual rooms in a shared house, not a rental of the entire home.</p>
+    <p class="es hide">Vea las fotos de Fern Hill y solicite la solicitud actual para una habitación. Se alquilan habitaciones individuales en una casa compartida, no la casa completa.</p>
     <div class="split">
       <article class="listing">
         <div id="fern-gallery" class="gallery" aria-live="polite">
@@ -434,16 +502,16 @@ footer { border-top: 5px solid var(--gold); }
         <p class="small-note en">The bedroom image is virtually staged; furnishings may differ. Photos from the current property listing. <a href="https://www.zillow.com/homedetails/1266-Fern-Hill-Dr-Lawrenceville-GA-30044/14806805_zpid/" target="_blank" rel="noopener noreferrer">View the source listing</a>.</p>
         <p class="small-note es hide">La imagen de la habitación está decorada virtualmente; los muebles pueden ser diferentes. Fotos del anuncio actual. <a href="https://www.zillow.com/homedetails/1266-Fern-Hill-Dr-Lawrenceville-GA-30044/14806805_zpid/" target="_blank" rel="noopener noreferrer">Ver el anuncio original</a>.</p>
         <span class="eyebrow en">Lawrenceville, Georgia</span><span class="eyebrow es hide">Lawrenceville, Georgia</span>
-        <h3>1266 Fern Hill Drive</h3>
-        <p class="en">Furnished room rental with utilities and Wi-Fi included. Ask about current availability, rent, deposit, and a tour.</p>
-        <p class="es hide">Habitación amueblada con servicios y Wi-Fi incluidos. Consulte la disponibilidad, la renta, el depósito y una visita.</p>
+        <h3 class="en">Rooms for rent · 1266 Fern Hill Drive</h3><h3 class="es hide">Habitaciones en alquiler · 1266 Fern Hill Drive</h3>
+        <p class="en">Furnished rooms in a shared house, with utilities and Wi-Fi included. Ask which room is available, its rent and deposit, and how to schedule a tour.</p>
+        <p class="es hide">Habitaciones amuebladas en una casa compartida, con servicios y Wi-Fi incluidos. Consulte qué habitación está disponible, su renta y depósito, y cómo programar una visita.</p>
         <p class="small-note en">Availability and terms are confirmed before an application is sent. Equal Housing Opportunity.</p>
         <p class="small-note es hide">Confirmaremos la disponibilidad y las condiciones antes de enviar la solicitud. Igualdad de oportunidades de vivienda.</p>
       </article>
       <div class="intake-card">
-        <h3 class="en">Start your application</h3><h3 class="es hide">Comience su solicitud</h3>
-        <p class="en">Tell me how to reach you and when you hope to move. I’ll send the current application and screening instructions for this property.</p>
-        <p class="es hide">Dígame cómo contactarle y cuándo desea mudarse. Le enviaré la solicitud y las instrucciones de evaluación actuales.</p>
+        <h3 class="en">Request a room application</h3><h3 class="es hide">Solicite una habitación</h3>
+        <p class="en">Tell me how to reach you and when you hope to move. I’ll confirm which room is available and send the current application and screening instructions.</p>
+        <p class="es hide">Dígame cómo contactarle y cuándo desea mudarse. Confirmaré qué habitación está disponible y le enviaré la solicitud y las instrucciones de evaluación actuales.</p>
         <form id="rental-form">
           <div class="form-grid">
             <div class="field"><label for="r-name">Name / Nombre</label><input id="r-name" name="name" autocomplete="name" required></div>
@@ -452,7 +520,7 @@ footer { border-top: 5px solid var(--gold); }
             <div class="field"><label for="r-date">Move-in date / Fecha</label><input id="r-date" name="date" type="date" required></div>
             <div class="field wide"><label for="r-note">Questions / Preguntas</label><textarea id="r-note" name="note"></textarea></div>
           </div>
-          <button class="btn btn-dark" type="submit">Request application / Solicitar solicitud</button>
+          <button class="btn btn-dark" type="submit">Request room application / Solicitar habitación</button>
           <p class="small-note en">This opens your email app. Send the prepared message to complete your request. Do not send a Social Security number or documents here.</p>
           <p class="small-note es hide">Se abrirá su correo. Envíe el mensaje preparado para completar su solicitud. No envíe su número de Seguro Social ni documentos aquí.</p>
         </form>
@@ -529,6 +597,41 @@ footer { border-top: 5px solid var(--gold); }
   </div>
 </section>
 
+<section id="book-search" class="section-muted">
+  <div class="container split">
+    <div>
+      <span class="eyebrow en">Personal help</span><span class="eyebrow es hide">Atención personal</span>
+      <h2 class="en">Book a Property Search Call</h2><h2 class="es hide">Solicite una Llamada para su Búsqueda</h2>
+      <p class="en">Tell me what you’re looking for and when we can talk. I’ll review your request and confirm a time with you personally.</p>
+      <p class="es hide">Cuénteme qué busca y cuándo podemos hablar. Revisaré su solicitud y confirmaré una hora con usted personalmente.</p>
+      <p class="small-note en">This is a request for a call, not a confirmed appointment. We’ll discuss your search, next steps, and any applicable service terms before work begins.</p>
+      <p class="small-note es hide">Esta es una solicitud de llamada, no una cita confirmada. Hablaremos de su búsqueda, próximos pasos y condiciones aplicables antes de comenzar.</p>
+    </div>
+    <form class="intake-card" action="https://formsubmit.co/allynsantiago.realtor@gmail.com" method="POST">
+      <h3 class="en">Request a time with Allyn</h3><h3 class="es hide">Solicite una hora con Allyn</h3>
+      <input type="hidden" name="_subject" value="New APLYNX property search call request">
+      <input type="hidden" name="_url" value="https://www.aplynxinvestments.com/#book-search">
+      <input type="hidden" name="_next" value="https://www.aplynxinvestments.com/booking-thanks.html">
+      <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true">
+      <div class="form-grid">
+        <div class="field wide"><label for="b-service">What are you looking for? / ¿Qué busca?</label><select id="b-service" name="search_type" required><option value="">Choose / Seleccione</option><option value="Apartment search">Apartment / Apartamento</option><option value="Rental home search">Rental home / Casa en alquiler</option><option value="Buy a home">Buy a home / Comprar casa</option></select></div>
+        <div class="field"><label for="b-name">Name / Nombre</label><input id="b-name" name="name" autocomplete="name" required></div>
+        <div class="field"><label for="b-email">Email / Correo</label><input id="b-email" name="email" type="email" autocomplete="email" required></div>
+        <div class="field"><label for="b-phone">Phone / Teléfono</label><input id="b-phone" name="phone" type="tel" autocomplete="tel" required></div>
+        <div class="field"><label for="b-area">Search area / Zona</label><input id="b-area" name="search_area" required></div>
+        <div class="field"><label for="b-budget">Budget / Presupuesto</label><input id="b-budget" name="budget" placeholder="Monthly rent or purchase range" required></div>
+        <div class="field"><label for="b-date">Preferred call date / Fecha</label><input id="b-date" name="preferred_call_date" type="date" required></div>
+        <div class="field wide"><label for="b-window">Best time to call (Eastern) / Mejor hora (Este)</label><select id="b-window" name="preferred_call_time" required><option value="">Choose / Seleccione</option><option>Morning / Mañana</option><option>Afternoon / Tarde</option><option>Evening / Noche</option></select></div>
+        <div class="field wide"><label for="b-notes">Move date, needs, or questions / Fecha de mudanza, necesidades o preguntas</label><textarea id="b-notes" name="notes"></textarea></div>
+      </div>
+      <label class="checkline"><input type="checkbox" name="contact_consent" value="Yes" required><span class="en">Allyn Santiago-Thompson at Veribas Real Estate LLC may contact me about this request.</span><span class="es hide">Allyn Santiago-Thompson de Veribas Real Estate LLC puede contactarme sobre esta solicitud.</span></label>
+      <button class="btn btn-dark" type="submit">Request my call / Solicitar llamada</button>
+      <p class="small-note en">Your request is sent by email through <a href="https://formsubmit.co/privacy.pdf" target="_blank" rel="noopener noreferrer">FormSubmit</a>. Please don’t include Social Security numbers or financial documents.</p>
+      <p class="small-note es hide">Su solicitud se enviará por correo mediante <a href="https://formsubmit.co/privacy.pdf" target="_blank" rel="noopener noreferrer">FormSubmit</a>. No incluya números de Seguro Social ni documentos financieros.</p>
+    </form>
+  </div>
+</section>
+
 <section>
   <div class="container">
     <h2 class="en">Follow APLYNX</h2>
@@ -536,7 +639,7 @@ footer { border-top: 5px solid var(--gold); }
 
     <div class="socials">
       <a href="https://www.facebook.com/profile.php?id=61584846179965" target="_blank" rel="noopener noreferrer" aria-label="Follow Allyn on Facebook"><span class="social-mark">f</span>Facebook</a>
-      <a href="https://www.instagram.com/allynsantiago.realtor/" target="_blank" rel="noopener noreferrer" aria-label="Follow Allyn on Instagram"><span class="social-mark">◎</span>Instagram</a>
+      <a href="https://www.instagram.com/aplynxinvestments/" target="_blank" rel="noopener noreferrer" aria-label="Follow APLYNX Investments on Instagram"><span class="social-mark">◎</span>Instagram</a>
       <a href="https://www.tiktok.com/@allynthegarealtor?_r=1&amp;_t=ZT-9A7ov2jX4DG" target="_blank" rel="noopener noreferrer" aria-label="Follow Allyn on TikTok"><span class="social-mark">♪</span>TikTok</a>
     </div>
   </div>
@@ -558,10 +661,104 @@ footer { border-top: 5px solid var(--gold); }
 
 <footer>
   <p>© 2026 APLYNX Investments</p>
-  <p>Lease support, landlord tools, and property solutions.</p>
+  <p>Homes, apartments, leases, and rental management.</p>
+  <p>Call Allyn: <a href="tel:+14703744384">(470) 374-4384</a> · Real estate brokerage: <strong>Veribas Real Estate LLC</strong> · Office: <a href="tel:+14706880871">(470) 688-0871</a></p>
 </footer>
 
+<button class="chat-launch" id="chat-launch" type="button" aria-controls="chat-panel" aria-expanded="false">Chat with APLYNX / Chatea</button>
+<aside class="chat-panel" id="chat-panel" role="dialog" aria-label="APLYNX chat assistant" hidden>
+  <div class="chat-head"><strong>Ask APLYNX</strong><button id="chat-close" type="button" aria-label="Close chat">×</button></div>
+  <div class="chat-log" id="chat-log" role="log" aria-live="polite" aria-relevant="additions text"></div>
+  <div class="chat-suggestions" id="chat-suggestions">
+    <button type="button" data-en="How does apartment search work?" data-es="¿Cómo funciona la búsqueda de apartamentos?">Apartment search / Apartamentos</button>
+    <button type="button" data-en="Are rooms available at Fern Hill?" data-es="¿Hay habitaciones disponibles en Fern Hill?">Rooms / Habitaciones</button>
+    <button type="button" data-en="How can I buy or sell a home?" data-es="¿Cómo puedo comprar o vender una casa?">Buy or sell / Comprar o vender</button>
+  </div>
+  <form class="chat-form" id="chat-form"><input id="chat-input" aria-label="Your question" placeholder="Ask a question / Haz una pregunta" maxlength="500" required autocomplete="off"><button id="chat-send" type="submit">Send</button></form>
+  <p class="chat-note">Automated answers may need confirmation. Please don’t share SSNs, bank details or documents. Questions sent in AI mode are processed by an AI provider. <a href="mailto:allynsantiago.realtor@gmail.com">Email Allyn</a> or call <a href="tel:+14703744384">470-374-4384</a>.</p>
+</aside>
+
 <script>
+
+const chatPanel = document.getElementById('chat-panel');
+const chatLaunch = document.getElementById('chat-launch');
+const chatInput = document.getElementById('chat-input');
+const chatLog = document.getElementById('chat-log');
+const chatSend = document.getElementById('chat-send');
+let chatHistory = [];
+function chatIsSpanish() { return document.getElementById('langBtn').textContent === 'English'; }
+function setChatAnswer(bubble, message) {
+  // Build links as DOM nodes so assistant text is never interpreted as HTML.
+  const parts = [];
+  const urls = /https?:\/\/[^\s<>"']+/gi;
+  let cursor = 0;
+  for (const match of message.matchAll(urls)) {
+    const start = match.index;
+    if (start > cursor) parts.push(document.createTextNode(message.slice(cursor, start)));
+    const address = match[0].replace(/[.,!?;:)}\]]+$/, '');
+    const suffix = match[0].slice(address.length);
+    try {
+      const url = new URL(address);
+      if (url.protocol === 'https:' && ['www.aplynxinvestments.com', 'aplynxinvestments.com', 'members.smartapartmentdata.com'].includes(url.hostname)) {
+        const link = document.createElement('a');
+        link.href = url.href;
+        link.textContent = url.hostname === 'members.smartapartmentdata.com'
+          ? (chatIsSpanish() ? 'Explorar apartamentos ↗' : 'Browse apartments ↗')
+          : address;
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        parts.push(link);
+      } else parts.push(document.createTextNode(address));
+    } catch { parts.push(document.createTextNode(address)); }
+    if (suffix) parts.push(document.createTextNode(suffix));
+    cursor = start + match[0].length;
+  }
+  if (cursor < message.length) parts.push(document.createTextNode(message.slice(cursor)));
+  bubble.replaceChildren(...parts);
+}
+function addChatMessage(message, who) {
+  const bubble = document.createElement('p');
+  bubble.className = 'chat-message ' + who;
+  if (who === 'agent') setChatAnswer(bubble, message);
+  else bubble.textContent = message;
+  chatLog.appendChild(bubble);
+  chatLog.scrollTop = chatLog.scrollHeight;
+  return bubble;
+}
+chatLaunch.addEventListener('click', () => {
+  chatPanel.hidden = !chatPanel.hidden;
+  chatLaunch.setAttribute('aria-expanded', String(!chatPanel.hidden));
+  if (!chatPanel.hidden) {
+    if (!chatLog.childElementCount) addChatMessage(chatIsSpanish() ? '¡Hola! Puedo ayudar con apartamentos, habitaciones, compra, venta y administración. ¿Qué le gustaría saber?' : 'Hi! Ask me about apartments, rooms, buying, selling, or management. How can I help?', 'agent');
+    chatInput.focus();
+  }
+});
+document.getElementById('chat-close').addEventListener('click', () => { chatPanel.hidden = true; chatLaunch.setAttribute('aria-expanded', 'false'); chatLaunch.focus(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && !chatPanel.hidden) document.getElementById('chat-close').click(); });
+document.querySelectorAll('.chat-suggestions button').forEach(button => button.addEventListener('click', () => {
+  chatInput.value = button.dataset[chatIsSpanish() ? 'es' : 'en'];
+  document.getElementById('chat-form').requestSubmit();
+}));
+document.getElementById('chat-form').addEventListener('submit', async e => {
+  e.preventDefault();
+  const message = chatInput.value.trim();
+  if (!message || chatSend.disabled) return;
+  const language = chatIsSpanish() ? 'es' : 'en';
+  addChatMessage(message, 'visitor');
+  chatInput.value = '';
+  chatSend.disabled = true;
+  const waiting = addChatMessage(language === 'es' ? 'Un momento…' : 'One moment…', 'agent');
+  try {
+    const response = await fetch('/api/chat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ message, language, history: chatHistory.slice(-6) }) });
+    const result = await response.json();
+    if (!response.ok) throw new Error(result.error || 'Chat unavailable');
+    setChatAnswer(waiting, result.answer);
+    chatHistory.push({ role: 'user', content: message }, { role: 'assistant', content: result.answer.slice(0, 500) });
+    chatHistory = chatHistory.slice(-6);
+  } catch {
+    waiting.textContent = language === 'es' ? 'No puedo responder ahora. Llame al (470) 374-4384 o escriba a allynsantiago.realtor@gmail.com.' : 'I can’t answer right now. Please call (470) 374-4384 or email allynsantiago.realtor@gmail.com.';
+  } finally { chatSend.disabled = false; chatInput.focus(); chatLog.scrollTop = chatLog.scrollHeight; }
+});
 
 const fernPhotos = [
   { src: "assets/fern-hill-1.webp", alt: "Bedroom at 1266 Fern Hill Drive, virtually staged" },
@@ -591,7 +788,7 @@ function emailRequest(subject, lines) {
 document.getElementById("rental-form").addEventListener("submit", function(e) {
   e.preventDefault();
   const v = id => document.getElementById(id).value.trim();
-  emailRequest("1266 Fern Hill application request", [["Property","1266 Fern Hill Drive, Lawrenceville GA"],["Name",v("r-name")],["Email",v("r-email")],["Phone",v("r-phone")],["Desired move date",v("r-date")],["Questions",v("r-note")]]);
+  emailRequest("1266 Fern Hill room application request", [["Property","Individual room at 1266 Fern Hill Drive, Lawrenceville GA"],["Name",v("r-name")],["Email",v("r-email")],["Phone",v("r-phone")],["Desired move date",v("r-date")],["Questions",v("r-note")]]);
 });
 document.getElementById("search-form").addEventListener("submit", function(e) {
   e.preventDefault();
