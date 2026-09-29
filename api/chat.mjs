@@ -8,10 +8,14 @@ const facts = `APLYNX Investments serves Greater Atlanta in English and Spanish.
 Apartment search: browse the public apartment search at ${IDX}. A participating-community search is free to the renter; a property may compensate the brokerage if the renter leases there. Broader custom search has a proposed $300 fee, subject to final written terms before paid work. It includes intake review, research, up to five options, availability checks where possible, and one follow-up round. No approval or placement guarantee. Property application fees, deposits, tours, and transportation are separate.
 1266 Fern Hill Drive, Lawrenceville, GA: individually furnished rooms in a shared house, not the whole house. Utilities and Wi-Fi are included. Ask Allyn which room is available and its current rent, deposit, and screening criteria. The site has a room application request form, after which Allyn sends current instructions. Do not invent availability, price, pet rules, or terms.
 Buyers and sellers: use the inquiry form in the Buy or Sell section or call Allyn. Property owners: use the Ask About Management link in the property management section. A brokerage relationship starts only with a separate written agreement. A third-party general Georgia residential lease template is linked in the lease section; it may need changes for a room rental.
+Visitors can request a property search call at ${SITE}/#book-search. Allyn will personally confirm a time; a request does not book an appointment.
 Site: ${SITE}. Never claim a visitor has submitted a form, paid, been approved, scheduled a tour, or entered an agreement. Never ask for SSNs, bank details, pay stubs, or identification in chat.`;
 
 function answerWithoutAI(question, spanish) {
   const q = question.toLowerCase();
+  if (/book|appointment|schedule|consult|cita|agendar|llamada/.test(q)) return spanish
+    ? `Solicite una llamada sobre su búsqueda en ${SITE}/#book-search. Allyn revisará los detalles y confirmará una hora con usted.`
+    : `Request a property search call at ${SITE}/#book-search. Allyn will review your details and confirm a time with you.`;
   if (/fern.?hill|1266|room|habitaci[oó]n|cuarto|rentar/.test(q)) return spanish
     ? `1266 Fern Hill Drive ofrece habitaciones individuales en una casa compartida. Los servicios y Wi-Fi están incluidos. Allyn confirmará disponibilidad, renta y depósito. Use el formulario de habitaciones o llame al ${PHONE}.`
     : `1266 Fern Hill Drive offers individual furnished rooms in a shared house, with utilities and Wi-Fi included. Allyn can confirm current availability, rent, and deposit. Use the room request form or call ${PHONE}.`;
