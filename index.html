@@ -161,6 +161,7 @@ section {
 .gallery-empty { padding: 32px; color: #45534e; }
 .gallery-empty strong { display: block; font-size: 20px; margin-bottom: 8px; }
 .gallery-controls { display: flex; gap: 12px; align-items: center; justify-content: center; margin: 14px 0 20px; }
+.gallery-controls[hidden] { display: none; }
 .gallery-controls button { border: 1px solid #b6c2b9; background: #fff; border-radius: 50%; width: 38px; height: 38px; cursor: pointer; }
 .gallery-controls button:disabled { opacity: .4; cursor: default; }
 .small-note { color: #56615c; font-size: 14px; line-height: 1.5; }
@@ -312,37 +313,37 @@ footer { border-top: 5px solid var(--gold); }
     <div class="owner-intro">
       <div class="en">
         <span class="owner-kicker">For rental property owners</span>
-        <h2>Need help managing your rental?</h2>
-        <p>APLYNX offers lease tools and owner support. When you need a property management team, I can introduce you to Blue Spade Property Management to discuss your property and the services you need.</p>
-        <p>Tell me a little about your rental, and I’ll help make the connection.</p>
-        <a class="btn btn-dark owner-cta" href="mailto:allynsantiago.realtor@gmail.com?subject=Property%20Management%20Introduction&amp;body=Hello%20Allyn%2C%0A%0AI%27d%20like%20to%20discuss%20property%20management.%0A%0AProperty%20city%3A%20%0AType%20of%20rental%3A%20%0ABest%20phone%20number%3A%20">Request an Introduction</a>
+        <h2>Let APLYNX manage your rental</h2>
+        <p>APLYNX Investments works with rental property owners on leasing and ongoing property management. Tell me about your property and the help you need, and we can discuss a plan that fits.</p>
+        <p>Work directly with me at APLYNX Investments.</p>
+        <a class="btn btn-dark owner-cta" href="mailto:allynsantiago.realtor@gmail.com?subject=APLYNX%20Property%20Management%20Inquiry&amp;body=Hello%20Allyn%2C%0A%0AI%27d%20like%20to%20discuss%20management%20for%20my%20rental.%0A%0AProperty%20city%3A%20%0AType%20of%20rental%3A%20%0AHelp%20needed%3A%20%0ABest%20phone%20number%3A%20">Ask About Management</a>
       </div>
       <div class="es hide">
         <span class="owner-kicker">Para propietarios de alquileres</span>
-        <h2>¿Necesita ayuda para administrar su propiedad?</h2>
-        <p>APLYNX ofrece herramientas para contratos y apoyo a propietarios. Si necesita un equipo de administración, puedo ponerle en contacto con Blue Spade Property Management para conversar sobre su propiedad y los servicios que necesita.</p>
-        <p>Cuénteme un poco sobre su propiedad y le ayudaré a establecer el contacto.</p>
-        <a class="btn btn-dark owner-cta" href="mailto:allynsantiago.realtor@gmail.com?subject=Consulta%20sobre%20administraci%C3%B3n%20de%20propiedad&amp;body=Hola%20Allyn%2C%0A%0AMe%20gustar%C3%ADa%20hablar%20sobre%20la%20administraci%C3%B3n%20de%20mi%20propiedad.%0A%0ACiudad%3A%20%0ATipo%20de%20propiedad%3A%20%0AMejor%20n%C3%BAmero%20de%20tel%C3%A9fono%3A%20">Solicitar una Presentación</a>
+        <h2>Deje que APLYNX administre su propiedad</h2>
+        <p>APLYNX Investments trabaja con propietarios en el arrendamiento y la administración continua de sus propiedades. Cuénteme sobre su propiedad y qué ayuda necesita para conversar sobre un plan adecuado.</p>
+        <p>Trabaje directamente conmigo en APLYNX Investments.</p>
+        <a class="btn btn-dark owner-cta" href="mailto:allynsantiago.realtor@gmail.com?subject=Consulta%20sobre%20administraci%C3%B3n%20de%20APLYNX&amp;body=Hola%20Allyn%2C%0A%0AMe%20gustar%C3%ADa%20hablar%20sobre%20la%20administraci%C3%B3n%20de%20mi%20propiedad.%0A%0ACiudad%3A%20%0ATipo%20de%20propiedad%3A%20%0AAyuda%20necesaria%3A%20%0AMejor%20n%C3%BAmero%20de%20tel%C3%A9fono%3A%20">Consultar Administración</a>
       </div>
     </div>
     <div class="owner-steps">
       <div class="en">
-        <h3>How the introduction works</h3>
+        <h3>How we get started</h3>
         <ol>
           <li>Share your property location and what help you’re looking for.</li>
-          <li>I’ll connect you with Blue Spade Property Management.</li>
-          <li>Their team will discuss its services and next steps with you directly.</li>
+          <li>We’ll talk about leasing, management needs, and your goals.</li>
+          <li>APLYNX will outline the available services and next steps.</li>
         </ol>
-        <p class="owner-note">Management services, availability, and pricing are discussed directly with Blue Spade.</p>
+        <p class="owner-note">Services, availability, and pricing are confirmed directly with APLYNX.</p>
       </div>
       <div class="es hide">
         <h3>Cómo funciona</h3>
         <ol>
           <li>Indíqueme dónde está su propiedad y qué tipo de ayuda necesita.</li>
-          <li>Le pondré en contacto con Blue Spade Property Management.</li>
-          <li>Su equipo hablará con usted directamente sobre sus servicios y los próximos pasos.</li>
+          <li>Hablaremos sobre el arrendamiento, la administración y sus objetivos.</li>
+          <li>APLYNX le explicará los servicios disponibles y los próximos pasos.</li>
         </ol>
-        <p class="owner-note">Los servicios, la disponibilidad y los precios se consultan directamente con Blue Spade.</p>
+        <p class="owner-note">Los servicios, la disponibilidad y los precios se confirman directamente con APLYNX.</p>
       </div>
     </div>
   </div>
@@ -423,13 +424,15 @@ footer { border-top: 5px solid var(--gold); }
     <div class="split">
       <article class="listing">
         <div id="fern-gallery" class="gallery" aria-live="polite">
-          <div class="gallery-empty"><strong>1266 Fern Hill Drive</strong><span class="en">Property photos coming soon</span><span class="es hide">Próximamente fotos de la propiedad</span></div>
+          <div class="gallery-empty"><strong>1266 Fern Hill Drive</strong><span class="en">See current property photos on the listing page</span><span class="es hide">Vea las fotos actuales en la página del anuncio</span></div>
         </div>
-        <div class="gallery-controls">
+        <div class="gallery-controls" hidden>
           <button type="button" id="fern-prev" aria-label="Previous photo" disabled>‹</button>
           <span id="fern-count" class="small-note">Photos coming soon</span>
           <button type="button" id="fern-next" aria-label="Next photo" disabled>›</button>
         </div>
+        <a class="btn btn-dark en" href="https://www.zillow.com/homedetails/1266-Fern-Hill-Dr-Lawrenceville-GA-30044/14806805_zpid/" target="_blank" rel="noopener noreferrer">View property photos</a>
+        <a class="btn btn-dark es hide" href="https://www.zillow.com/homedetails/1266-Fern-Hill-Dr-Lawrenceville-GA-30044/14806805_zpid/" target="_blank" rel="noopener noreferrer">Ver fotos de la propiedad</a>
         <span class="eyebrow en">Lawrenceville, Georgia</span><span class="eyebrow es hide">Lawrenceville, Georgia</span>
         <h3>1266 Fern Hill Drive</h3>
         <p class="en">Furnished room rental with utilities and Wi-Fi included. Ask about current availability, rent, deposit, and a tour.</p>
@@ -565,6 +568,7 @@ let fernPhotoIndex = 0;
 function renderFernGallery() {
   if (!fernPhotos.length) return;
   const gallery = document.getElementById("fern-gallery");
+  document.querySelector(".gallery-controls").hidden = false;
   const photo = fernPhotos[fernPhotoIndex];
   gallery.replaceChildren();
   const img = document.createElement("img");
