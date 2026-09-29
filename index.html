@@ -228,9 +228,15 @@ h2 { font-family: Georgia, serif; }
 .socials a { background: var(--forest); color: #fff; border: 1px solid #c3a265; display: flex; align-items: center; justify-content: center; gap: 12px; }
 .social-mark { color: #f0c877; font-size: 28px; line-height: 1; }
 footer { border-top: 5px solid var(--gold); }
+.agent-intro { display: grid; grid-template-columns: minmax(0,1fr) 230px; align-items: center; gap: 28px; margin-bottom: 25px; }
+.agent-intro h2 { margin-top: 8px; }
+.agent-intro p { max-width: 750px; }
+.agent-portrait { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center top; border-radius: 18px; box-shadow: 12px 12px 0 #e7d09c; }
 @media(max-width:850px) {
   header { min-height: 80vh; background-position: 58% center; }
   .socials { grid-template-columns: 1fr; }
+  .agent-intro { grid-template-columns: 1fr; }
+  .agent-portrait { width: min(220px,70vw); margin: 0 auto 12px; }
 }
 
 </style>
@@ -383,11 +389,16 @@ footer { border-top: 5px solid var(--gold); }
 
 <section id="buy-sell">
   <div class="container">
-    <span class="eyebrow en">Greater Atlanta real estate</span><span class="eyebrow es hide">Bienes raíces en el área de Atlanta</span>
-    <h2 class="en">Buying or selling a home?</h2>
-    <h2 class="es hide">¿Quiere comprar o vender una casa?</h2>
-    <p class="en">I’m Allyn Santiago-Thompson, a Georgia real estate agent affiliated with Veribas Real Estate LLC. Let’s talk about your plans and the next step that makes sense for you.</p>
-    <p class="es hide">Soy Allyn Santiago-Thompson, agente de bienes raíces en Georgia afiliada a Veribas Real Estate LLC. Hablemos de sus planes y del próximo paso adecuado para usted.</p>
+    <div class="agent-intro">
+      <div>
+        <span class="eyebrow en">Greater Atlanta real estate</span><span class="eyebrow es hide">Bienes raíces en el área de Atlanta</span>
+        <h2 class="en">Buying or selling a home?</h2>
+        <h2 class="es hide">¿Quiere comprar o vender una casa?</h2>
+        <p class="en">I’m Allyn Santiago-Thompson, a Georgia real estate agent affiliated with Veribas Real Estate LLC. Let’s talk about your plans and the next step that makes sense for you.</p>
+        <p class="es hide">Soy Allyn Santiago-Thompson, agente de bienes raíces en Georgia afiliada a Veribas Real Estate LLC. Hablemos de sus planes y del próximo paso adecuado para usted.</p>
+      </div>
+      <img class="agent-portrait" src="assets/allyn-portrait.jpeg" alt="Allyn Santiago-Thompson" width="1150" height="1367" loading="lazy">
+    </div>
     <div class="split">
       <div class="card">
         <img src="assets/atlanta-area-homes.webp" alt="Illustrative Atlanta area homes" loading="lazy">
