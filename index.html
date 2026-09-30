@@ -359,14 +359,14 @@ footer { border-top: 5px solid var(--gold); }
         <h2>Let APLYNX manage your rental</h2>
         <p>APLYNX Investments works with rental property owners on leasing and ongoing property management. Tell me about your property and the help you need, and we can discuss a plan that fits.</p>
         <p>Work directly with me at APLYNX Investments.</p>
-        <a class="btn btn-dark owner-cta" href="mailto:allynsantiago.realtor@gmail.com?subject=APLYNX%20Property%20Management%20Inquiry&amp;body=Hello%20Allyn%2C%0A%0AI%27d%20like%20to%20discuss%20management%20for%20my%20rental.%0A%0AProperty%20city%3A%20%0AType%20of%20rental%3A%20%0AHelp%20needed%3A%20%0ABest%20phone%20number%3A%20">Ask About Management</a>
+        <a class="btn btn-dark owner-cta" href="#management-inquiry">Ask About Management</a>
       </div>
       <div class="es hide">
         <span class="owner-kicker">Para propietarios de alquileres</span>
         <h2>Deje que APLYNX administre su propiedad</h2>
         <p>APLYNX Investments trabaja con propietarios en el arrendamiento y la administración continua de sus propiedades. Cuénteme sobre su propiedad y qué ayuda necesita para conversar sobre un plan adecuado.</p>
         <p>Trabaje directamente conmigo en APLYNX Investments.</p>
-        <a class="btn btn-dark owner-cta" href="mailto:allynsantiago.realtor@gmail.com?subject=Consulta%20sobre%20administraci%C3%B3n%20de%20APLYNX&amp;body=Hola%20Allyn%2C%0A%0AMe%20gustar%C3%ADa%20hablar%20sobre%20la%20administraci%C3%B3n%20de%20mi%20propiedad.%0A%0ACiudad%3A%20%0ATipo%20de%20propiedad%3A%20%0AAyuda%20necesaria%3A%20%0AMejor%20n%C3%BAmero%20de%20tel%C3%A9fono%3A%20">Consultar Administración</a>
+        <a class="btn btn-dark owner-cta" href="#management-inquiry">Consultar Administración</a>
       </div>
     </div>
     <div class="owner-steps">
@@ -389,6 +389,26 @@ footer { border-top: 5px solid var(--gold); }
         <p class="owner-note">Los servicios, la disponibilidad y los precios se confirman directamente con APLYNX.</p>
       </div>
     </div>
+  </div>
+  <div class="container">  <form class="intake-card" id="management-inquiry" style="margin-top:26px">
+    <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
+    <h3 class="en">Tell me about your rental</h3><h3 class="es hide">Cuénteme sobre su propiedad</h3>
+    <p class="en">Share a few details and I’ll contact you to discuss leasing or management.</p>
+    <p class="es hide">Comparta algunos detalles y me comunicaré para hablar de arrendamiento o administración.</p>
+    <div class="form-grid">
+      <div class="field"><label for="o-name">Name / Nombre</label><input id="o-name" name="name" autocomplete="name" required></div>
+      <div class="field"><label for="o-email">Email / Correo</label><input id="o-email" name="email" type="email" autocomplete="email" required></div>
+      <div class="field"><label for="o-phone">Phone / Teléfono</label><input id="o-phone" name="phone" type="tel" autocomplete="tel" required></div>
+      <div class="field"><label for="o-city">Property city / Ciudad de la propiedad</label><input id="o-city" name="city" required></div>
+      <div class="field"><label for="o-type">Rental type / Tipo de alquiler</label><select id="o-type" name="rental_type" required><option value="">Choose / Seleccione</option><option>Single-family home / Casa</option><option>Condo or townhome / Condominio</option><option>Rooms in a house / Habitaciones</option><option>Other / Otro</option></select></div>
+      <div class="field"><label for="o-service">Help needed / Ayuda necesaria</label><select id="o-service" name="service" required><option value="">Choose / Seleccione</option><option>Leasing / Arrendamiento</option><option>Ongoing management / Administración</option><option>Both / Ambos</option><option>Not sure / No estoy seguro</option></select></div>
+      <div class="field wide"><label for="o-details">Property details or questions / Detalles o preguntas</label><textarea id="o-details" name="details"></textarea></div>
+    </div>
+    <label class="checkline"><input type="checkbox" name="contact_consent" value="Yes" required><span class="en">I agree to be contacted by Allyn at APLYNX Investments about this request.</span><span class="es hide">Acepto que Allyn de APLYNX Investments me contacte sobre esta solicitud.</span></label>
+    <button class="btn btn-dark" type="submit">Send my inquiry / Enviar consulta</button>
+    <p class="small-note en">Submit here and Allyn will follow up. Please do not include financial documents or Social Security numbers.</p>
+    <p class="small-note es hide">Envíe su consulta aquí y Allyn se comunicará con usted. No incluya documentos financieros ni números de Seguro Social.</p>
+  </form>
   </div>
 </section>
 
@@ -821,6 +841,11 @@ async function submitInquiry(form, subject, lines) {
     form.removeAttribute("aria-busy");
   }
 }
+document.getElementById("management-inquiry").addEventListener("submit", function(e) {
+  e.preventDefault();
+  const v = id => document.getElementById(id).value.trim();
+  submitInquiry(e.currentTarget, "APLYNX property management inquiry", [["Name",v("o-name")],["Email",v("o-email")],["Phone",v("o-phone")],["Property city",v("o-city")],["Rental type",v("o-type")],["Help needed",v("o-service")],["Details",v("o-details")],["Contact consent","Yes"]]);
+});
 document.getElementById("home-lead-form").addEventListener("submit", function(e) {
   e.preventDefault();
   const v = id => document.getElementById(id).value.trim();
