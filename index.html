@@ -354,37 +354,7 @@ summary:focus-visible, a:focus-visible, button:focus-visible { outline: 3px soli
 @media(prefers-reduced-motion:reduce) { html { scroll-behavior: auto; } .btn,.socials a { transition:none; } }
 
 
-.topbar { justify-content: space-between; align-items: center; gap: 12px; }
-.install-launch { border: 1px solid #f4d28c; border-radius: 999px; background: #173e31; color: #f4d28c; min-height: 44px; padding: 10px 16px; font: 700 14px Arial,sans-serif; cursor: pointer; }
-#install { border: 1px solid #b8c4bc; border-radius: 18px; width: min(540px, calc(100% - 28px)); max-height: calc(100dvh - 36px); padding: 24px; color: #18241f; background: #fff; overflow-y: auto; }
-#install::backdrop { background: #071b14b3; }
-.install-heading { display: flex; align-items: center; gap: 12px; }
-.install-heading img { border-radius: 12px; flex: none; }
-.install-heading h2 { font-size: 26px; margin: 0; flex: 1; }
-#install-close { background: transparent; border: 0; cursor: pointer; font-size: 28px; min-width: 44px; min-height: 44px; color: #173e31; }
-.install-instructions { border-top: 1px solid #dce3da; margin-top: 16px; }
-.install-instructions li { margin-bottom: 12px; line-height: 1.5; }
-#install-status:empty { display: none; }
-#install-now[hidden], [data-install-open][hidden], .install-instructions[hidden] { display: none !important; }
-@media(display-mode:standalone) { [data-install-open] { display: none; } .topbar { justify-content: flex-end; } }
-@media(max-width: 450px) { #install { padding: 18px; } .install-heading h2 { font-size: 22px; } }
-
-
-/* Compact, device-specific installation help. */
-#install { width: min(440px, calc(100% - 28px)); padding: 22px; }
-.install-heading h2 { font-size: 26px; outline: none; }
-.install-heading img { width: 44px; height: 44px; }
-.install-intro { margin: 16px 0; font-size: 16px; }
-.install-instructions { border: 0; margin-top: 12px; }
-.install-steps { list-style: none; padding: 0; margin: 0; }
-.install-steps li { display: flex; align-items: flex-start; gap: 12px; padding: 14px; border-radius: 12px; background: #eef3ef; margin-bottom: 10px; font-size: 17px; line-height: 1.45; }
-.step-number { background: #173e31; color: #fff; width: 28px; height: 28px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 15px; flex: none; }
-.share-icon { display: inline-block; width: 24px; height: 24px; vertical-align: middle; margin-left: 4px; color: #173e31; }
-.install-trouble > summary { font-size: 14px; padding-left: 0; }
-.install-trouble p { font-size: 15px; margin-top: 4px; }
-#install-browse { display: block; width: 100%; padding: 12px; min-height: 44px; margin-top: 12px; border: 0; background: transparent; color: #173e31; font: 700 16px Arial,sans-serif; cursor: pointer; text-decoration: underline; }
-#install-copy { border: 1px solid #173e31; border-radius: 10px; padding: 12px 16px; background: white; color: #173e31; font: 700 16px Arial,sans-serif; cursor: pointer; }
-#install-browser-help[hidden] { display: none; }
+.topbar { justify-content: flex-end; }
 </style>
 </head>
 
@@ -392,7 +362,6 @@ summary:focus-visible, a:focus-visible, button:focus-visible { outline: 3px soli
 
 <header>
   <div class="topbar">
-    <button class="install-launch" type="button" data-install-open><span class="en">Save the app</span><span class="es hide">Guardar la app</span></button>
     <button class="lang-btn" onclick="toggleLang()" id="langBtn">Español</button>
   </div>
 
@@ -840,29 +809,9 @@ summary:focus-visible, a:focus-visible, button:focus-visible { outline: 3px soli
 
 <footer>
   <p>© 2026 APLYNX Investments</p>
-  <p><a href="#install" data-install-open><span class="en">Install APLYNX on your phone</span><span class="es hide">Instale APLYNX en su teléfono</span></a></p>
   <p>Homes, apartments, leases, and rental management.</p>
   <p>Call Allyn: <a href="tel:+14703744384">(470) 374-4384</a> · Real estate brokerage: <strong>Veribas Real Estate LLC</strong> · Office: <a href="tel:+14706880871">(470) 688-0871</a></p>
 </footer>
-
-<dialog id="install" aria-labelledby="install-title">
-  <div class="install-heading"><img src="/assets/app-icon-180.png" alt="" width="44" height="44"><h2 id="install-title" tabindex="-1"><span class="en">Save APLYNX</span><span class="es hide">Guarde APLYNX</span></h2><button type="button" id="install-close" aria-label="Close / Cerrar">×</button></div>
-  <p class="en install-intro">Apartment searches, one tap away. Free to add.</p>
-  <p class="es hide install-intro">Sus búsquedas a un toque. Añádala gratis.</p>
-  <button class="btn btn-dark" type="button" id="install-now" hidden><span class="en">Add APLYNX</span><span class="es hide">Añadir APLYNX</span></button>
-  <p id="install-status" role="status" aria-live="polite"></p>
-  <div class="install-instructions" data-platform="ios">
-    <ol class="install-steps en"><li><span class="step-number">1</span><span>Tap <strong>Share</strong> in your browser <svg class="share-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 16V2m-4 4 4-4 4 4M7 10H4v11h16V10h-3"/></svg></span></li><li><span class="step-number">2</span><span>Choose <strong>Add to Home Screen</strong>, then <strong>Add</strong>.</span></li></ol>
-    <ol class="install-steps es hide"><li><span class="step-number">1</span><span>Toque <strong>Compartir</strong> en su navegador <svg class="share-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 16V2m-4 4 4-4 4 4M7 10H4v11h16V10h-3"/></svg></span></li><li><span class="step-number">2</span><span>Elija <strong>Añadir a pantalla de inicio</strong> y luego <strong>Añadir</strong>.</span></li></ol>
-    <details class="install-trouble"><summary><span class="en">Don’t see that option?</span><span class="es hide">¿No ve esa opción?</span></summary><p class="en">Open this page in Safari and use Share. Share may be inside the three-dot menu. Leave “Open as Web App” on if it appears.</p><p class="es hide">Abra esta página en Safari y toque Compartir. Puede estar en el menú de tres puntos. Deje “Abrir como app web” activado si aparece.</p></details>
-  </div>
-  <div class="install-instructions" data-platform="other">
-    <p class="en">Open your browser menu and choose <strong>Install app</strong> or <strong>Add to Home screen</strong>.</p>
-    <p class="es hide">Abra el menú de su navegador y elija <strong>Instalar aplicación</strong> o <strong>Añadir a pantalla de inicio</strong>.</p>
-  </div>
-  <div id="install-browser-help" hidden><p class="en">This browser may need Safari to add APLYNX. Copy the link, then open it in Safari.</p><p class="es hide">Este navegador puede necesitar Safari para añadir APLYNX. Copie el enlace y ábralo en Safari.</p><button type="button" id="install-copy"><span class="en">Copy link</span><span class="es hide">Copiar enlace</span></button></div>
-  <button type="button" id="install-browse"><span class="en">Continue browsing</span><span class="es hide">Seguir explorando</span></button>
-</dialog>
 
 <div class="mobile-search-bar"><a href="https://members.smartapartmentdata.com/web-idx/9925ade4-ea93-492c-944e-57cab33712e7" target="_blank" rel="noopener noreferrer"><span class="en">Search Apartments</span><span class="es hide">Buscar Apartamentos</span></a></div>
 <button class="chat-launch" id="chat-launch" type="button" aria-controls="chat-panel" aria-expanded="false">Chat with APLYNX / Chatea</button>
@@ -882,64 +831,13 @@ summary:focus-visible, a:focus-visible, button:focus-visible { outline: 3px soli
 
 
 
-const installDialog = document.getElementById('install');
-const installNow = document.getElementById('install-now');
-const installStatus = document.getElementById('install-status');
-let installPrompt = null;
-let installedThisSession = false;
-const isAppleMobile = /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-const appIsStandalone = () => window.matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
-const installSay = (en, es) => { installStatus.textContent = document.documentElement.lang === 'es' ? es : en; };
-function syncInstallUI() {
-  document.querySelectorAll('[data-install-open]').forEach(el => { el.hidden = appIsStandalone(); });
-  installNow.hidden = !installPrompt || appIsStandalone() || installedThisSession;
-  document.querySelector('[data-platform="ios"]').hidden = !isAppleMobile;
-  document.querySelector('[data-platform="other"]').hidden = isAppleMobile || !!installPrompt;
-  document.getElementById('install-browser-help').hidden = !isAppleMobile || !/GSA\/|FBAN|FBAV|Instagram|; wv\)/i.test(navigator.userAgent);
-}
-function showInstallHelp() {
-  syncInstallUI();
-  if (appIsStandalone() || installedThisSession) installSay('APLYNX is already installed. Open it from your home screen.', 'APLYNX ya está instalada. Ábrala desde su pantalla de inicio.');
-  if (!installDialog.open) { installDialog.showModal(); document.getElementById('install-title').focus(); }
-}
-document.querySelectorAll('[data-install-open]').forEach(el => el.addEventListener('click', e => { e.preventDefault(); if (installPrompt && !appIsStandalone() && !installedThisSession) installNow.click(); else showInstallHelp(); }));
-document.getElementById('install-close').addEventListener('click', () => installDialog.close());
-document.getElementById('install-browse').addEventListener('click', () => installDialog.close());
-document.getElementById('install-copy').addEventListener('click', async () => {
-  try { await navigator.clipboard.writeText('https://www.aplynxinvestments.com/#install'); installSay('Link copied. Paste it into Safari.', 'Enlace copiado. Péguelo en Safari.'); }
-  catch { installSay('Open www.aplynxinvestments.com in Safari.', 'Abra www.aplynxinvestments.com en Safari.'); }
-});
-installDialog.addEventListener('close', () => { if (location.hash === '#install') history.replaceState(null, '', location.pathname + location.search); });
-window.addEventListener('beforeinstallprompt', e => {
-  e.preventDefault(); installPrompt = e; syncInstallUI();
-});
-window.addEventListener('appinstalled', () => {
-  installedThisSession = true; installPrompt = null; syncInstallUI();
-  installSay('APLYNX is installed. Look for its icon on your home screen or in your apps.', 'APLYNX está instalada. Busque el icono en su pantalla de inicio o entre sus aplicaciones.');
-});
-installNow.addEventListener('click', async () => {
-  if (!installPrompt) return;
-  showInstallHelp();
-  const prompt = installPrompt;
-  installNow.disabled = true;
-  try {
-    await prompt.prompt();
-    const choice = await prompt.userChoice;
-    if (choice.outcome === 'accepted') installSay('Installation requested. Look for APLYNX on your device when it finishes.', 'Instalación solicitada. Busque APLYNX en su dispositivo cuando termine.');
-    else installSay('You can install later from this menu.', 'Puede instalarla más tarde desde este menú.');
-  } catch { installSay('Use the browser menu to install APLYNX or add it to your home screen.', 'Use el menú del navegador para instalar APLYNX o añadirla a la pantalla de inicio.'); }
-  finally { installPrompt = null; installNow.disabled = false; syncInstallUI(); }
-});
-window.addEventListener('hashchange', () => { if (location.hash === '#install') showInstallHelp(); });
-syncInstallUI();
-if (location.hash === '#install') showInstallHelp();
-
 const mobileLayout = window.matchMedia('(max-width: 850px)');
 function setServiceLayout() {
   document.querySelectorAll('.service-disclosure').forEach(detail => { detail.open = !mobileLayout.matches; });
 }
 function revealDestination(hash) {
-  if (!hash || hash === '#' || hash === '#install') return;
+  if (hash === '#install') hash = '#apartment-search';
+  if (!hash || hash === '#') return;
   let target;
   try { target = document.querySelector(hash); } catch { return; }
   if (!target) return;
