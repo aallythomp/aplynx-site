@@ -170,6 +170,16 @@ section {
 .split { display: grid; grid-template-columns: 1.05fr .95fr; gap: 26px; align-items: start; }
 .listing, .intake-card { background: #fff; border-radius: 20px; padding: 28px; box-shadow: 0 10px 25px rgba(0,0,0,.07); }
 .listing h3 { font-size: 26px; margin-bottom: 8px; }
+.ruby-listing { margin-top: 26px; display: grid; grid-template-columns: 1.05fr .95fr; gap: 26px; align-items: start; }
+.ruby-listing img { display: block; width: 100%; height: auto; border-radius: 16px; }
+.ruby-room-options { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.ruby-room { padding: 22px; border: 1px solid #d5dfd7; border-radius: 16px; background: #f7faf7; }
+.ruby-room h4 { font-family: Georgia, serif; font-size: 25px; margin: 0 0 14px; }
+.ruby-room .btn { width: 100%; text-align: center; font-size: 14px; }
+.ruby-room .btn:disabled { background: #dce3de; color: #45534e; cursor: default; transform: none; box-shadow: none; }
+.ruby-facts { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0; }
+.ruby-facts span { padding: 8px 12px; border-radius: 8px; background: #e7efe9; font-size: 14px; color: #173e31; }
+@media(max-width: 850px) { .ruby-listing, .ruby-room-options { grid-template-columns: 1fr; } }
 .gallery { background: #e4e8e3; border-radius: 16px; min-height: 260px; display: flex; align-items: center; justify-content: center; text-align: center; overflow: hidden; }
 .gallery img { width: 100%; height: 300px; object-fit: cover; display: block; }
 .gallery-empty { padding: 32px; color: #45534e; }
@@ -503,9 +513,9 @@ footer { border-top: 5px solid var(--gold); }
 <section id="rentals" class="section-muted">
   <div class="container">
     <span class="eyebrow en">Rooms I manage</span><span class="eyebrow es hide">Habitaciones que administro</span>
-    <h2 class="en">Rooms for rent in Lawrenceville</h2><h2 class="es hide">Habitaciones en alquiler en Lawrenceville</h2>
-    <p class="en">Explore the Fern Hill photos and ask for the current room application. These are individual rooms in a shared house, not a rental of the entire home.</p>
-    <p class="es hide">Vea las fotos de Fern Hill y solicite la solicitud actual para una habitación. Se alquilan habitaciones individuales en una casa compartida, no la casa completa.</p>
+    <h2 class="en">Rooms in Lawrenceville &amp; Powder Springs</h2><h2 class="es hide">Habitaciones en Lawrenceville y Powder Springs</h2>
+    <p class="en">Explore the shared homes below and contact Allyn for current room availability. Each property offers individual room rentals, rather than a lease of the entire home.</p>
+    <p class="es hide">Conozca las casas compartidas a continuación y contacte a Allyn para consultar la disponibilidad. Se alquilan habitaciones individuales, no la casa completa.</p>
     <div class="split">
       <article class="listing">
         <div id="fern-gallery" class="gallery" aria-live="polite">
@@ -544,6 +554,60 @@ footer { border-top: 5px solid var(--gold); }
         </form>
       </div>
     </div>
+    <article class="listing ruby-listing" id="ruby-court">
+      <div>
+        <img src="assets/ruby-court-exterior.jpg" alt="Exterior of the shared home at 2988 Ruby Court in Powder Springs, Georgia" width="960" height="576" loading="lazy">
+        <p class="small-note en">Exterior photo from the property’s <a href="https://www.zillow.com/homedetails/2988-Ruby-Ct-Powder-Springs-GA-30127/14344840_zpid/" target="_blank" rel="noopener noreferrer">Zillow page</a>. Contact Allyn for current room photos and details.</p>
+        <p class="small-note es hide">Foto exterior de la <a href="https://www.zillow.com/homedetails/2988-Ruby-Ct-Powder-Springs-GA-30127/14344840_zpid/" target="_blank" rel="noopener noreferrer">página de la propiedad en Zillow</a>. Contacte a Allyn para ver fotos actuales de las habitaciones.</p>
+      </div>
+      <div>
+        <span class="eyebrow">Powder Springs, Georgia</span>
+        <h3 class="en">Room rentals · 2988 Ruby Court</h3><h3 class="es hide">Habitaciones · 2988 Ruby Court</h3>
+        <p>2988 Ruby Ct, Powder Springs, GA 30127</p>
+        <p class="en">Choose from three individual rooms in a shared home marketed and managed by APLYNX Investments. Common living areas are shared.</p>
+        <p class="es hide">Elija entre tres habitaciones individuales en una casa anunciada y administrada por APLYNX Investments. Las áreas comunes son compartidas.</p>
+        <div class="ruby-facts en" aria-label="Whole-home details"><span>3-bedroom home</span><span>2 bathrooms</span><span>1,461 sq ft total</span></div>
+        <div class="ruby-facts es hide" aria-label="Detalles de la casa completa"><span>Casa de 3 habitaciones</span><span>2 baños</span><span>1,461 pies² en total</span></div>
+        <p class="en">Contact Allyn for current room availability, monthly rent, deposit, and move-in dates.</p>
+        <p class="es hide">Contacte a Allyn para consultar disponibilidad, renta mensual, depósito y fechas de mudanza.</p>
+        <p class="small-note en">Applications are handled through Apartments.com. Contact Allyn for the property’s current application link. Equal Housing Opportunity.</p>
+        <p class="small-note es hide">Las solicitudes se gestionan mediante Apartments.com. Contacte a Allyn para obtener el enlace actual de esta propiedad. Igualdad de oportunidades de vivienda.</p>
+        <a class="btn btn-dark en" href="tel:+14703744384">Call Allyn about Ruby Court</a>
+        <a class="btn btn-dark es hide" href="tel:+14703744384">Llame a Allyn sobre Ruby Court</a>
+      </div>
+      <div class="ruby-room-options" aria-label="Ruby Court room options">
+        <section class="ruby-room" id="ruby-room-1" aria-labelledby="ruby-room-title-1">
+          <h4 id="ruby-room-title-1"><span class="en">Room 1</span><span class="es hide">Habitación 1</span></h4>
+          <p class="en">An individual room at 2988 Ruby Court. Contact Allyn for this room’s photos, features, and availability.</p>
+          <p class="es hide">Habitación individual en 2988 Ruby Court. Contacte a Allyn para ver fotos y consultar las características y disponibilidad.</p>
+          <p class="en"><strong>Rent &amp; deposit:</strong> Confirm with Allyn.</p>
+          <p class="es hide"><strong>Renta y depósito:</strong> Consulte con Allyn.</p>
+          <button class="btn en" type="button" disabled aria-describedby="ruby-room-link-1">Apply on Apartments.com</button>
+          <button class="btn es hide" type="button" disabled aria-describedby="ruby-room-link-1">Solicitar en Apartments.com</button>
+          <p class="small-note" id="ruby-room-link-1"><span class="en">Application link pending.</span><span class="es hide">Enlace de solicitud pendiente.</span></p>
+        </section>
+        <section class="ruby-room" id="ruby-room-2" aria-labelledby="ruby-room-title-2">
+          <h4 id="ruby-room-title-2"><span class="en">Room 2</span><span class="es hide">Habitación 2</span></h4>
+          <p class="en">An individual room at 2988 Ruby Court. Contact Allyn for this room’s photos, features, and availability.</p>
+          <p class="es hide">Habitación individual en 2988 Ruby Court. Contacte a Allyn para ver fotos y consultar las características y disponibilidad.</p>
+          <p class="en"><strong>Rent &amp; deposit:</strong> Confirm with Allyn.</p>
+          <p class="es hide"><strong>Renta y depósito:</strong> Consulte con Allyn.</p>
+          <button class="btn en" type="button" disabled aria-describedby="ruby-room-link-2">Apply on Apartments.com</button>
+          <button class="btn es hide" type="button" disabled aria-describedby="ruby-room-link-2">Solicitar en Apartments.com</button>
+          <p class="small-note" id="ruby-room-link-2"><span class="en">Application link pending.</span><span class="es hide">Enlace de solicitud pendiente.</span></p>
+        </section>
+        <section class="ruby-room" id="ruby-room-3" aria-labelledby="ruby-room-title-3">
+          <h4 id="ruby-room-title-3"><span class="en">Room 3</span><span class="es hide">Habitación 3</span></h4>
+          <p class="en">An individual room at 2988 Ruby Court. Contact Allyn for this room’s photos, features, and availability.</p>
+          <p class="es hide">Habitación individual en 2988 Ruby Court. Contacte a Allyn para ver fotos y consultar las características y disponibilidad.</p>
+          <p class="en"><strong>Rent &amp; deposit:</strong> Confirm with Allyn.</p>
+          <p class="es hide"><strong>Renta y depósito:</strong> Consulte con Allyn.</p>
+          <button class="btn en" type="button" disabled aria-describedby="ruby-room-link-3">Apply on Apartments.com</button>
+          <button class="btn es hide" type="button" disabled aria-describedby="ruby-room-link-3">Solicitar en Apartments.com</button>
+          <p class="small-note" id="ruby-room-link-3"><span class="en">Application link pending.</span><span class="es hide">Enlace de solicitud pendiente.</span></p>
+        </section>
+      </div>
+    </article>
   </div>
 </section>
 
@@ -797,6 +861,7 @@ function renderFernGallery() {
 document.getElementById("fern-prev").addEventListener("click", () => { fernPhotoIndex = (fernPhotoIndex - 1 + fernPhotos.length) % fernPhotos.length; renderFernGallery(); });
 document.getElementById("fern-next").addEventListener("click", () => { fernPhotoIndex = (fernPhotoIndex + 1) % fernPhotos.length; renderFernGallery(); });
 renderFernGallery();
+// Existing public form access key, intended for client-side use. See https://docs.web3forms.com/getting-started/faq
 const INQUIRY_ACCESS_KEY = "d2516862-f49f-48dc-ab2b-f2e757be281e";
 async function submitInquiry(form, subject, lines) {
   const button = form.querySelector('button[type="submit"]');
