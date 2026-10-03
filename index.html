@@ -500,13 +500,13 @@ summary:focus-visible,a:focus-visible,button:focus-visible { outline-color:#a88b
       <p class="hero-pricing"><strong>GRATIS</strong> en comunidades participantes.<br>¿Prefiere una búsqueda más amplia? Se aplica una tarifa de $300, con condiciones acordadas antes de comenzar.</p>
       <a class="hero-help" href="#apartment-search">Solicitar ayuda de Allyn</a>
     </div>
-    <nav class="quick-nav" aria-label="Services / Servicios">
+    <nav class="quick-nav" aria-label="Services" data-aria-en="Services" data-aria-es="Servicios">
       <a href="#rentals"><span class="en">Rooms</span><span class="es hide">Habitaciones</span></a>
       <a href="#buy-sell"><span class="en">Buy / Sell</span><span class="es hide">Comprar / Vender</span></a>
       <a href="#owners"><span class="en">Management</span><span class="es hide">Administración</span></a>
       <a href="#book-search"><span class="en">Book a call</span><span class="es hide">Solicitar llamada</span></a>
     </nav>
-    <p class="broker-line">Call Allyn: <a href="tel:+14703744384">(470) 374-4384</a> · Real estate brokerage: <strong>Veribas Real Estate LLC</strong> · Office: <a href="tel:+14706880871">(470) 688-0871</a></p>
+    <p class="broker-line"><span data-i18n-en="Call Allyn:" data-i18n-es="Llame a Allyn:">Call Allyn:</span> <a href="tel:+14703744384">(470) 374-4384</a> · <span data-i18n-en="Real estate brokerage:" data-i18n-es="Correduría de bienes raíces:">Real estate brokerage:</span> <strong>Veribas Real Estate LLC</strong> · <span data-i18n-en="Office:" data-i18n-es="Oficina:">Office:</span> <a href="tel:+14706880871">(470) 688-0871</a></p>
   </div>
 </header>
 
@@ -536,28 +536,28 @@ summary:focus-visible,a:focus-visible,button:focus-visible { outline-color:#a88b
       <h3 class="en">Tell Allyn What You’re Looking For</h3><h3 class="es hide">Cuéntele a Allyn Qué Busca</h3><p class="en">Share your search details, then browse apartments. Allyn will review your request and contact you with next steps.</p><p class="es hide">Comparta lo que busca y luego explore apartamentos. Allyn revisará su solicitud y se comunicará con los próximos pasos.</p>
       <details class="form-disclosure"><summary><span class="en">Request help with my search</span><span class="es hide">Solicitar ayuda con mi búsqueda</span></summary><form id="search-form">
       <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
-        <div class="field"><label for="s-path">How would you like me to search? / ¿Cómo desea que busque?</label>
+        <div class="field"><label for="s-path" data-i18n-en="How would you like me to search?" data-i18n-es="¿Cómo desea que busque?">How would you like me to search?</label>
           <select id="s-path" required>
-            <option value="">Choose / Seleccione</option>
-            <option value="Participating communities — free to renter" selected>Participating communities — free / Comunidades participantes — gratis</option>
-            <option value="Broader custom search — proposed $300 fee">Broader custom search — proposed $300 / Búsqueda amplia — $300 propuestos</option>
+            <option value="" data-i18n-en="Choose" data-i18n-es="Seleccione">Choose</option>
+            <option value="Participating communities — free to renter" selected data-i18n-en="Participating communities — free" data-i18n-es="Comunidades participantes — gratis">Participating communities — free</option>
+            <option value="Broader custom search — proposed $300 fee" data-i18n-en="Broader custom search — proposed $300" data-i18n-es="Búsqueda amplia — $300 propuestos">Broader custom search — proposed $300</option>
           </select>
         </div>
         <div class="form-grid">
-          <div class="field"><label for="s-name">Name / Nombre</label><input id="s-name" name="name" autocomplete="name" required></div>
-          <div class="field"><label for="s-email">Email / Correo</label><input id="s-email" name="email" type="email" autocomplete="email" required></div>
-          <div class="field"><label for="s-phone">Phone / Teléfono</label><input id="s-phone" name="phone" type="tel" autocomplete="tel" required></div>
-          <div class="field"><label for="s-timing">When do you need to move? / ¿Cuándo necesita mudarse?</label><select id="s-timing" name="timing" required><option value="">Choose / Seleccione</option><option value="ASAP">ASAP / Lo antes posible</option><option value="Within 30 days">Within 30 days / En 30 días</option><option value="Within 60 days">Within 60 days / En 60 días</option><option value="90+ days">90+ days / 90 días o más</option></select></div>
-          <div class="field"><label for="s-date">Specific move date (optional) / Fecha exacta (opcional)</label><input id="s-date" name="date" type="date"></div>
-          <div class="field"><label for="s-budget">Maximum monthly rent / Renta máxima</label><input id="s-budget" name="budget" type="number" min="1" required></div>
-          <div class="field"><label for="s-beds">Bedrooms / Habitaciones</label><select id="s-beds" name="beds" required><option value="">Select / Seleccione</option><option>Studio / Estudio</option><option>1</option><option>2</option><option>3+</option></select></div>
-          <div class="field wide"><label for="s-areas">Preferred areas or ZIP codes / Zonas o códigos postales</label><input id="s-areas" name="areas" required></div>
-          <div class="field"><label for="s-income">Monthly income before taxes (optional) / Ingreso mensual bruto (opcional)</label><select id="s-income" name="income"><option value="">Choose / Seleccione</option><option value="Under $2,000">Under $2,000 / Menos de $2,000</option><option>$2,000–$2,999</option><option>$3,000–$3,999</option><option>$4,000–$4,999</option><option>$5,000+</option><option value="Prefer to discuss privately">Prefer to discuss privately / Prefiero hablar en privado</option></select></div>
-          <div class="field"><label for="s-pets">Any pets? / ¿Tiene mascotas?</label><select id="s-pets" name="pets" required><option value="">Choose / Seleccione</option><option value="No pets">No / No</option><option value="Cats">Cats / Gatos</option><option value="Dogs">Dogs / Perros</option><option value="Other or multiple pets">Other or multiple / Otros o varios</option><option value="Prefer to discuss privately">Prefer to discuss privately / Prefiero hablar en privado</option></select></div>
-          <div class="field"><label for="s-transit">Near MARTA or public transit? / ¿Cerca de MARTA o transporte público?</label><select id="s-transit" name="transit" required><option value="">Choose / Seleccione</option><option value="Required">Required / Necesario</option><option value="Preferred">Preferred / Preferible</option><option value="Not needed">Not needed / No es necesario</option></select></div>
-          <div class="field"><label for="s-contact">Best way to contact you / Cómo prefiere que le contacte</label><select id="s-contact" name="contact_method" required><option value="">Choose / Seleccione</option><option value="Text">Text / Mensaje</option><option value="Call">Call / Llamada</option><option value="Email">Email / Correo</option></select></div>
-          <div class="field wide"><label for="s-needs">Must-haves (optional) / Requisitos (opcional)</label><textarea id="s-needs" name="needs" placeholder="Washer/dryer, parking, pet details / Lavadora, estacionamiento, mascotas" maxlength="2000"></textarea></div>
-          <div class="field wide"><label for="s-approval">Anything that may affect approval? (optional) / ¿Algo que pueda afectar la aprobación? (opcional)</label><select id="s-approval" name="approval"><option value="">Choose / Seleccione</option><option value="None that I am aware of">None that I’m aware of / Nada que yo sepa</option><option value="Recent eviction">Recent eviction / Desalojo reciente</option><option value="Credit concerns">Credit concerns / Dudas sobre crédito</option><option value="Rental history concerns">Rental history concerns / Dudas sobre historial de alquiler</option><option value="Other">Other / Otro</option><option value="Prefer to discuss privately">Prefer to discuss privately / Prefiero hablar en privado</option></select></div>
+          <div class="field"><label for="s-name" data-i18n-en="Name" data-i18n-es="Nombre">Name</label><input id="s-name" name="name" autocomplete="name" required></div>
+          <div class="field"><label for="s-email" data-i18n-en="Email" data-i18n-es="Correo">Email</label><input id="s-email" name="email" type="email" autocomplete="email" required></div>
+          <div class="field"><label for="s-phone" data-i18n-en="Phone" data-i18n-es="Teléfono">Phone</label><input id="s-phone" name="phone" type="tel" autocomplete="tel" required></div>
+          <div class="field"><label for="s-timing" data-i18n-en="When do you need to move?" data-i18n-es="¿Cuándo necesita mudarse?">When do you need to move?</label><select id="s-timing" name="timing" required><option value="" data-i18n-en="Choose" data-i18n-es="Seleccione">Choose</option><option value="ASAP" data-i18n-en="ASAP" data-i18n-es="Lo antes posible">ASAP</option><option value="Within 30 days" data-i18n-en="Within 30 days" data-i18n-es="En 30 días">Within 30 days</option><option value="Within 60 days" data-i18n-en="Within 60 days" data-i18n-es="En 60 días">Within 60 days</option><option value="90+ days" data-i18n-en="90+ days" data-i18n-es="90 días o más">90+ days</option></select></div>
+          <div class="field"><label for="s-date" data-i18n-en="Specific move date (optional)" data-i18n-es="Fecha exacta (opcional)">Specific move date (optional)</label><input id="s-date" name="date" type="date"></div>
+          <div class="field"><label for="s-budget" data-i18n-en="Maximum monthly rent" data-i18n-es="Renta máxima">Maximum monthly rent</label><input id="s-budget" name="budget" type="number" min="1" required></div>
+          <div class="field"><label for="s-beds" data-i18n-en="Bedrooms" data-i18n-es="Habitaciones">Bedrooms</label><select id="s-beds" name="beds" required><option value="" data-i18n-en="Select" data-i18n-es="Seleccione">Select</option><option value="Studio / Estudio" data-i18n-en="Studio" data-i18n-es="Estudio">Studio</option><option>1</option><option>2</option><option>3+</option></select></div>
+          <div class="field wide"><label for="s-areas" data-i18n-en="Preferred areas or ZIP codes" data-i18n-es="Zonas o códigos postales">Preferred areas or ZIP codes</label><input id="s-areas" name="areas" required></div>
+          <div class="field"><label for="s-income" data-i18n-en="Monthly income before taxes (optional)" data-i18n-es="Ingreso mensual bruto (opcional)">Monthly income before taxes (optional)</label><select id="s-income" name="income"><option value="" data-i18n-en="Choose" data-i18n-es="Seleccione">Choose</option><option value="Under $2,000" data-i18n-en="Under $2,000" data-i18n-es="Menos de $2,000">Under $2,000</option><option>$2,000–$2,999</option><option>$3,000–$3,999</option><option>$4,000–$4,999</option><option>$5,000+</option><option value="Prefer to discuss privately" data-i18n-en="Prefer to discuss privately" data-i18n-es="Prefiero hablar en privado">Prefer to discuss privately</option></select></div>
+          <div class="field"><label for="s-pets" data-i18n-en="Any pets?" data-i18n-es="¿Tiene mascotas?">Any pets?</label><select id="s-pets" name="pets" required><option value="" data-i18n-en="Choose" data-i18n-es="Seleccione">Choose</option><option value="No pets" data-i18n-en="No" data-i18n-es="No">No</option><option value="Cats" data-i18n-en="Cats" data-i18n-es="Gatos">Cats</option><option value="Dogs" data-i18n-en="Dogs" data-i18n-es="Perros">Dogs</option><option value="Other or multiple pets" data-i18n-en="Other or multiple" data-i18n-es="Otros o varios">Other or multiple</option><option value="Prefer to discuss privately" data-i18n-en="Prefer to discuss privately" data-i18n-es="Prefiero hablar en privado">Prefer to discuss privately</option></select></div>
+          <div class="field"><label for="s-transit" data-i18n-en="Near MARTA or public transit?" data-i18n-es="¿Cerca de MARTA o transporte público?">Near MARTA or public transit?</label><select id="s-transit" name="transit" required><option value="" data-i18n-en="Choose" data-i18n-es="Seleccione">Choose</option><option value="Required" data-i18n-en="Required" data-i18n-es="Necesario">Required</option><option value="Preferred" data-i18n-en="Preferred" data-i18n-es="Preferible">Preferred</option><option value="Not needed" data-i18n-en="Not needed" data-i18n-es="No es necesario">Not needed</option></select></div>
+          <div class="field"><label for="s-contact" data-i18n-en="Best way to contact you" data-i18n-es="Cómo prefiere que le contacte">Best way to contact you</label><select id="s-contact" name="contact_method" required><option value="" data-i18n-en="Choose" data-i18n-es="Seleccione">Choose</option><option value="Text" data-i18n-en="Text" data-i18n-es="Mensaje">Text</option><option value="Call" data-i18n-en="Call" data-i18n-es="Llamada">Call</option><option value="Email" data-i18n-en="Email" data-i18n-es="Correo">Email</option></select></div>
+          <div class="field wide"><label for="s-needs" data-i18n-en="Must-haves (optional)" data-i18n-es="Requisitos (opcional)">Must-haves (optional)</label><textarea id="s-needs" name="needs" placeholder="Washer/dryer, parking, pet details" data-placeholder-en="Washer/dryer, parking, pet details" data-placeholder-es="Lavadora, estacionamiento, mascotas" maxlength="2000"></textarea></div>
+          <div class="field wide"><label for="s-approval" data-i18n-en="Anything that may affect approval? (optional)" data-i18n-es="¿Algo que pueda afectar la aprobación? (opcional)">Anything that may affect approval? (optional)</label><select id="s-approval" name="approval"><option value="" data-i18n-en="Choose" data-i18n-es="Seleccione">Choose</option><option value="None that I am aware of" data-i18n-en="None that I’m aware of" data-i18n-es="Nada que yo sepa">None that I’m aware of</option><option value="Recent eviction" data-i18n-en="Recent eviction" data-i18n-es="Desalojo reciente">Recent eviction</option><option value="Credit concerns" data-i18n-en="Credit concerns" data-i18n-es="Dudas sobre crédito">Credit concerns</option><option value="Rental history concerns" data-i18n-en="Rental history concerns" data-i18n-es="Dudas sobre historial de alquiler">Rental history concerns</option><option value="Other" data-i18n-en="Other" data-i18n-es="Otro">Other</option><option value="Prefer to discuss privately" data-i18n-en="Prefer to discuss privately" data-i18n-es="Prefiero hablar en privado">Prefer to discuss privately</option></select></div>
         </div>
         <div class="disclosure">
           <strong class="en">Service acknowledgment</strong><strong class="es hide">Reconocimiento del servicio</strong>
@@ -576,7 +576,7 @@ summary:focus-visible,a:focus-visible,button:focus-visible { outline-color:#a88b
         </div>
         <label class="checkline"><input id="s-contact-consent" name="contact_consent" type="checkbox" required><span class="en">Allyn Santiago-Thompson at Veribas Real Estate LLC may contact me about this request using my preferred contact method.</span><span class="es hide">Allyn Santiago-Thompson de Veribas Real Estate LLC puede contactarme sobre esta solicitud por el medio que prefiero.</span></label>
         <label class="checkline"><input id="s-agree" type="checkbox" required><span class="en">I have read and acknowledge the service details above.</span><span class="es hide">He leído y acepto los detalles del servicio.</span></label>
-        <div class="field"><label for="s-sign">Type your full name / Escriba su nombre completo</label><input id="s-sign" required></div>
+        <div class="field"><label for="s-sign" data-i18n-en="Type your full name" data-i18n-es="Escriba su nombre completo">Type your full name</label><input id="s-sign" required></div>
         <button class="btn btn-dark" type="submit"><span class="en">Send My Apartment Request to Allyn</span><span class="es hide">Enviar Mi Solicitud a Allyn</span></button>
         <p class="small-note en">Submit your answers and acknowledgment here and Allyn will follow up. The free path has no search fee; payment for a broader search is arranged only after the final terms are approved.</p>
         <p class="small-note es hide">Envíe su solicitud aquí y Allyn se comunicará con usted. Si necesita ayuda, <a href="tel:+14703744384">llame al 470-374-4384</a>. No incluya números de Seguro Social ni documentos financieros. La opción de comunidades participantes no tiene tarifa de búsqueda; el pago de una búsqueda amplia se organiza después de confirmar las condiciones.</p>
@@ -669,16 +669,16 @@ summary:focus-visible,a:focus-visible,button:focus-visible { outline-color:#a88b
     <p class="en">Share a few details and I’ll contact you to discuss leasing or management.</p>
     <p class="es hide">Comparta algunos detalles y me comunicaré para hablar de arrendamiento o administración.</p>
     <div class="form-grid">
-      <div class="field"><label for="o-name">Name / Nombre</label><input id="o-name" name="name" autocomplete="name" required></div>
-      <div class="field"><label for="o-email">Email / Correo</label><input id="o-email" name="email" type="email" autocomplete="email" required></div>
-      <div class="field"><label for="o-phone">Phone / Teléfono</label><input id="o-phone" name="phone" type="tel" autocomplete="tel" required></div>
-      <div class="field"><label for="o-city">Property city / Ciudad de la propiedad</label><input id="o-city" name="city" required></div>
-      <div class="field"><label for="o-type">Rental type / Tipo de alquiler</label><select id="o-type" name="rental_type" required><option value="">Choose / Seleccione</option><option>Single-family home / Casa</option><option>Condo or townhome / Condominio</option><option>Rooms in a house / Habitaciones</option><option>Other / Otro</option></select></div>
-      <div class="field"><label for="o-service">Help needed / Ayuda necesaria</label><select id="o-service" name="service" required><option value="">Choose / Seleccione</option><option>Leasing / Arrendamiento</option><option>Ongoing management / Administración</option><option>Both / Ambos</option><option>Not sure / No estoy seguro</option></select></div>
-      <div class="field wide"><label for="o-details">Property details or questions / Detalles o preguntas</label><textarea id="o-details" name="details"></textarea></div>
+      <div class="field"><label for="o-name" data-i18n-en="Name" data-i18n-es="Nombre">Name</label><input id="o-name" name="name" autocomplete="name" required></div>
+      <div class="field"><label for="o-email" data-i18n-en="Email" data-i18n-es="Correo">Email</label><input id="o-email" name="email" type="email" autocomplete="email" required></div>
+      <div class="field"><label for="o-phone" data-i18n-en="Phone" data-i18n-es="Teléfono">Phone</label><input id="o-phone" name="phone" type="tel" autocomplete="tel" required></div>
+      <div class="field"><label for="o-city" data-i18n-en="Property city" data-i18n-es="Ciudad de la propiedad">Property city</label><input id="o-city" name="city" required></div>
+      <div class="field"><label for="o-type" data-i18n-en="Rental type" data-i18n-es="Tipo de alquiler">Rental type</label><select id="o-type" name="rental_type" required><option value="" data-i18n-en="Choose" data-i18n-es="Seleccione">Choose</option><option value="Single-family home / Casa" data-i18n-en="Single-family home" data-i18n-es="Casa">Single-family home</option><option value="Condo or townhome / Condominio" data-i18n-en="Condo or townhome" data-i18n-es="Condominio">Condo or townhome</option><option value="Rooms in a house / Habitaciones" data-i18n-en="Rooms in a house" data-i18n-es="Habitaciones">Rooms in a house</option><option value="Other / Otro" data-i18n-en="Other" data-i18n-es="Otro">Other</option></select></div>
+      <div class="field"><label for="o-service" data-i18n-en="Help needed" data-i18n-es="Ayuda necesaria">Help needed</label><select id="o-service" name="service" required><option value="" data-i18n-en="Choose" data-i18n-es="Seleccione">Choose</option><option value="Leasing / Arrendamiento" data-i18n-en="Leasing" data-i18n-es="Arrendamiento">Leasing</option><option value="Ongoing management / Administración" data-i18n-en="Ongoing management" data-i18n-es="Administración">Ongoing management</option><option value="Both / Ambos" data-i18n-en="Both" data-i18n-es="Ambos">Both</option><option value="Not sure / No estoy seguro" data-i18n-en="Not sure" data-i18n-es="No estoy seguro">Not sure</option></select></div>
+      <div class="field wide"><label for="o-details" data-i18n-en="Property details or questions" data-i18n-es="Detalles o preguntas">Property details or questions</label><textarea id="o-details" name="details"></textarea></div>
     </div>
     <label class="checkline"><input type="checkbox" name="contact_consent" value="Yes" required><span class="en">I agree to be contacted by Allyn at APLYNX Investments about this request.</span><span class="es hide">Acepto que Allyn de APLYNX Investments me contacte sobre esta solicitud.</span></label>
-    <button class="btn btn-dark" type="submit">Send my inquiry / Enviar consulta</button>
+    <button class="btn btn-dark" type="submit" data-i18n-en="Send my inquiry" data-i18n-es="Enviar consulta">Send my inquiry</button>
     <p class="small-note en">Submit here and Allyn will follow up. Please do not include financial documents or Social Security numbers.</p>
     <p class="small-note es hide">Envíe su consulta aquí y Allyn se comunicará con usted. No incluya documentos financieros ni números de Seguro Social.</p>
   </form></details>
@@ -754,20 +754,20 @@ summary:focus-visible,a:focus-visible,button:focus-visible { outline-color:#a88b
       <p class="en">Send me a few details and I’ll follow up with you personally.</p>
       <p class="es hide">Envíeme algunos detalles y me comunicaré personalmente con usted.</p>
       <div class="form-grid">
-        <div class="field"><label for="h-interest">I want to / Quiero</label><select id="h-interest" name="interest" required><option value="">Choose / Seleccione</option><option value="Buy a home">Buy a home / Comprar casa</option><option value="Sell a home">Sell a home / Vender casa</option></select></div>
-        <div class="field"><label for="h-timing">Timeline / ¿Cuándo?</label><select id="h-timing" name="timeline" required><option value="">Choose / Seleccione</option><option value="As soon as possible">As soon as possible / Lo antes posible</option><option value="Within 3 months">Within 3 months / Dentro de 3 meses</option><option value="3 to 6 months">3 to 6 months / De 3 a 6 meses</option><option value="Just exploring">Just exploring / Explorando opciones</option></select></div>
-        <div class="field"><label for="h-name">Name / Nombre</label><input id="h-name" name="name" autocomplete="name" required></div>
-        <div class="field"><label for="h-email">Email / Correo</label><input id="h-email" name="email" type="email" autocomplete="email" required></div>
-        <div class="field"><label for="h-phone">Phone / Teléfono</label><input id="h-phone" name="phone" type="tel" autocomplete="tel" required></div>
-        <div class="field"><label for="h-area">City or area / Ciudad o zona</label><input id="h-area" name="area" required></div>
-        <div class="field wide"><label for="h-details">Budget, home details, or questions / Presupuesto, detalles o preguntas</label><textarea id="h-details" name="details"></textarea></div>
+        <div class="field"><label for="h-interest" data-i18n-en="I want to" data-i18n-es="Quiero">I want to</label><select id="h-interest" name="interest" required><option value="" data-i18n-en="Choose" data-i18n-es="Seleccione">Choose</option><option value="Buy a home" data-i18n-en="Buy a home" data-i18n-es="Comprar casa">Buy a home</option><option value="Sell a home" data-i18n-en="Sell a home" data-i18n-es="Vender casa">Sell a home</option></select></div>
+        <div class="field"><label for="h-timing" data-i18n-en="Timeline" data-i18n-es="¿Cuándo?">Timeline</label><select id="h-timing" name="timeline" required><option value="" data-i18n-en="Choose" data-i18n-es="Seleccione">Choose</option><option value="As soon as possible" data-i18n-en="As soon as possible" data-i18n-es="Lo antes posible">As soon as possible</option><option value="Within 3 months" data-i18n-en="Within 3 months" data-i18n-es="Dentro de 3 meses">Within 3 months</option><option value="3 to 6 months" data-i18n-en="3 to 6 months" data-i18n-es="De 3 a 6 meses">3 to 6 months</option><option value="Just exploring" data-i18n-en="Just exploring" data-i18n-es="Explorando opciones">Just exploring</option></select></div>
+        <div class="field"><label for="h-name" data-i18n-en="Name" data-i18n-es="Nombre">Name</label><input id="h-name" name="name" autocomplete="name" required></div>
+        <div class="field"><label for="h-email" data-i18n-en="Email" data-i18n-es="Correo">Email</label><input id="h-email" name="email" type="email" autocomplete="email" required></div>
+        <div class="field"><label for="h-phone" data-i18n-en="Phone" data-i18n-es="Teléfono">Phone</label><input id="h-phone" name="phone" type="tel" autocomplete="tel" required></div>
+        <div class="field"><label for="h-area" data-i18n-en="City or area" data-i18n-es="Ciudad o zona">City or area</label><input id="h-area" name="area" required></div>
+        <div class="field wide"><label for="h-details" data-i18n-en="Budget, home details, or questions" data-i18n-es="Presupuesto, detalles o preguntas">Budget, home details, or questions</label><textarea id="h-details" name="details"></textarea></div>
       </div>
       <label class="checkline"><input type="checkbox" name="contact_consent" value="Yes" required><span class="en">I agree to be contacted by Allyn Santiago-Thompson at Veribas Real Estate LLC about my request.</span><span class="es hide">Acepto que Allyn Santiago-Thompson de Veribas Real Estate LLC me contacte sobre mi solicitud.</span></label>
-      <button class="btn btn-dark" type="submit">Send my inquiry / Enviar consulta</button>
+      <button class="btn btn-dark" type="submit" data-i18n-en="Send my inquiry" data-i18n-es="Enviar consulta">Send my inquiry</button>
       <p class="small-note en">Submit your request here and Allyn will follow up. If you need help, <a href="tel:+14703744384">call 470-374-4384</a>. Do not include Social Security numbers or financial documents.</p>
       <p class="small-note es hide">Envíe su solicitud aquí y Allyn se comunicará con usted. Si necesita ayuda, <a href="tel:+14703744384">llame al 470-374-4384</a>. No incluya números de Seguro Social ni documentos financieros.</p>
     </form></details>
-    <p class="small-note en">Images illustrate the Atlanta area and are not active listings. A brokerage relationship begins only with a separate written agreement. Brokerage: Veribas Real Estate LLC · Office: <a href="tel:+14706880871">(470) 688-0871</a>.</p>
+    <p class="small-note en">Images illustrate the Atlanta area and are not active listings. A brokerage relationship begins only with a separate written agreement. Brokerage: Veribas Real Estate LLC · <span data-i18n-en="Office:" data-i18n-es="Oficina:">Office:</span> <a href="tel:+14706880871">(470) 688-0871</a>.</p>
     <p class="small-note es hide">Las imágenes ilustran la zona de Atlanta y no son anuncios activos. Una relación de representación comienza con un acuerdo escrito por separado. Correduría: Veribas Real Estate LLC · Oficina: <a href="tel:+14706880871">(470) 688-0871</a>.</p>
   </div>
 </details></section>
@@ -805,13 +805,13 @@ summary:focus-visible,a:focus-visible,button:focus-visible { outline-color:#a88b
         <details class="form-disclosure"><summary><span class="en">Request a room application</span><span class="es hide">Solicitar una habitación</span></summary><form id="rental-form">
       <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
           <div class="form-grid">
-            <div class="field"><label for="r-name">Name / Nombre</label><input id="r-name" name="name" autocomplete="name" required></div>
-            <div class="field"><label for="r-email">Email / Correo</label><input id="r-email" name="email" type="email" autocomplete="email" required></div>
-            <div class="field"><label for="r-phone">Phone / Teléfono</label><input id="r-phone" name="phone" type="tel" autocomplete="tel" required></div>
-            <div class="field"><label for="r-date">Move-in date / Fecha</label><input id="r-date" name="date" type="date" required></div>
-            <div class="field wide"><label for="r-note">Questions / Preguntas</label><textarea id="r-note" name="note"></textarea></div>
+            <div class="field"><label for="r-name" data-i18n-en="Name" data-i18n-es="Nombre">Name</label><input id="r-name" name="name" autocomplete="name" required></div>
+            <div class="field"><label for="r-email" data-i18n-en="Email" data-i18n-es="Correo">Email</label><input id="r-email" name="email" type="email" autocomplete="email" required></div>
+            <div class="field"><label for="r-phone" data-i18n-en="Phone" data-i18n-es="Teléfono">Phone</label><input id="r-phone" name="phone" type="tel" autocomplete="tel" required></div>
+            <div class="field"><label for="r-date" data-i18n-en="Move-in date" data-i18n-es="Fecha">Move-in date</label><input id="r-date" name="date" type="date" required></div>
+            <div class="field wide"><label for="r-note" data-i18n-en="Questions" data-i18n-es="Preguntas">Questions</label><textarea id="r-note" name="note"></textarea></div>
           </div>
-          <button class="btn btn-dark" type="submit">Request room application / Solicitar habitación</button>
+          <button class="btn btn-dark" type="submit" data-i18n-en="Request room application" data-i18n-es="Solicitar habitación">Request room application</button>
           <p class="small-note en">Submit your request here and Allyn will follow up. If you need help, <a href="tel:+14703744384">call 470-374-4384</a>. Do not include Social Security numbers or financial documents.</p>
           <p class="small-note es hide">Envíe su solicitud aquí y Allyn se comunicará con usted. Si necesita ayuda, <a href="tel:+14703744384">llame al 470-374-4384</a>. No incluya números de Seguro Social ni documentos financieros.</p>
         </form></details>
@@ -890,18 +890,18 @@ summary:focus-visible,a:focus-visible,button:focus-visible { outline-color:#a88b
       <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
       <h3 class="en">Request a time with Allyn</h3><h3 class="es hide">Solicite una hora con Allyn</h3>
       <div class="form-grid">
-        <div class="field wide"><label for="b-service">What are you looking for? / ¿Qué busca?</label><select id="b-service" name="search_type" required><option value="">Choose / Seleccione</option><option value="Apartment search">Apartment / Apartamento</option><option value="Rental home search">Rental home / Casa en alquiler</option><option value="Buy a home">Buy a home / Comprar casa</option></select></div>
-        <div class="field"><label for="b-name">Name / Nombre</label><input id="b-name" name="name" autocomplete="name" required></div>
-        <div class="field"><label for="b-email">Email / Correo</label><input id="b-email" name="email" type="email" autocomplete="email" required></div>
-        <div class="field"><label for="b-phone">Phone / Teléfono</label><input id="b-phone" name="phone" type="tel" autocomplete="tel" required></div>
-        <div class="field"><label for="b-area">Search area / Zona</label><input id="b-area" name="search_area" required></div>
-        <div class="field"><label for="b-budget">Budget / Presupuesto</label><input id="b-budget" name="budget" placeholder="Monthly rent or purchase range" required></div>
-        <div class="field"><label for="b-date">Preferred call date / Fecha</label><input id="b-date" name="preferred_call_date" type="date" required></div>
-        <div class="field wide"><label for="b-window">Best time to call (Eastern) / Mejor hora (Este)</label><select id="b-window" name="preferred_call_time" required><option value="">Choose / Seleccione</option><option>Morning / Mañana</option><option>Afternoon / Tarde</option><option>Evening / Noche</option></select></div>
-        <div class="field wide"><label for="b-notes">Move date, needs, or questions / Fecha de mudanza, necesidades o preguntas</label><textarea id="b-notes" name="notes"></textarea></div>
+        <div class="field wide"><label for="b-service" data-i18n-en="What are you looking for?" data-i18n-es="¿Qué busca?">What are you looking for?</label><select id="b-service" name="search_type" required><option value="" data-i18n-en="Choose" data-i18n-es="Seleccione">Choose</option><option value="Apartment search" data-i18n-en="Apartment" data-i18n-es="Apartamento">Apartment</option><option value="Rental home search" data-i18n-en="Rental home" data-i18n-es="Casa en alquiler">Rental home</option><option value="Buy a home" data-i18n-en="Buy a home" data-i18n-es="Comprar casa">Buy a home</option></select></div>
+        <div class="field"><label for="b-name" data-i18n-en="Name" data-i18n-es="Nombre">Name</label><input id="b-name" name="name" autocomplete="name" required></div>
+        <div class="field"><label for="b-email" data-i18n-en="Email" data-i18n-es="Correo">Email</label><input id="b-email" name="email" type="email" autocomplete="email" required></div>
+        <div class="field"><label for="b-phone" data-i18n-en="Phone" data-i18n-es="Teléfono">Phone</label><input id="b-phone" name="phone" type="tel" autocomplete="tel" required></div>
+        <div class="field"><label for="b-area" data-i18n-en="Search area" data-i18n-es="Zona">Search area</label><input id="b-area" name="search_area" required></div>
+        <div class="field"><label for="b-budget" data-i18n-en="Budget" data-i18n-es="Presupuesto">Budget</label><input id="b-budget" name="budget" placeholder="Monthly rent or purchase range" data-placeholder-en="Monthly rent or purchase range" data-placeholder-es="Renta mensual o presupuesto de compra" required></div>
+        <div class="field"><label for="b-date" data-i18n-en="Preferred call date" data-i18n-es="Fecha">Preferred call date</label><input id="b-date" name="preferred_call_date" type="date" required></div>
+        <div class="field wide"><label for="b-window" data-i18n-en="Best time to call (Eastern)" data-i18n-es="Mejor hora (Este)">Best time to call (Eastern)</label><select id="b-window" name="preferred_call_time" required><option value="" data-i18n-en="Choose" data-i18n-es="Seleccione">Choose</option><option value="Morning / Mañana" data-i18n-en="Morning" data-i18n-es="Mañana">Morning</option><option value="Afternoon / Tarde" data-i18n-en="Afternoon" data-i18n-es="Tarde">Afternoon</option><option value="Evening / Noche" data-i18n-en="Evening" data-i18n-es="Noche">Evening</option></select></div>
+        <div class="field wide"><label for="b-notes" data-i18n-en="Move date, needs, or questions" data-i18n-es="Fecha de mudanza, necesidades o preguntas">Move date, needs, or questions</label><textarea id="b-notes" name="notes"></textarea></div>
       </div>
       <label class="checkline"><input type="checkbox" name="contact_consent" value="Yes" required><span class="en">Allyn Santiago-Thompson at Veribas Real Estate LLC may contact me about this request.</span><span class="es hide">Allyn Santiago-Thompson de Veribas Real Estate LLC puede contactarme sobre esta solicitud.</span></label>
-      <button class="btn btn-dark" type="submit">Request my call / Solicitar llamada</button>
+      <button class="btn btn-dark" type="submit" data-i18n-en="Request my call" data-i18n-es="Solicitar llamada">Request my call</button>
       <p class="small-note en">Submit your request here and Allyn will follow up. If you need help, <a href="tel:+14703744384">call 470-374-4384</a>. Do not include Social Security numbers or financial documents.</p>
       <p class="small-note es hide">Envíe su solicitud aquí y Allyn se comunicará con usted. Si necesita ayuda, <a href="tel:+14703744384">llame al 470-374-4384</a>. No incluya números de Seguro Social ni documentos financieros.</p>
     </form></details>
@@ -927,32 +927,32 @@ summary:focus-visible,a:focus-visible,button:focus-visible { outline-color:#a88b
       <h2 class="en">Contact APLYNX</h2>
       <h2 class="es hide">Contacte a APLYNX</h2>
 
-      <p><strong>Email:</strong> <a href="mailto:allynsantiago.realtor@gmail.com">allynsantiago.realtor@gmail.com</a></p>
-      <p><strong>Phone:</strong> <a href="tel:+14703744384">(470) 374-4384</a></p>
+      <p><strong data-i18n-en="Email:" data-i18n-es="Correo:">Email:</strong> <a href="mailto:allynsantiago.realtor@gmail.com">allynsantiago.realtor@gmail.com</a></p>
+      <p><strong data-i18n-en="Phone:" data-i18n-es="Teléfono:">Phone:</strong> <a href="tel:+14703744384">(470) 374-4384</a></p>
 
-      <a class="btn btn-dark" href="mailto:allynsantiago.realtor@gmail.com">Email Us / Enviar Correo</a>
+      <a class="btn btn-dark" href="mailto:allynsantiago.realtor@gmail.com" data-i18n-en="Email Us" data-i18n-es="Enviar Correo">Email Us</a>
     </div>
   </div>
 </section>
 
 <footer>
   <p>© 2026 APLYNX Investments</p>
-  <p>Homes, apartments, leases, and rental management.</p>
-  <p>Call Allyn: <a href="tel:+14703744384">(470) 374-4384</a> · Real estate brokerage: <strong>Veribas Real Estate LLC</strong> · Office: <a href="tel:+14706880871">(470) 688-0871</a></p>
+  <p data-i18n-en="Homes, apartments, leases, and rental management." data-i18n-es="Casas, apartamentos, contratos y administración de alquileres.">Homes, apartments, leases, and rental management.</p>
+  <p>Call Allyn: <a href="tel:+14703744384">(470) 374-4384</a> · Real estate brokerage: <strong>Veribas Real Estate LLC</strong> · <span data-i18n-en="Office:" data-i18n-es="Oficina:">Office:</span> <a href="tel:+14706880871">(470) 688-0871</a></p>
 </footer>
 
 <div class="mobile-search-bar"><a href="#search-form"><span class="en">Find My Apartment FREE</span><span class="es hide">Mi Apartamento GRATIS</span></a></div>
-<button class="chat-launch" id="chat-launch" type="button" aria-controls="chat-panel" aria-expanded="false">Chat with APLYNX / Chatea</button>
+<button class="chat-launch" id="chat-launch" type="button" aria-controls="chat-panel" aria-expanded="false" data-i18n-en="Chat with APLYNX" data-i18n-es="Chatea">Chat with APLYNX</button>
 <aside class="chat-panel" id="chat-panel" role="dialog" aria-label="APLYNX chat assistant" hidden>
-  <div class="chat-head"><strong>Ask APLYNX</strong><button id="chat-close" type="button" aria-label="Close chat">×</button></div>
+  <div class="chat-head"><strong data-i18n-en="Ask APLYNX" data-i18n-es="Pregunte a APLYNX">Ask APLYNX</strong><button id="chat-close" type="button" aria-label="Close chat">×</button></div>
   <div class="chat-log" id="chat-log" role="log" aria-live="polite" aria-relevant="additions text"></div>
   <div class="chat-suggestions" id="chat-suggestions">
-    <button type="button" data-en="How does apartment search work?" data-es="¿Cómo funciona la búsqueda de apartamentos?">Apartment search / Apartamentos</button>
-    <button type="button" data-en="Are rooms available at Fern Hill?" data-es="¿Hay habitaciones disponibles en Fern Hill?">Rooms / Habitaciones</button>
-    <button type="button" data-en="How can I buy or sell a home?" data-es="¿Cómo puedo comprar o vender una casa?">Buy or sell / Comprar o vender</button>
+    <button type="button" data-en="How does apartment search work?" data-es="¿Cómo funciona la búsqueda de apartamentos?" data-i18n-en="Apartment search" data-i18n-es="Apartamentos">Apartment search</button>
+    <button type="button" data-en="Are rooms available at Fern Hill?" data-es="¿Hay habitaciones disponibles en Fern Hill?" data-i18n-en="Rooms" data-i18n-es="Habitaciones">Rooms</button>
+    <button type="button" data-en="How can I buy or sell a home?" data-es="¿Cómo puedo comprar o vender una casa?" data-i18n-en="Buy or sell" data-i18n-es="Comprar o vender">Buy or sell</button>
   </div>
-  <form class="chat-form" id="chat-form"><input id="chat-input" aria-label="Your question" placeholder="Ask a question / Haz una pregunta" maxlength="500" required autocomplete="off"><button id="chat-send" type="submit">Send</button></form>
-  <p class="chat-note">Automated answers may need confirmation. Please don’t share SSNs, bank details or documents. Questions sent in AI mode are processed by an AI provider. <a href="mailto:allynsantiago.realtor@gmail.com">Email Allyn</a> or call <a href="tel:+14703744384">470-374-4384</a>.</p>
+  <form class="chat-form" id="chat-form"><input id="chat-input" aria-label="Your question" data-aria-en="Your question" data-aria-es="Su pregunta" placeholder="Ask a question" data-placeholder-en="Ask a question" data-placeholder-es="Haga una pregunta" maxlength="500" required autocomplete="off"><button id="chat-send" type="submit" data-i18n-en="Send" data-i18n-es="Enviar">Send</button></form>
+  <p class="chat-note"><span class="en">Automated answers may need confirmation. Please don’t share SSNs, bank details or documents. Questions sent in AI mode are processed by an AI provider. <a href="mailto:allynsantiago.realtor@gmail.com">Email Allyn</a> or call <a href="tel:+14703744384">470-374-4384</a>.</span><span class="es hide">Las respuestas automáticas pueden necesitar confirmación. No comparta números de Seguro Social, datos bancarios ni documentos. Las preguntas en modo IA son procesadas por un proveedor de IA. <a href="mailto:allynsantiago.realtor@gmail.com">Escriba a Allyn</a> o llame al <a href="tel:+14703744384">470-374-4384</a>.</span></p>
 </aside>
 
 <script>
@@ -1173,16 +1173,26 @@ document.getElementById("search-form").addEventListener("submit", function(e) {
   });
 });
 
-function toggleLang() {
-  document.documentElement.lang = document.documentElement.lang === "es" ? "en" : "es";
-  const en = document.querySelectorAll(".en");
-  const es = document.querySelectorAll(".es");
-  en.forEach(x => x.classList.toggle("hide"));
-  es.forEach(x => x.classList.toggle("hide"));
-
-  const btn = document.getElementById("langBtn");
-  btn.textContent = btn.textContent === "Español" ? "English" : "Español";
+function applyLanguage(language) {
+  const spanish = language === "es";
+  document.documentElement.lang = spanish ? "es" : "en";
+  document.querySelectorAll(".en").forEach(node => node.classList.toggle("hide", spanish));
+  document.querySelectorAll(".es").forEach(node => node.classList.toggle("hide", !spanish));
+  document.querySelectorAll("[data-i18n-en]").forEach(node => {
+    node.textContent = spanish ? node.dataset.i18nEs : node.dataset.i18nEn;
+  });
+  document.querySelectorAll("[data-placeholder-en]").forEach(node => {
+    node.placeholder = spanish ? node.dataset.placeholderEs : node.dataset.placeholderEn;
+  });
+  document.querySelectorAll("[data-aria-en]").forEach(node => {
+    node.setAttribute("aria-label", spanish ? node.dataset.ariaEs : node.dataset.ariaEn);
+  });
+  document.getElementById("langBtn").textContent = spanish ? "English" : "Español";
 }
+function toggleLang() {
+  applyLanguage(document.documentElement.lang === "es" ? "en" : "es");
+}
+applyLanguage("en");
 </script>
 
 </body>
