@@ -356,123 +356,111 @@ summary:focus-visible, a:focus-visible, button:focus-visible { outline: 3px soli
 
 .topbar { justify-content: flex-end; }
 
-/* A bright, welcoming APLYNX refresh. */
-:root { --ink:#173052; --forest:#2157b5; --gold:#ffad4f; --cream:#fff; --sun:#ffad4f; --coral:#f47a27; }
-body { font-family:"Avenir Next","Trebuchet MS",Arial,sans-serif; background:#fff; color:var(--ink); }
+/* Professional navy and champagne presentation. */
+:root { --ink:#182b43; --forest:#172c48; --gold:#c4ac7a; --cream:#f7f8fa; }
+body { font-family:"Avenir Next","Segoe UI",Arial,sans-serif; background:#f7f8fa; color:#182b43; }
 h1,h2,h3,h4 { overflow-wrap:break-word; }
-h2 { font-family:"Avenir Next","Trebuchet MS",Arial,sans-serif; font-weight:800; letter-spacing:-.025em; line-height:1.15; }
+h2 { font-family:Georgia,"Times New Roman",serif; font-weight:400; letter-spacing:-.025em; line-height:1.18; }
 p { line-height:1.65; }
-header { padding:24px max(24px,calc((100vw - 1150px)/2)) 42px; background:linear-gradient(90deg,#eaf3ff 0%,rgba(234,243,255,.96) 28%,rgba(234,243,255,.25) 65%,rgba(234,243,255,.06) 100%),url("assets/georgia-apartments-hero.webp") center/cover no-repeat; border-bottom:7px solid var(--sun); }
-.topbar { align-items:center; justify-content:space-between; gap:16px; }
-.topbar::before { content:"APLYNX"; color:#164993; font-weight:900; font-size:1.35rem; letter-spacing:.12em; }
-.lang-btn { color:#15468c; border:2px solid #2157b5; background:#fff; min-height:44px; }
-.hero-card { position:relative; max-width:650px; padding:30px; border-radius:28px; background:#fff; border:1px solid #c9def5; box-shadow:0 18px 50px rgba(21,70,140,.12); margin-top:24px; color:var(--ink); }
+header { padding:24px max(24px,calc((100vw - 1150px)/2)) 48px; background:linear-gradient(90deg,rgba(12,29,49,.94),rgba(12,29,49,.63) 48%,rgba(12,29,49,.18)),url("assets/georgia-apartments-hero.webp") center/cover no-repeat; border-bottom:1px solid #c4ac7a; }
+.topbar { display:flex; align-items:center; justify-content:space-between; gap:16px; padding-bottom:20px; border-bottom:1px solid #ffffff30; }
+.topbar::before { content:"APLYNX"; color:#fff; font-family:Georgia,serif; font-weight:400; font-size:1.5rem; letter-spacing:.18em; }
+.lang-btn { color:#fff; border:1px solid #ffffff80; background:transparent; min-height:44px; border-radius:6px; font-weight:500; }
+.hero-card { max-width:650px; padding:32px 0 8px; border-radius:0; background:transparent; border:0; box-shadow:none; margin-top:12px; color:#fff; }
 .logo { display:none; }
-.hero-welcome { display:flex; align-items:center; gap:12px; margin-bottom:18px; }
-.hero-welcome img { width:62px; height:62px; object-fit:cover; object-position:center 22%; border-radius:50%; border:3px solid #ffad4f; }
-.hero-welcome p { margin:0; font-weight:700; color:#15468c; font-size:1rem; }
-.hero-welcome span { display:block; color:#496484; font-size:.875rem; font-weight:400; }
-.hero-card h1 { color:#516d90; font-size:.875rem; letter-spacing:.1em; text-transform:uppercase; }
-.hero-card h2 { color:#15468c; font-family:"Avenir Next","Trebuchet MS",Arial,sans-serif; font-size:clamp(2rem,4.3vw,3.5rem); line-height:1.08; margin:14px 0 18px; letter-spacing:-.035em; }
-.hero-copy { color:#365575; font-size:1.0625rem; }
-.btn { border-radius:14px; min-height:48px; padding:15px 22px; line-height:1.35; font-weight:800; }
-.btn-light { background:var(--sun); color:#173052; }
-.btn-dark { background:#2157b5; color:#fff; }
-.apartment-cta { border:0; box-shadow:0 5px 0 #d9791a; min-height:58px; font-size:1.125rem; }
-.btn:hover { transform:translateY(-2px); box-shadow:0 7px 18px #15468c26; }
-.btn:active { transform:translateY(0); }
-.hero-pricing { color:#426182; font-size:.9375rem; margin-top:20px; }
-.hero-pricing strong { color:#164993; background:#eaf2ff; padding:3px 7px; border-radius:6px; }
-.hero-help { color:#164993; font-weight:700; }
-.quick-nav { gap:9px; margin:16px 0 20px; }
-.quick-nav a { border:1px solid #c6dbf2; padding:8px 12px; border-radius:999px; color:#15468c; background:#f0f6ff; text-decoration:none; font-size:.875rem; min-height:44px; }
-.quick-nav a:hover { background:#ffe6c8; border-color:#df923c; }
-.broker-line { color:#496484; font-size:.875rem; }
-.broker-line a { color:#15468c; }
+.hero-welcome { display:flex; align-items:center; gap:14px; margin-bottom:24px; }
+.hero-welcome img { width:64px; height:64px; object-fit:cover; object-position:center 22%; border-radius:50%; border:1px solid #d6c39f; padding:3px; }
+.hero-welcome p { margin:0; font-weight:500; color:#fff; font-size:1rem; }
+.hero-welcome span { display:block; color:#d7dfeb; font-size:.875rem; font-weight:400; }
+.hero-card h1 { color:#d8c69f; font-size:.875rem; letter-spacing:.14em; font-weight:500; text-transform:uppercase; }
+.hero-card h2 { color:#fff; font-family:Georgia,"Times New Roman",serif; font-weight:400; font-size:clamp(2.25rem,4.5vw,3.75rem); line-height:1.12; margin:18px 0; letter-spacing:-.02em; }
+.hero-copy { color:#e1e7ef; font-size:1.0625rem; max-width:570px; margin-bottom:24px; }
+.btn { border-radius:6px; min-height:48px; padding:15px 22px; line-height:1.35; font-weight:600; }
+.btn-light { background:#e3d4b8; color:#172c48; }
+.btn-dark { background:#172c48; color:#fff; }
+.apartment-cta { border:1px solid #e3d4b8; box-shadow:none; min-height:56px; font-size:1.125rem; max-width:420px; }
+.btn:hover { transform:translateY(-1px); box-shadow:0 4px 12px #172c481a; }
+.hero-pricing { color:#dce4ef; font-size:.9375rem; margin:20px 0 10px; max-width:580px; }
+.hero-pricing strong { color:#e3d4b8; background:transparent; padding:0; }
+.hero-help { color:#e3d4b8; font-weight:500; }
+.quick-nav { gap:12px 24px; margin:22px 0; }
+.quick-nav a { border:0; border-radius:0; background:transparent; color:#e3d4b8; padding:6px 0; text-decoration:none; font-size:.9375rem; min-height:44px; }
+.quick-nav a:hover { color:#fff; text-decoration:underline; text-underline-offset:6px; }
+.broker-line { color:#d8e1ee; font-size:.875rem; max-width:580px; line-height:1.65; }
+.broker-line a { color:#e3d4b8; }
 section { padding:48px 24px; }
-.eyebrow,.owner-kicker { color:#164993; font-size:.875rem; letter-spacing:.08em; }
-#apartment-search { background:#edf5ff; }
-#apartment-search > .container > div:first-child > h2 { color:#15468c; }
-#apartment-search > .container > div:first-child > p { color:#365575; }
-#apartment-search > .container > div:first-child > .eyebrow { color:#164993; }
-#apartment-search .split { gap:32px; }
-#apartment-search .intake-card { border-top:7px solid #f47a27; }
-.intake-card > h3 { font-size:1.5rem; line-height:1.25; }
-.card,.listing,.intake-card,.owner-intro,.owner-steps { border-radius:22px; border:1px solid #d1e1f3; box-shadow:0 8px 24px #15468c0b; }
-.free-price { display:inline-block; color:#15468c; background:#ffbd72; border-radius:12px; padding:4px 14px; font-size:2.5rem; }
-#services { background:#fff; }
-#services .card:nth-child(1) { background:#fff0df; }
-#services .card:nth-child(2) { background:#edf5ff; }
-#services .card:nth-child(3) { background:#ffede1; }
-.owner-section { background:#fff0df; }
-.section-muted { background:#f0f6ff; }
-#rentals { background:#fff2e8; }
-#buy-sell { background:#fff; }
-#buy-sell .card { border-top:6px solid #ffad4f; }
-.agent-portrait { box-shadow:10px 10px 0 #ffad4f; border-radius:24px; }
-.owner-steps { border-top:6px solid #f47a27; }
-.ruby-room { background:#fff; border:1px solid #f2d2b7; border-top:5px solid #ffad4f; }
-.ruby-room h4 { font-family:inherit; font-size:1.4rem; }
-.ruby-facts span { background:#ffe9ce; color:#173052; }
-.form-disclosure,.fee-details { border:1px solid #abc8e9; border-radius:14px; background:#fff; overflow:hidden; }
-.form-disclosure > summary { color:#15468c; background:#f0f6ff; }
-.form-disclosure[open] > summary { background:#ffe7cd; border-bottom:1px solid #edc398; }
+.eyebrow,.owner-kicker { color:#53657a; font-size:.875rem; letter-spacing:.1em; font-weight:600; }
+#apartment-search { background:#f2f5f9; }
+#apartment-search > .container > div:first-child > h2 { color:#172c48; }
+#apartment-search > .container > div:first-child > p { color:#40546a; }
+#apartment-search > .container > div:first-child > .eyebrow { color:#53657a; }
+#apartment-search .split { gap:36px; }
+#apartment-search .intake-card { border-top:3px solid #c4ac7a; }
+.intake-card > h3 { font-size:1.375rem; line-height:1.3; font-weight:600; }
+.card,.listing,.intake-card,.owner-intro,.owner-steps { border-radius:10px; background:#fff; border:1px solid #dbe1e9; box-shadow:0 4px 18px #172c4806; }
+.free-price { display:inline-block; color:#172c48; background:transparent; border-bottom:2px solid #c4ac7a; border-radius:0; padding:0 0 7px; font-size:2.25rem; font-weight:600; }
+#services,#buy-sell { background:#fff; }
+#services .card { border-top:3px solid #c4ac7a; }
+.owner-section { background:#eef2f6; }
+.section-muted { background:#f2f5f9; }
+#rentals { background:#f7f8fa; }
+#buy-sell .card { border-top:3px solid #c4ac7a; }
+.agent-portrait { box-shadow:8px 8px 0 #e3d4b8; border-radius:10px; }
+.owner-steps { border-top:3px solid #c4ac7a; }
+.ruby-room { background:#fff; border:1px solid #dbe1e9; border-top:3px solid #c4ac7a; border-radius:8px; }
+.ruby-room h4 { font-family:Georgia,serif; font-size:1.5rem; font-weight:400; }
+.ruby-facts span { background:#eef2f6; color:#182b43; border-radius:5px; }
+.form-disclosure,.fee-details { border:1px solid #ccd5e0; border-radius:7px; background:#fff; overflow:hidden; }
+.form-disclosure > summary { color:#172c48; background:#f5f7fa; }
+.form-disclosure[open] > summary { background:#edf1f6; border-bottom:1px solid #ccd5e0; }
 .form-disclosure form { padding:18px; }
 .form-grid { gap:16px; }
-.field input,.field select,.field textarea { background:#fbfdff; border:1px solid #92b0d3; border-radius:11px; color:#173052; min-height:48px; }
-.field input:focus,.field select:focus,.field textarea:focus { outline:3px solid #ffad4f; outline-offset:2px; border-color:#2157b5; }
-.checkline input { accent-color:#2157b5; }
-.disclosure { background:#f1f6fc; border-color:#c4d9ef; }
-#apartment-success { background:#fff0dc; border:2px solid #e39943; }
-.small-note,.owner-note { color:#446182; }
-#follow { background:#edf5ff; }
-.socials a { background:#fff; color:#15468c; border:2px solid #9bbce7; border-radius:16px; }
-.socials a:nth-child(2) { background:#ffede1; border-color:#f3bc94; }
-.socials a:nth-child(3) { background:#fff0df; border-color:#e7b17d; }
-.social-mark { color:#15468c; }
-#contact .card { background:#fff3e4; border:1px solid #e9c295; }
-#contact a { color:#15468c; text-decoration:underline; }
+.field input,.field select,.field textarea { background:#fff; border:1px solid #9baabd; border-radius:5px; color:#182b43; min-height:48px; }
+.field input:focus,.field select:focus,.field textarea:focus { outline:2px solid #806b42; outline-offset:2px; border-color:#172c48; }
+.checkline input { accent-color:#172c48; }
+.disclosure { background:#f4f6f9; border-color:#d2dae4; border-radius:7px; }
+#apartment-success { background:#f6f2e9; border:1px solid #c4ac7a; }
+.small-note,.owner-note { color:#4d6074; }
+#follow { background:#eef2f6; }
+.socials a { background:#fff; color:#172c48; border:1px solid #cbd5e2; border-radius:7px; }
+.social-mark { color:#806b42; }
+#contact .card { background:#fff; border:1px solid #dbe1e9; }
+#contact a { color:#172c48; text-decoration:underline; }
 #contact .btn { color:#fff; text-decoration:none; }
-footer { background:#15468c; border-top:7px solid #ffad4f; }
-footer a { color:#ffbd72; }
-.chat-launch { background:#2157b5; border:2px solid #fff; box-shadow:0 6px 20px #15468c30; }
-.chat-head,.chat-form button { background:#2157b5; }
+footer { background:#10233c; border-top:2px solid #c4ac7a; }
+footer a { color:#e3d4b8; }
+.chat-launch { background:#172c48; border:1px solid #ffffff80; border-radius:8px; box-shadow:0 4px 16px #172c4830; font-weight:500; }
+.chat-head,.chat-form button { background:#172c48; }
+.chat-message.visitor { background:#172c48; }
+.chat-message.agent { background:#eaf0f6; color:#182b43; }
+.chat-message.agent a,.chat-note a { color:#244b7b; }
+.chat-form input { border-color:#9baabd; }
 .chat-note { font-size:.8125rem; }
-.chat-suggestions button { font-size:.875rem; min-height:36px; }
-.mobile-search-bar { border-top:1px solid #bbd3f0; }
-.mobile-search-bar a { background:#ffad4f; color:#173052; box-shadow:0 3px 0 #d9791a; }
+.chat-suggestions button { font-size:.875rem; min-height:36px; color:#172c48; border-color:#ccd5e0; }
+.mobile-search-bar { border-top:1px solid #cbd5e2; }
+.mobile-search-bar a { background:#172c48; color:#fff; border:1px solid #172c48; border-radius:6px; box-shadow:none; }
+summary:focus-visible,a:focus-visible,button:focus-visible { outline-color:#a88b50; }
 @media(min-width:851px) { #apartment-search .split { grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr); } }
 @media(max-width:850px) {
- header { padding:16px 16px 24px; background:linear-gradient(120deg,#eaf3ff,rgba(234,243,255,.84)),url("assets/georgia-apartments-hero.webp") center/cover; }
- .hero-card { padding:22px 18px; border-radius:22px; margin-top:16px; }
- .hero-card h2 { font-size:2.125rem; }
- .hero-welcome { margin-bottom:14px; }
+ header { padding:16px 20px 28px; background:linear-gradient(90deg,rgba(12,29,49,.96),rgba(12,29,49,.8)),url("assets/georgia-apartments-hero.webp") center/cover; }
+ .topbar { padding-bottom:12px; }
+ .hero-card { padding:22px 0 0; border-radius:0; margin-top:0; }
+ .hero-card h2 { font-size:2.25rem; }
+ .hero-welcome { margin-bottom:20px; }
  .hero-welcome img { width:52px; height:52px; }
  .hero-pricing { font-size:.9375rem; }
- .quick-nav { gap:8px; }
- .quick-nav a { padding:8px 10px; }
+ .apartment-cta { max-width:none; }
+ .quick-nav { gap:6px 20px; margin:16px 0; }
  section { padding:26px 16px; }
- .service-disclosure { border-radius:18px; border:1px solid #c4d9ef; box-shadow:0 5px 15px #15468c08; }
- .service-disclosure > summary { color:#15468c; }
- #rentals .service-disclosure > summary { background:#fff0e1; }
- #owners .service-disclosure > summary { background:#fff0dc; }
- #buy-sell .service-disclosure > summary { background:#eaf3ff; }
+ .service-disclosure { border-radius:8px; border:1px solid #cbd5e2; box-shadow:none; }
+ .service-disclosure > summary { color:#172c48; background:#fff; }
  .form-disclosure form { padding:14px; }
  .intake-card { padding:18px; }
- .broker-line { line-height:1.6; }
  .socials a { flex-direction:column; gap:8px; }
  .chat-launch { font-size:.875rem; }
 }
 @media(prefers-reduced-motion:reduce) { .btn,.socials a { transition:none; } }
 
-
-/* Match the chat and focus states to the blue-and-orange palette. */
-.chat-message.visitor { background:#2157b5; }
-.chat-message.agent { background:#eaf2ff; color:#173052; }
-.chat-message.agent a,.chat-note a { color:#15468c; }
-.chat-form input { border-color:#92b0d3; }
-.chat-suggestions button { color:#15468c; border-color:#abc8e9; }
-summary:focus-visible,a:focus-visible,button:focus-visible { outline-color:#c96a0e; }
 </style>
 </head>
 
@@ -486,21 +474,21 @@ summary:focus-visible,a:focus-visible,button:focus-visible { outline-color:#c96a
   <div class="hero-card">
     <div class="hero-welcome">
       <img src="assets/allyn-portrait.jpeg" alt="Allyn Santiago-Thompson" width="62" height="62">
-      <p><span class="en" style="font:inherit;color:inherit">Hi, I’m Allyn!</span><span class="es hide" style="font:inherit;color:inherit">¡Hola, soy Allyn!</span><span class="en">Your home &amp; apartment locator</span><span class="es hide">Le ayudo a encontrar su casa o apartamento</span></p>
+      <p><span class="en" style="font:inherit;color:inherit">Allyn Santiago-Thompson</span><span class="es hide" style="font:inherit;color:inherit">Allyn Santiago-Thompson</span><span class="en">Your home &amp; apartment locator</span><span class="es hide">Le ayudo a encontrar su casa o apartamento</span></p>
     </div>
 
     <div class="en">
       <h1>APLYNX Investments</h1>
-      <h2>Let’s find your happy place.</h2>
-      <p class="hero-copy">A new apartment. A fresh start. Let’s find options that fit your life in Greater Atlanta. English &amp; Spanish.</p>
+      <h2>A place to call home.</h2>
+      <p class="hero-copy">Personal apartment search guidance in Greater Atlanta. Service in English and Spanish.</p>
       <a class="btn btn-light apartment-cta" href="#search-form">Find My Apartment FREE</a>
       <p class="hero-pricing"><strong>FREE</strong> search through participating communities.<br>Want a broader search? A $300 fee applies, with final terms agreed before work begins.</p>
       <a class="hero-help" href="#apartment-search">Have Allyn help with your search</a>
     </div>
     <div class="es hide">
       <h1>APLYNX Investments</h1>
-      <h2>Encontremos su próximo hogar.</h2>
-      <p class="hero-copy">Un nuevo apartamento. Un nuevo comienzo. Busquemos opciones que se adapten a su vida en el área de Atlanta. Atención en español e inglés.</p>
+      <h2>Un lugar para llamar hogar.</h2>
+      <p class="hero-copy">Asesoría personalizada para encontrar apartamento en el área de Atlanta. Atención en español e inglés.</p>
       <a class="btn btn-light apartment-cta" href="#search-form">Encuentre Mi Apartamento GRATIS</a>
       <p class="hero-pricing"><strong>GRATIS</strong> en comunidades participantes.<br>¿Prefiere una búsqueda más amplia? Se aplica una tarifa de $300, con condiciones acordadas antes de comenzar.</p>
       <a class="hero-help" href="#apartment-search">Solicitar ayuda de Allyn</a>
