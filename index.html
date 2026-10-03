@@ -518,8 +518,8 @@ summary:focus-visible,a:focus-visible,button:focus-visible { outline-color:#a88b
       <h2 class="es hide">Búsqueda de apartamentos GRATIS</h2>
       <p class="en">Start with participating communities at no search cost to you. Share your budget, area, and move date so I can help narrow your options.</p>
       <p class="es hide">Empiece en comunidades participantes sin tarifa de búsqueda. Comparta su presupuesto, zona y fecha de mudanza para ayudarle a elegir opciones.</p>
-      <a class="btn btn-light en" href="https://members.smartapartmentdata.com/web-idx/9925ade4-ea93-492c-944e-57cab33712e7" target="_blank" rel="noopener noreferrer">Browse Atlanta apartments</a>
-      <a class="btn btn-light es hide" href="https://members.smartapartmentdata.com/web-idx/9925ade4-ea93-492c-944e-57cab33712e7" target="_blank" rel="noopener noreferrer">Ver apartamentos en Atlanta</a>
+      <a class="btn btn-light en" href="#search-form">Browse Atlanta apartments</a>
+      <a class="btn btn-light es hide" href="#search-form">Ver apartamentos en Atlanta</a>
       <div class="listing">
         <div class="free-price"><span class="en">FREE</span><span class="es hide">GRATIS</span></div>
         <p class="en"><strong>Participating communities.</strong> No search fee for you. A participating property may pay my brokerage if you lease there. Availability and property screening criteria apply.</p>
@@ -1005,12 +1005,21 @@ function setChatAnswer(bubble, message) {
       const url = new URL(address);
       if (url.protocol === 'https:' && ['www.aplynxinvestments.com', 'aplynxinvestments.com', 'members.smartapartmentdata.com'].includes(url.hostname)) {
         const link = document.createElement('a');
-        link.href = url.href;
-        link.textContent = url.hostname === 'members.smartapartmentdata.com'
-          ? (chatIsSpanish() ? 'Explorar apartamentos ↗' : 'Browse apartments ↗')
+        const apartmentLink = url.hostname === 'members.smartapartmentdata.com';
+        link.href = apartmentLink ? '#search-form' : url.href;
+        link.textContent = apartmentLink
+          ? (chatIsSpanish() ? 'Comenzar mi búsqueda' : 'Start my apartment search')
           : address;
-        link.target = '_blank';
-        link.rel = 'noopener noreferrer';
+        if (apartmentLink) {
+          link.addEventListener('click', () => {
+            chatPanel.hidden = true;
+            chatLaunch.setAttribute('aria-expanded', 'false');
+            revealDestination('#search-form');
+          });
+        } else {
+          link.target = '_blank';
+          link.rel = 'noopener noreferrer';
+        }
         parts.push(link);
       } else parts.push(document.createTextNode(address));
     } catch { parts.push(document.createTextNode(address)); }
