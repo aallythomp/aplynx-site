@@ -467,6 +467,21 @@ summary:focus-visible,a:focus-visible,button:focus-visible { outline-color:#a88b
 .brand-link { display:inline-flex; flex:none; border-radius:4px; }
 .brand-logo { display:block; width:132px; height:auto; border:1px solid #c4ac7a70; border-radius:4px; }
 @media(max-width:850px) { .brand-logo { width:108px; } .topbar { align-items:center; } }
+
+/* Dedicated buyer intake */
+#buyer-intake { background:#eef2f6; }
+.buyer-shell { max-width:900px; margin:0 auto; }
+.buyer-card { background:#fff; border:1px solid #dbe1e9; border-top:3px solid #c4ac7a; border-radius:10px; padding:30px; box-shadow:0 4px 18px #172c4808; }
+.buyer-card h2 { margin-top:8px; }
+.choice-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; }
+.choice { display:flex; align-items:flex-start; gap:8px; padding:12px; border:1px solid #d7dee7; border-radius:8px; background:#f9fafb; line-height:1.35; }
+.choice input { width:18px; height:18px; margin-top:1px; flex:none; }
+.buyer-success { margin-top:20px; padding:20px; background:#f7fbf8; border:1px solid #bfd4c6; border-radius:10px; }
+@media(max-width:850px) {
+  .buyer-card { padding:18px; }
+  .choice-grid { grid-template-columns:1fr; }
+}
+
 </style>
 </head>
 
@@ -503,6 +518,7 @@ summary:focus-visible,a:focus-visible,button:focus-visible { outline-color:#a88b
     <nav class="quick-nav" aria-label="Services" data-aria-en="Services" data-aria-es="Servicios">
       <a href="#rentals"><span class="en">Rooms</span><span class="es hide">Habitaciones</span></a>
       <a href="#buy-sell"><span class="en">Buy / Sell</span><span class="es hide">Comprar / Vender</span></a>
+      <a href="#buyer-intake"><span class="en">Buyer Form</span><span class="es hide">Formulario de comprador</span></a>
       <a href="#owners"><span class="en">Management</span><span class="es hide">Administración</span></a>
       <a href="#book-search"><span class="en">Book a call</span><span class="es hide">Solicitar llamada</span></a>
     </nav>
@@ -736,8 +752,8 @@ summary:focus-visible,a:focus-visible,button:focus-visible { outline-color:#a88b
         <h3 class="en">Buy a home</h3><h3 class="es hide">Compre una casa</h3>
         <p class="en">Tell me your preferred areas, budget, timing, and must-haves. I can help you plan your search, tour suitable homes, and navigate offers and closing.</p>
         <p class="es hide">Dígame las zonas que prefiere, su presupuesto, sus fechas y lo que necesita. Puedo ayudarle con la búsqueda, las visitas, las ofertas y el cierre.</p>
-        <a class="btn btn-dark en" href="#home-lead-form">Tell me about your search</a>
-        <a class="btn btn-dark es hide" href="#home-lead-form">Cuénteme su búsqueda</a>
+        <a class="btn btn-dark en" href="#buyer-intake">Start my buyer profile</a>
+        <a class="btn btn-dark es hide" href="#buyer-intake">Comenzar mi perfil de comprador</a>
       </div>
       <div class="card">
         <img src="assets/sell-home-interior.webp" alt="Illustrative staged living room in a home" loading="lazy">
@@ -772,6 +788,58 @@ summary:focus-visible,a:focus-visible,button:focus-visible { outline-color:#a88b
   </div>
 </details></section>
 
+
+
+<section id="buyer-intake">
+  <div class="container buyer-shell">
+    <div class="buyer-card">
+      <span class="eyebrow en">Personalized home search</span><span class="eyebrow es hide">Búsqueda personalizada de vivienda</span>
+      <h2 class="en">Let’s find your home</h2>
+      <h2 class="es hide">Encontremos su hogar</h2>
+      <p class="en">Tell me what you’re looking for so I can build a focused property search for you. This takes about two minutes.</p>
+      <p class="es hide">Cuénteme lo que busca para que pueda crear una búsqueda de propiedades enfocada para usted. Toma aproximadamente dos minutos.</p>
+
+      <form id="buyer-intake-form">
+        <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
+        <div class="form-grid">
+          <div class="field"><label for="buyer-name" data-i18n-en="Full name" data-i18n-es="Nombre completo">Full name</label><input id="buyer-name" name="name" autocomplete="name" required></div>
+          <div class="field"><label for="buyer-phone" data-i18n-en="Phone" data-i18n-es="Teléfono">Phone</label><input id="buyer-phone" name="phone" type="tel" autocomplete="tel" required></div>
+          <div class="field wide"><label for="buyer-email" data-i18n-en="Email" data-i18n-es="Correo electrónico">Email</label><input id="buyer-email" name="email" type="email" autocomplete="email" required></div>
+
+          <div class="field wide"><label for="buyer-area" data-i18n-en="Preferred area(s)" data-i18n-es="Zona(s) preferida(s)">Preferred area(s)</label><input id="buyer-area" name="area" placeholder="Example: Douglasville, GA" data-placeholder-en="Example: Douglasville, GA" data-placeholder-es="Ejemplo: Douglasville, GA" required></div>
+          <div class="field wide"><label for="buyer-near" data-i18n-en="Specific address, neighborhood, school, or landmark to stay near (optional)" data-i18n-es="Dirección, vecindario, escuela o punto de referencia cercano (opcional)">Specific address, neighborhood, school, or landmark to stay near (optional)</label><input id="buyer-near" name="near" placeholder="Paste an address or describe the area" data-placeholder-en="Paste an address or describe the area" data-placeholder-es="Pegue una dirección o describa la zona"></div>
+
+          <div class="field"><label for="buyer-budget" data-i18n-en="Maximum purchase price" data-i18n-es="Precio máximo de compra">Maximum purchase price</label><input id="buyer-budget" name="budget" inputmode="decimal" placeholder="$" required></div>
+          <div class="field"><label for="buyer-beds" data-i18n-en="Minimum bedrooms" data-i18n-es="Mínimo de habitaciones">Minimum bedrooms</label><select id="buyer-beds" name="beds" required><option value="">Choose</option><option>1+</option><option>2+</option><option>3+</option><option>4+</option><option>5+</option></select></div>
+          <div class="field"><label for="buyer-baths" data-i18n-en="Minimum bathrooms" data-i18n-es="Mínimo de baños">Minimum bathrooms</label><select id="buyer-baths" name="baths" required><option value="">Choose</option><option>1+</option><option>1.5+</option><option>2+</option><option>2.5+</option><option>3+</option></select></div>
+          <div class="field"><label for="buyer-property-type" data-i18n-en="Property type" data-i18n-es="Tipo de propiedad">Property type</label><select id="buyer-property-type" name="property_type" required><option value="">Choose</option><option>Single-family home</option><option>Townhome</option><option>Condo</option><option>No preference</option></select></div>
+
+          <div class="field"><label for="buyer-condition" data-i18n-en="Are you open to repairs or updating?" data-i18n-es="¿Acepta reparaciones o actualizaciones?">Are you open to repairs or updating?</label><select id="buyer-condition" name="condition" required><option value="">Choose</option><option>Yes</option><option>Maybe, depending on the work needed</option><option>No, move-in ready only</option></select></div>
+          <div class="field"><label for="buyer-method" data-i18n-en="How do you plan to purchase?" data-i18n-es="¿Cómo planea comprar?">How do you plan to purchase?</label><select id="buyer-method" name="purchase_method" required><option value="">Choose</option><option>Financing</option><option>Cash</option><option>Not sure yet</option></select></div>
+          <div class="field"><label for="buyer-preapproval" data-i18n-en="Pre-approval status" data-i18n-es="Estado de preaprobación">Pre-approval status</label><select id="buyer-preapproval" name="preapproval" required><option value="">Choose</option><option>Yes, I am pre-approved</option><option>I am working with a lender</option><option>No, not yet</option><option>I would like a lender recommendation</option><option>Cash purchase / not applicable</option></select></div>
+          <div class="field"><label for="buyer-approved-amount" data-i18n-en="Approximate pre-approved amount (optional)" data-i18n-es="Monto aproximado preaprobado (opcional)">Approximate pre-approved amount (optional)</label><input id="buyer-approved-amount" name="approved_amount" inputmode="decimal" placeholder="$"></div>
+
+          <div class="field"><label for="buyer-timing" data-i18n-en="When would you like to purchase?" data-i18n-es="¿Cuándo le gustaría comprar?">When would you like to purchase?</label><select id="buyer-timing" name="timing" required><option value="">Choose</option><option>ASAP</option><option>Within 30-60 days</option><option>Within 3-6 months</option><option>6+ months</option><option>Just beginning my search</option></select></div>
+          <div class="field"><label for="buyer-agent" data-i18n-en="Are you currently represented by another real estate agent?" data-i18n-es="¿Actualmente le representa otro agente de bienes raíces?">Are you currently represented by another real estate agent?</label><select id="buyer-agent" name="other_agent" required><option value="">Choose</option><option>No</option><option>Yes</option><option>Not sure / I previously worked with an agent</option></select></div>
+
+          <div class="field wide"><label for="buyer-needs" data-i18n-en="Must-haves, deal-breakers, or anything else I should know" data-i18n-es="Requisitos, cosas que no acepta u otra información importante">Must-haves, deal-breakers, or anything else I should know</label><textarea id="buyer-needs" name="needs" placeholder="Tell me what matters most in your search." data-placeholder-en="Tell me what matters most in your search." data-placeholder-es="Cuénteme qué es lo más importante en su búsqueda."></textarea></div>
+        </div>
+
+        <label class="checkline"><input type="checkbox" name="contact_consent" value="Yes" required><span class="en">I agree to be contacted by Allyn Santiago-Thompson at Veribas Real Estate LLC about my home search.</span><span class="es hide">Acepto que Allyn Santiago-Thompson de Veribas Real Estate LLC me contacte sobre mi búsqueda de vivienda.</span></label>
+        <button class="btn btn-dark" type="submit" data-i18n-en="Start my home search" data-i18n-es="Comenzar mi búsqueda">Start my home search</button>
+        <p class="small-note en">Please do not upload or enter Social Security numbers, bank information, or financial documents here. This intake form does not create a brokerage relationship. Buyer representation is established separately in writing.</p>
+        <p class="small-note es hide">No cargue ni escriba números de Seguro Social, información bancaria ni documentos financieros aquí. Este formulario no crea una relación de representación. La representación del comprador se establece por separado por escrito.</p>
+      </form>
+
+      <div id="buyer-success" class="buyer-success" role="status" tabindex="-1" hidden>
+        <strong class="en">Thank you — I received your buyer profile.</strong>
+        <strong class="es hide">Gracias — recibí su perfil de comprador.</strong>
+        <p class="en">I’ll review what you’re looking for and contact you to discuss the next steps for your personalized home search. — Allyn Santiago-Thompson, REALTOR®</p>
+        <p class="es hide">Revisaré lo que busca y me comunicaré con usted para conversar sobre los próximos pasos de su búsqueda personalizada. — Allyn Santiago-Thompson, REALTOR®</p>
+      </div>
+    </div>
+  </div>
+</section>
 
 <section id="rentals" class="section-muted"><details class="service-disclosure" open><summary><span class="en">Rooms for Rent</span><span class="es hide">Habitaciones en Alquiler</span></summary>
   <div class="container">
@@ -1144,6 +1212,35 @@ document.getElementById("management-inquiry").addEventListener("submit", functio
   e.preventDefault();
   const v = id => document.getElementById(id).value.trim();
   submitInquiry(e.currentTarget, "APLYNX property management inquiry", [["Name",v("o-name")],["Email",v("o-email")],["Phone",v("o-phone")],["Property city",v("o-city")],["Rental type",v("o-type")],["Help needed",v("o-service")],["Details",v("o-details")],["Contact consent","Yes"]]);
+});
+document.getElementById("buyer-intake-form").addEventListener("submit", function(e) {
+  e.preventDefault();
+  const form=e.currentTarget;
+  const v=id=>document.getElementById(id).value.trim();
+  submitInquiry(form, "APLYNX buyer intake", [
+    ["Name",v("buyer-name")],
+    ["Email",v("buyer-email")],
+    ["Phone",v("buyer-phone")],
+    ["Preferred areas",v("buyer-area")],
+    ["Stay near",v("buyer-near") || "Not specified"],
+    ["Maximum purchase price",v("buyer-budget")],
+    ["Minimum bedrooms",v("buyer-beds")],
+    ["Minimum bathrooms",v("buyer-baths")],
+    ["Property type",v("buyer-property-type")],
+    ["Open to repairs",v("buyer-condition")],
+    ["Purchase method",v("buyer-method")],
+    ["Pre-approval status",v("buyer-preapproval")],
+    ["Approximate approved amount",v("buyer-approved-amount") || "Not provided"],
+    ["Purchase timeframe",v("buyer-timing")],
+    ["Currently represented by another agent",v("buyer-agent")],
+    ["Must-haves / deal-breakers",v("buyer-needs") || "Not provided"],
+    ["Contact consent","Yes"]
+  ], () => {
+    const success=document.getElementById("buyer-success");
+    success.hidden=false;
+    success.focus();
+    success.scrollIntoView({block:"center",behavior:"smooth"});
+  });
 });
 document.getElementById("home-lead-form").addEventListener("submit", function(e) {
   e.preventDefault();
