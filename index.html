@@ -482,12 +482,55 @@ summary:focus-visible,a:focus-visible,button:focus-visible { outline-color:#a88b
   .choice-grid { grid-template-columns:1fr; }
 }
 
+
+/* Compact service hub: select a photo to open the existing service. */
+header { background:#102239; padding-bottom:24px; }
+.topbar { max-width:1150px; margin:auto; padding-bottom:14px; }
+.brand-logo { width:92px; }
+.hero-card { max-width:1150px; margin:0 auto; padding:22px 0 0; }
+.hero-welcome { margin-bottom:12px; }
+.hero-card h2 { font-size:clamp(2rem,4vw,3rem); margin:10px 0; }
+.hero-copy { margin:0 0 18px; max-width:none; }
+.hero-pricing { margin:14px 0; }
+.service-hub { display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:14px; margin-top:22px; }
+.service-photo { grid-column:span 2; display:block; position:relative; overflow:hidden; border-radius:10px; border:1px solid #c4ac7a60; color:white; text-decoration:none; background:#1c3554; }
+.service-photo:first-child,.service-photo:nth-child(2) { grid-column:span 3; }
+.service-photo img { width:100%; height:148px; object-fit:cover; display:block; transition:transform .2s; }
+.service-photo:hover img { transform:scale(1.03); }
+.service-photo .photo-copy { display:block; padding:14px 16px; }
+.service-photo strong { display:block; font-size:1.125rem; font-weight:600; }
+.service-photo small { display:block; font-size:.875rem; margin-top:5px; color:#e1e7ef; line-height:1.4; }
+.service-photo[aria-current="true"] { outline:3px solid #e3d4b8; outline-offset:3px; }
+.hub-links { display:flex; gap:10px 24px; flex-wrap:wrap; margin-top:18px; }
+.hub-links a { color:#e3d4b8; min-height:44px; display:flex; align-items:center; font-size:.9375rem; }
+body > section[hidden] { display:none !important; }
+body > #follow { padding-top:24px; padding-bottom:12px; }
+body > #contact { padding-top:12px; }
+.service-back { display:inline-block; margin:0 0 18px; color:#172c48; padding:10px 0; }
+@media(max-width:600px) {
+ header { padding:16px 16px 24px; }
+ .brand-logo { width:76px; }
+ .hero-welcome img { width:48px; height:48px; }
+ .hero-card { padding-top:18px; }
+ .hero-card h2 { font-size:2rem; }
+ .service-hub { grid-template-columns:1fr 1fr; gap:12px; margin-top:18px; }
+ .service-photo,.service-photo:first-child,.service-photo:nth-child(2) { grid-column:span 1; }
+ .service-photo:last-child { grid-column:span 2; display:grid; grid-template-columns:100px 1fr; align-items:center; }
+ .service-photo img { height:108px; }
+ .service-photo:last-child img { height:100%; min-height:108px; }
+ .service-photo .photo-copy { padding:12px; }
+ .service-photo strong { font-size:1rem; line-height:1.3; }
+ .service-photo small { font-size:.875rem; }
+ .broker-line { font-size:.875rem; }
+}
+@media(prefers-reduced-motion:reduce) { .service-photo img { transition:none; } }
+
 </style>
 </head>
 
 <body>
 
-<header>
+<header id="home">
   <div class="topbar">
     <a class="brand-link" href="/" aria-label="APLYNX Investments home"><img class="brand-logo" src="logo.png" alt="APLYNX Investments" width="1254" height="1254" fetchpriority="high"></a>
     <button class="lang-btn" onclick="toggleLang()" id="langBtn">Español</button>
@@ -499,28 +542,21 @@ summary:focus-visible,a:focus-visible,button:focus-visible { outline-color:#a88b
       <p><span class="en" style="font:inherit;color:inherit">Allyn Santiago-Thompson</span><span class="es hide" style="font:inherit;color:inherit">Allyn Santiago-Thompson</span><span class="en">Your home &amp; apartment locator</span><span class="es hide">Le ayudo a encontrar su casa o apartamento</span></p>
     </div>
 
-    <div class="en">
-      <h1>APLYNX Investments</h1>
-      <h2>A place to call home.</h2>
-      <p class="hero-copy">Personal apartment search guidance in Greater Atlanta. Service in English and Spanish.</p>
-      <a class="btn btn-light apartment-cta" href="#search-form">Find My Apartment FREE</a>
-      <p class="hero-pricing"><strong>FREE</strong> search through participating communities.<br>Want a broader search? A $300 fee applies, with final terms agreed before work begins.</p>
-      <a class="hero-help" href="#apartment-search">Have Allyn help with your search</a>
-    </div>
-    <div class="es hide">
-      <h1>APLYNX Investments</h1>
-      <h2>Un lugar para llamar hogar.</h2>
-      <p class="hero-copy">Asesoría personalizada para encontrar apartamento en el área de Atlanta. Atención en español e inglés.</p>
-      <a class="btn btn-light apartment-cta" href="#search-form">Encuentre Mi Apartamento GRATIS</a>
-      <p class="hero-pricing"><strong>GRATIS</strong> en comunidades participantes.<br>¿Prefiere una búsqueda más amplia? Se aplica una tarifa de $300, con condiciones acordadas antes de comenzar.</p>
-      <a class="hero-help" href="#apartment-search">Solicitar ayuda de Allyn</a>
-    </div>
-    <nav class="quick-nav" aria-label="Services" data-aria-en="Services" data-aria-es="Servicios">
-      <a href="#rentals"><span class="en">Rooms</span><span class="es hide">Habitaciones</span></a>
-      <a href="#buy-sell"><span class="en">Buy / Sell</span><span class="es hide">Comprar / Vender</span></a>
-      <a href="#buyer-intake"><span class="en">Buyer Form</span><span class="es hide">Formulario de comprador</span></a>
-      <a href="#owners"><span class="en">Management</span><span class="es hide">Administración</span></a>
-      <a href="#book-search"><span class="en">Book a call</span><span class="es hide">Solicitar llamada</span></a>
+    <h1>APLYNX Investments</h1>
+    <h2><span class="en">A place to call home.</span><span class="es hide">Un lugar para llamar hogar.</span></h2>
+    <p class="hero-copy"><span class="en">Homes, apartments &amp; room rentals in Greater Atlanta.</span><span class="es hide">Casas, apartamentos y habitaciones en el área de Atlanta.</span></p>
+    <nav class="service-hub" aria-label="Choose a service" data-aria-en="Choose a service" data-aria-es="Elija un servicio" id="service-hub">
+      <a class="service-photo" href="#search-form"><img src="assets/atlanta-apartment-community.webp" alt="" width="560" height="240"><span class="photo-copy"><strong><span class="en">Find an Apartment</span><span class="es hide">Encuentre un Apartamento</span></strong><small><span class="en">FREE through participating communities</span><span class="es hide">GRATIS en comunidades participantes</span></small></span></a>
+      <a class="service-photo" href="#rentals"><img src="assets/ruby-court-exterior.jpg" alt="" width="560" height="240"><span class="photo-copy"><strong><span class="en">Rent a Room</span><span class="es hide">Alquile una Habitación</span></strong><small><span class="en">Lawrenceville & Powder Springs</span><span class="es hide">Lawrenceville y Powder Springs</span></small></span></a>
+      <a class="service-photo" href="#buy-sell"><img src="assets/atlanta-area-homes.webp" alt="" width="560" height="240"><span class="photo-copy"><strong><span class="en">Buy or Sell</span><span class="es hide">Compre o Venda</span></strong><small><span class="en">Your next home starts here</span><span class="es hide">Su próximo hogar empieza aquí</span></small></span></a>
+      <a class="service-photo" href="#owners"><img src="assets/owner-updates-office.webp" alt="" width="560" height="240"><span class="photo-copy"><strong><span class="en">Property Management</span><span class="es hide">Administración de Propiedades</span></strong><small><span class="en">Help for rental property owners</span><span class="es hide">Ayuda para propietarios</span></small></span></a>
+      <a class="service-photo" href="#book-search-form"><img src="assets/allyn-portrait.jpeg" alt="" width="560" height="240"><span class="photo-copy"><strong><span class="en">Book a Call</span><span class="es hide">Solicite una Llamada</span></strong><small><span class="en">Request a time to talk with Allyn</span><span class="es hide">Solicite una hora con Allyn</span></small></span></a>
+    </nav>
+    <p class="hero-pricing"><span class="en">Apartment search: <strong>FREE</strong> through participating communities. Broader custom search: $300, with terms agreed before work begins.</span><span class="es hide">Búsqueda de apartamentos: <strong>GRATIS</strong> en comunidades participantes. Búsqueda personalizada más amplia: $300, con condiciones acordadas antes de comenzar.</span></p>
+    <nav class="hub-links" aria-label="More resources" data-aria-en="More resources" data-aria-es="Más recursos">
+      <a href="#buyer-intake"><span class="en">Buyer profile</span><span class="es hide">Perfil de comprador</span></a>
+      <a href="#services"><span class="en">Lease services</span><span class="es hide">Servicios de contratos</span></a>
+      <a href="#plans"><span class="en">Owner tools</span><span class="es hide">Herramientas para propietarios</span></a>
     </nav>
     <p class="broker-line"><span data-i18n-en="Call Allyn:" data-i18n-es="Llame a Allyn:">Call Allyn:</span> <a href="tel:+14703744384">(470) 374-4384</a> · <span data-i18n-en="Real estate brokerage:" data-i18n-es="Correduría de bienes raíces:">Real estate brokerage:</span> <strong>Veribas Real Estate LLC</strong> · <span data-i18n-en="Office:" data-i18n-es="Oficina:">Office:</span> <a href="tel:+14706880871">(470) 688-0871</a></p>
   </div>
@@ -1027,27 +1063,43 @@ summary:focus-visible,a:focus-visible,button:focus-visible { outline-color:#a88b
 
 
 
-const mobileLayout = window.matchMedia('(max-width: 850px)');
+const servicePanels = [...document.querySelectorAll('body > section')].filter(section => !['follow', 'contact'].includes(section.id));
 function setServiceLayout() {
-  document.querySelectorAll('.service-disclosure').forEach(detail => { detail.open = !mobileLayout.matches; });
+  servicePanels.forEach(section => { section.hidden = true; });
+  document.querySelectorAll('.service-disclosure').forEach(detail => { detail.open = false; });
+  document.querySelector('#follow > details').open = true;
 }
+servicePanels.forEach(section => {
+  const back = document.createElement('a');
+  back.href = '#home'; back.className = 'service-back';
+  back.innerHTML = '<span class="en">Back to services</span><span class="es hide">Volver a servicios</span>';
+  section.prepend(back);
+});
 function revealDestination(hash) {
   if (hash === '#install') hash = '#apartment-search';
   if (!hash || hash === '#') return;
   let target;
   try { target = document.querySelector(hash); } catch { return; }
   if (!target) return;
+  const panel = servicePanels.find(section => section === target || section.contains(target));
+  if (panel || hash === '#home' || hash === '#service-hub') {
+    servicePanels.forEach(section => { section.hidden = section !== panel; });
+    document.querySelectorAll('.service-photo').forEach(link => {
+      const destination = document.querySelector(link.getAttribute('href'));
+      if (panel && panel.contains(destination)) link.setAttribute('aria-current', 'true');
+      else link.removeAttribute('aria-current');
+    });
+  }
   let node = target;
   while (node) {
     if (node.tagName === 'DETAILS') node.open = true;
     node = node.parentElement;
   }
-  const service = target.querySelector(':scope > .service-disclosure');
+  const service = (panel || target).querySelector(':scope > .service-disclosure');
   if (service) service.open = true;
-  requestAnimationFrame(() => target.scrollIntoView({block: 'start'}));
+  requestAnimationFrame(() => { target.scrollIntoView({block: 'start'}); if (panel) { const firstInput = target.matches('form') ? target.querySelector('input:not([type=checkbox]),select') : null; if (firstInput) firstInput.focus({preventScroll:true}); } });
 }
 setServiceLayout();
-mobileLayout.addEventListener('change', setServiceLayout);
 document.querySelectorAll('a[href^="#"]').forEach(link => link.addEventListener('click', () => revealDestination(link.getAttribute('href'))));
 window.addEventListener('hashchange', () => revealDestination(location.hash));
 revealDestination(location.hash);
