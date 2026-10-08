@@ -77,7 +77,7 @@ export async function handle(request, env = process.env) {
   } catch { return json({ error: 'Email alerts are pending. Your saved data remains available; delivery will be retried.' }, 502); }
 }
 
-async function deliverInvite(env, invite) {
+export async function deliverInvite(env, invite) {
   if (invite.email_sent_at || invite.accepted_at || new Date(invite.expires_at) <= new Date()) return;
   const url = new URL('/maintenance.html', env.MAINTENANCE_SITE_URL);
   const response = await fetch('https://api.resend.com/emails', {

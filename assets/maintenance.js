@@ -108,11 +108,11 @@ async function propertyView() {
 async function loadApp() {
   const session = check(await db.auth.getSession()).session; user = session?.user;
   $('login').hidden = Boolean(user); $('app').hidden = !user; $('signout').hidden = !user;
-  clearInterval(timer); if (!user) return;
+  clearInterval(timer); $('people-admin-link').hidden = true; if (!user) return;
   $('account-email').textContent = `Signed in as ${user.email}`;
   const profile = check(await db.from('maintenance_profiles').select('*').eq('id', user.id));
   $('name').value = profile[0]?.name || ''; $('phone').value = profile[0]?.phone || '';
-  const admin = await rpc('is_admin', {}); $('admin-mode').hidden = !admin;
+  const admin = await rpc('is_admin', {}); $('admin-mode').hidden = !admin; $('people-admin-link').hidden = !admin;
   const invites = check(await db.from('maintenance_invites').select('*').eq('email', user.email.toLowerCase()).is('accepted_at', null).gt('expires_at', new Date().toISOString()));
   $('invitations').hidden = !invites.length; $('invite-list').replaceChildren();
   for (const i of invites) {
