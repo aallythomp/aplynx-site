@@ -601,8 +601,7 @@ body > #contact { padding-top:12px; }
           <div class="field"><label for="s-name" data-i18n-en="Name" data-i18n-es="Nombre">Name</label><input id="s-name" name="name" autocomplete="name" required></div>
           <div class="field"><label for="s-email" data-i18n-en="Email" data-i18n-es="Correo">Email</label><input id="s-email" name="email" type="email" autocomplete="email" required></div>
           <div class="field"><label for="s-phone" data-i18n-en="Phone" data-i18n-es="Teléfono">Phone</label><input id="s-phone" name="phone" type="tel" autocomplete="tel" required></div>
-          <div class="field"><label for="s-timing" data-i18n-en="When do you need to move?" data-i18n-es="¿Cuándo necesita mudarse?">When do you need to move?</label><select id="s-timing" name="timing" required><option value="" data-i18n-en="Choose" data-i18n-es="Seleccione">Choose</option><option value="ASAP" data-i18n-en="ASAP" data-i18n-es="Lo antes posible">ASAP</option><option value="Within 30 days" data-i18n-en="Within 30 days" data-i18n-es="En 30 días">Within 30 days</option><option value="Within 60 days" data-i18n-en="Within 60 days" data-i18n-es="En 60 días">Within 60 days</option><option value="90+ days" data-i18n-en="90+ days" data-i18n-es="90 días o más">90+ days</option></select></div>
-          <div class="field"><label for="s-date" data-i18n-en="Specific move date (optional)" data-i18n-es="Fecha exacta (opcional)">Specific move date (optional)</label><input id="s-date" name="date" type="date"></div>
+          <div class="field"><label for="s-timing" data-i18n-en="When would you like to move?" data-i18n-es="¿Cuándo desea mudarse?">When would you like to move?</label><input id="s-timing" name="timing" required maxlength="100" placeholder="ASAP, within 30 days, or a specific date" data-placeholder-en="ASAP, within 30 days, or a specific date" data-placeholder-es="Lo antes posible, en 30 días o una fecha exacta"></div>
           <div class="field"><label for="s-budget" data-i18n-en="Maximum monthly rent" data-i18n-es="Renta máxima">Maximum monthly rent</label><input id="s-budget" name="budget" type="number" min="1" required></div>
           <div class="field"><label for="s-beds" data-i18n-en="Bedrooms" data-i18n-es="Habitaciones">Bedrooms</label><select id="s-beds" name="beds" required><option value="" data-i18n-en="Select" data-i18n-es="Seleccione">Select</option><option value="Studio / Estudio" data-i18n-en="Studio" data-i18n-es="Estudio">Studio</option><option>1</option><option>2</option><option>3+</option></select></div>
           <div class="field wide"><label for="s-areas" data-i18n-en="Preferred areas or ZIP codes" data-i18n-es="Zonas o códigos postales">Preferred areas or ZIP codes</label><input id="s-areas" name="areas" required></div>
@@ -630,7 +629,7 @@ body > #contact { padding-top:12px; }
         </div>
         <label class="checkline"><input id="s-contact-consent" name="contact_consent" type="checkbox" required><span class="en">Allyn Santiago-Thompson at Veribas Real Estate LLC may contact me about this request using my preferred contact method.</span><span class="es hide">Allyn Santiago-Thompson de Veribas Real Estate LLC puede contactarme sobre esta solicitud por el medio que prefiero.</span></label>
         <label class="checkline"><input id="s-agree" type="checkbox" required><span class="en">I have read and acknowledge the service details above.</span><span class="es hide">He leído y acepto los detalles del servicio.</span></label>
-        <div class="field"><label for="s-sign" data-i18n-en="Type your full name" data-i18n-es="Escriba su nombre completo">Type your full name</label><input id="s-sign" required></div>
+        <p class="small-note en">Your acknowledgment is recorded with the name you entered above.</p><p class="small-note es hide">Su aceptación se registra con el nombre que ingresó arriba.</p>
         <button class="btn btn-dark" type="submit"><span class="en">Send My Apartment Request</span><span class="es hide">Enviar Mi Solicitud</span></button>
         <p class="small-note en">Submit your answers and acknowledgment here and Our team will follow up. The free path has no search fee; payment for a broader search is arranged only after the final terms are approved.</p>
         <p class="small-note es hide">Envíe su solicitud aquí y Nuestro equipo se comunicará con usted. Si necesita ayuda, <a href="tel:+14703744384">llame al 470-374-4384</a>. No incluya números de Seguro Social ni documentos financieros. La opción de comunidades participantes no tiene tarifa de búsqueda; el pago de una búsqueda amplia se organiza después de confirmar las condiciones.</p>
@@ -1209,7 +1208,31 @@ document.getElementById("fern-next").addEventListener("click", () => { fernPhoto
 renderFernGallery();
 // Existing public form access key, intended for client-side use. See https://docs.web3forms.com/getting-started/faq
 const INQUIRY_ACCESS_KEY = "d2516862-f49f-48dc-ab2b-f2e757be281e";
+function formatInquiryMessage(subject, lines, reference) {
+  const values = new Map(lines);
+  const clean = value => String(value ?? "").trim().replace(/\r\n?/g, "\n");
+  const omitted = new Set(["Name", "Email", "Typed name", "Acknowledged at", "Contact consent", "Service acknowledgment"]);
+  const optionalEmpty = new Set(["Not provided", "Not specified", ""]);
+  const primary = new Set(["Phone", "Preferred contact method", "Property", "Interest", "Search type", "Search choice", "Move timeframe", "Desired move date", "Timeline", "Purchase timeframe", "Search area", "Preferred areas", "City or area", "Areas", "Budget", "Maximum monthly rent", "Maximum purchase price", "Bedrooms", "Minimum bedrooms", "Minimum bathrooms", "Preferred call date", "Best time (Eastern)"]);
+  const summary = [], details = [];
+  for (const [label, value] of lines) {
+    const answer = clean(value);
+    if (omitted.has(label) || optionalEmpty.has(answer)) continue;
+    (primary.has(label) ? summary : details).push(label + ": " + answer);
+  }
+  const sections = ["APLYNX INVESTMENTS", subject, "Reference: " + reference, "", "REQUEST SUMMARY", ...summary];
+  if (details.length) sections.push("", "ADDITIONAL DETAILS", ...details);
+  const consent = [];
+  for (const label of ["Contact consent", "Service acknowledgment", "Typed name", "Acknowledged at"]) {
+    if (clean(values.get(label))) consent.push(label + ": " + clean(values.get(label)));
+  }
+  if (consent.length) sections.push("", "ACKNOWLEDGMENTS", ...consent);
+  sections.push("", "Follow up using the answers above; ask only for missing information or changes.");
+  return sections.join("\n");
+}
+
 async function submitInquiry(form, subject, lines, onSuccess) {
+  if (form.getAttribute("aria-busy") === "true") return;
   const button = form.querySelector('button[type="submit"]');
   let status = form.querySelector(".inquiry-status");
   if (!status) {
@@ -1233,12 +1256,13 @@ async function submitInquiry(form, subject, lines, onSuccess) {
   const timeout = setTimeout(() => controller.abort(), 20000);
   try {
     const fields = Object.fromEntries(lines);
+    const reference = "APX-" + (globalThis.crypto?.randomUUID?.() || Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 8));
     const emailField = form.querySelector('input[type="email"]');
     const response = await fetch("https://api.web3forms.com/submit", {
       method: "POST",
       headers: { "Content-Type": "application/json", Accept: "application/json" },
       signal: controller.signal,
-      body: JSON.stringify({ access_key: INQUIRY_ACCESS_KEY, subject, from_name: "APLYNX Website", email: emailField.value.trim(), name: fields.Name, message: lines.map(([label, value]) => label + ": " + value).join("\n"), botcheck: "" })
+      body: JSON.stringify({ access_key: INQUIRY_ACCESS_KEY, subject: subject + " | " + fields.Name + " | " + reference, from_name: "APLYNX Investments", email: emailField.value.trim(), name: fields.Name, message: formatInquiryMessage(subject, lines, reference), botcheck: "" })
     });
     const result = await response.json();
     if (!response.ok || result.success !== true) throw new Error("Submission failed");
@@ -1306,7 +1330,7 @@ document.getElementById("search-form").addEventListener("submit", function(e) {
   e.preventDefault();
   const form = e.currentTarget;
   const v = id => document.getElementById(id).value.trim();
-  submitInquiry(e.currentTarget, "Apartment search service request", [["Name",v("s-name")],["Email",v("s-email")],["Phone",v("s-phone")],["Move timeframe",v("s-timing")],["Desired move date",v("s-date") || "Not specified"],["Search choice",v("s-path")],["Maximum monthly rent",v("s-budget")],["Bedrooms",v("s-beds")],["Areas",v("s-areas")],["Monthly income before taxes",v("s-income") || "Not provided"],["Pets",v("s-pets")],["MARTA or transit",v("s-transit")],["Preferred contact method",v("s-contact")],["Must-haves",v("s-needs") || "Not provided"],["Approval considerations",v("s-approval") || "Not provided"],["Contact consent","Yes"],["Service acknowledgment","I read and acknowledge the selected service path and scope displayed on the APLYNX website."],["Typed name",v("s-sign")],["Acknowledged at",new Date().toISOString()]], () => {
+  submitInquiry(e.currentTarget, "Apartment search service request", [["Name",v("s-name")],["Email",v("s-email")],["Phone",v("s-phone")],["Move timeframe",v("s-timing")],["Search choice",v("s-path")],["Maximum monthly rent",v("s-budget")],["Bedrooms",v("s-beds")],["Areas",v("s-areas")],["Monthly income before taxes",v("s-income") || "Not provided"],["Pets",v("s-pets")],["MARTA or transit",v("s-transit")],["Preferred contact method",v("s-contact")],["Must-haves",v("s-needs") || "Not provided"],["Approval considerations",v("s-approval") || "Not provided"],["Contact consent","Yes"],["Service acknowledgment","I read and acknowledge the selected service path and scope displayed on the APLYNX website."],["Typed name",v("s-name")],["Acknowledged at",new Date().toISOString()]], () => {
     const success = document.getElementById("apartment-success");
     success.hidden = false;
     form.closest("details").open = false;
