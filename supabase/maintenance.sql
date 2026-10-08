@@ -231,4 +231,29 @@ create policy maintenance_file_insert on storage.objects for insert to authentic
 create policy maintenance_file_delete on storage.objects for delete to authenticated using(
  bucket_id='maintenance' and owner_id=auth.uid()::text and maintenance_file_access(name)
 );
+do $begin
+ if to_regprocedure('public.rls_auto_enable()') is not null then
+   execute 'revoke execute on function public.rls_auto_enable() from public,anon,authenticated';
+ end if;
+end$;
+create index if not exists maintenance_properties_owner_idx on public.maintenance_properties(owner_id);
+create index if not exists maintenance_properties_manager_idx on public.maintenance_properties(manager_id);
+create index if not exists maintenance_tenants_user_idx on public.maintenance_tenants(user_id);
+create index if not exists maintenance_invites_property_idx on public.maintenance_invites(property_id);
+create index if not exists maintenance_invites_inviter_idx on public.maintenance_invites(invited_by);
+create index if not exists maintenance_requests_tenant_idx on public.maintenance_requests(tenant_id);
+create index if not exists maintenance_messages_author_idx on public.maintenance_messages(author_id);
+create index if not exists maintenance_notifications_recipient_idx on public.maintenance_notifications(recipient_id);
+create index if not exists maintenance_notifications_request_idx on public.maintenance_notifications(request_id);
+create index if not exists maintenance_notifications_invite_idx on public.maintenance_notifications(invite_id);
+alter policy profile_read on public.maintenance_profiles using (
+ id=(select auth.uid()) or exists(select 1 from maintenance_tenants t where t.user_id=maintenance_profiles.id and maintenance_manages(t.property_id))
+ or exists(select 1 from maintenance_requests r where r.tenant_id=maintenance_profiles.id and maintenance_can_read(r.id))
+ or exists(select 1 from maintenance_properties p where maintenance_profiles.id in (p.owner_id,p.manager_id) and maintenance_member(p.id))
+);
+alter policy profile_insert on public.maintenance_profiles with check(id=(select auth.uid()) and email=lower((select auth.jwt())->>'email'));
+alter policy profile_update on public.maintenance_profiles using(id=(select auth.uid())) with check(id=(select auth.uid()) and email=lower((select auth.jwt())->>'email'));
+alter policy tenant_read on public.maintenance_tenants using(user_id=(select auth.uid()) or maintenance_manages(property_id));
+alter policy invite_read on public.maintenance_invites using(maintenance_manages(property_id) or email=lower((select auth.jwt())->>'email'));
+grant select,insert,update,delete on public.maintenance_notifications,public.maintenance_invites to service_role;
 commit;
