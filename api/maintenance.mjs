@@ -89,4 +89,5 @@ async function deliverInvite(env, invite) {
   if (!response.ok) throw new Error('Email delivery unavailable');
   await database(env, `/rest/v1/maintenance_invites?id=eq.${invite.id}`, { service: true, method: 'PATCH', body: { email_sent_at: new Date().toISOString() } });
 }
-export default { fetch: handle };
+// Vercel supplies request context as the second argument, not environment variables.
+export default { fetch: request => handle(request, process.env) };
