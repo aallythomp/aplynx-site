@@ -231,11 +231,11 @@ create policy maintenance_file_insert on storage.objects for insert to authentic
 create policy maintenance_file_delete on storage.objects for delete to authenticated using(
  bucket_id='maintenance' and owner_id=auth.uid()::text and maintenance_file_access(name)
 );
-do $begin
+do $$begin
  if to_regprocedure('public.rls_auto_enable()') is not null then
    execute 'revoke execute on function public.rls_auto_enable() from public,anon,authenticated';
  end if;
-end$;
+end$$;
 create index if not exists maintenance_properties_owner_idx on public.maintenance_properties(owner_id);
 create index if not exists maintenance_properties_manager_idx on public.maintenance_properties(manager_id);
 create index if not exists maintenance_tenants_user_idx on public.maintenance_tenants(user_id);
