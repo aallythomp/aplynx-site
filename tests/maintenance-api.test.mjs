@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { handle } from '../api/maintenance.mjs';
+import portal, { handle } from '../api/maintenance.mjs';
 
 const id = '00000000-0000-0000-0000-000000000001';
 const env = { SUPABASE_URL: 'https://database.example', SUPABASE_ANON_KEY: 'public', SUPABASE_SERVICE_ROLE_KEY: 'private',
@@ -9,6 +9,20 @@ const env = { SUPABASE_URL: 'https://database.example', SUPABASE_ANON_KEY: 'publ
 const request = (input, token='tenant-token') => new Request('https://www.aplynxinvestments.com/api/maintenance', {
   method: 'POST', headers: token ? { authorization: `Bearer ${token}` } : {}, body: JSON.stringify(input) });
 const response = data => new Response(JSON.stringify(data));
+test('Vercel request context does not replace server environment settings', async () => {
+  const previous = { url: process.env.SUPABASE_URL, key: process.env.SUPABASE_ANON_KEY };
+  process.env.SUPABASE_URL = env.SUPABASE_URL;
+  process.env.SUPABASE_ANON_KEY = env.SUPABASE_ANON_KEY;
+  try {
+    const result = await portal.fetch(new Request('https://example.test/api/maintenance'), { waitUntil() {} });
+    assert.deepEqual(await result.json(), { ready: true, url: env.SUPABASE_URL, key: env.SUPABASE_ANON_KEY });
+  } finally {
+    if (previous.url === undefined) delete process.env.SUPABASE_URL;
+    else process.env.SUPABASE_URL = previous.url;
+    if (previous.key === undefined) delete process.env.SUPABASE_ANON_KEY;
+    else process.env.SUPABASE_ANON_KEY = previous.key;
+  }
+});
 test('public config never exposes server keys', async () => {
   const res = await handle(new Request('https://site/api/maintenance'), env);
   const body = await res.text(); assert.match(body, /public/); assert.doesNotMatch(body, /private|mail-secret|cron-secret/);
