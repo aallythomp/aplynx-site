@@ -7,7 +7,7 @@ async function database(env, path, { token, method = 'GET', body, service = fals
   const key = service ? env.SUPABASE_SERVICE_ROLE_KEY : env.SUPABASE_ANON_KEY;
   const response = await fetch(`${env.SUPABASE_URL}${path}`, {
     method, headers: { apikey: key, Authorization: `Bearer ${token || key}`,
-      'Content-Type': 'application/json', Prefer: 'return=minimal' },
+      'Content-Type': 'application/json', ...(method === 'PATCH' ? { Prefer: 'return=minimal' } : {}) },
     body: body === undefined ? undefined : JSON.stringify(body)
   });
   if (!response.ok) throw new Error('Database request failed');
