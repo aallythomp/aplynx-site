@@ -71,7 +71,7 @@ async function showThread(request) {
   const messages = check(await db.from('maintenance_messages').select('*').eq('request_id', request).order('created_at'));
   await loadProfiles([r.tenant_id, ...messages.map(m => m.author_id)]);
   const contact = profiles.get(r.tenant_id);
-  if (contact && isManager(p)) $('thread-detail').append(element('p', `Contact: ${contact.name} · ${contact.email}${contact.phone ? ' · ' + contact.phone : ''}`));
+  if (contact && isManager(p)) $('thread-detail').append(element('p', `Contact: ${contact.name} · ${contact.contact_email || contact.email}${contact.phone ? ' · ' + contact.phone : ''}`));
   $('messages').replaceChildren(...messages.map(m => {
     const item = element('article', undefined, 'message');
     item.append(element('small', `${m.author_id === user.id ? 'You' : profiles.get(m.author_id)?.name || 'Property contact'} · ${date(m.created_at)}`), element('p', m.body)); return item;
@@ -101,7 +101,7 @@ async function propertyView() {
     const contacts = check(await db.from('maintenance_tenants').select('user_id').eq('property_id', activeProperty.id));
     await loadProfiles(contacts.map(c => c.user_id));
     $('contacts').replaceChildren(element('h3', 'Property contacts'));
-    for (const c of contacts) { const p = profiles.get(c.user_id); $('contacts').append(element('p', p ? `${p.name} · ${p.email}${p.phone ? ' · ' + p.phone : ''}` : 'Contact details not saved yet', 'contact')); }
+    for (const c of contacts) { const p = profiles.get(c.user_id); $('contacts').append(element('p', p ? `${p.name} · ${p.contact_email || p.email}${p.phone ? ' · ' + p.phone : ''}` : 'Contact details not saved yet', 'contact')); }
   }
   await requestList();
 }
@@ -161,7 +161,7 @@ $('export').addEventListener('click', async () => {
   try {
     const rows = check(await db.from('maintenance_tenants').select('user_id').eq('property_id', activeProperty.id)); await loadProfiles(rows.map(r => r.user_id));
     const csv = v => '"' + String(v ?? '').replace(/^[=+@-]/, "'$&").replaceAll('"', '""') + '"';
-    const text = [['Property', 'Name', 'Email', 'Phone'], ...rows.map(r => [activeProperty.address, profiles.get(r.user_id)?.name || '', profiles.get(r.user_id)?.email || '', profiles.get(r.user_id)?.phone || ''])].map(row => row.map(csv).join(',')).join('\r\n');
+    const text = [['Property', 'Name', 'Email', 'Phone'], ...rows.map(r => [activeProperty.address, profiles.get(r.user_id)?.name || '', profiles.get(r.user_id)?.contact_email || profiles.get(r.user_id)?.email || '', profiles.get(r.user_id)?.phone || ''])].map(row => row.map(csv).join(',')).join('\r\n');
     const url = URL.createObjectURL(new Blob([text], { type: 'text/csv' })), link = element('a'); link.href = url; link.download = 'aplynx-property-contacts.csv'; link.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
   } catch (e) { notify(e.message); }
 });
