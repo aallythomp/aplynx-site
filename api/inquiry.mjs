@@ -21,27 +21,18 @@ export default async function handler(req,res){
  for(const [k,v] of limits)if(v.until<now)limits.delete(k);
  const quota=limits.get(ip)||{count:0,until:now+600000};if(++quota.count>15)return res.status(429).json({success:false,error:'Please wait before submitting again'});limits.set(ip,quota);
  let b,p;try{b=typeof req.body==='string'?JSON.parse(req.body):req.body;if(JSON.stringify(b).length>20000||b.botcheck)throw Error('Invalid inquiry');p=makeLead(b);}catch{return res.status(400).json({success:false,error:'Check your inquiry fields'});}
- const endpoint=process.env.CRM_LEAD_ENDPOINT,key=process.env.CRM_WEBSITE_LEAD_KEY,access=process.env.CRM_SITES_SERVICE_TOKEN,mailKey=process.env.WEB3FORMS_ACCESS_KEY;
- if(!endpoint||!key||!access||!mailKey)return res.status(503).json({success:false,error:'Inquiry service unavailable'});
+ const endpoint=process.env.CRM_LEAD_ENDPOINT,key=process.env.CRM_WEBSITE_LEAD_KEY,access=process.env.CRM_SITES_SERVICE_TOKEN;
+ if(!endpoint||!key||!access)return res.status(503).json({success:false,error:'Inquiry service unavailable'});
  // Fixed, allowlisted destination prevents credentials from reaching another host.
  if(endpoint!=='https://aplynx-client-hub.hands-on-cha-3500.chatgpt.site/api/leads')return res.status(503).json({success:false,error:'Inquiry service unavailable'});
  const headers={'Content-Type':'application/json',Authorization:'Bearer '+key,'OAI-Sites-Authorization':'Bearer '+access};
  const post=async(payload)=>{const r=await fetch(endpoint,{method:'POST',headers,body:JSON.stringify(payload),signal:AbortSignal.timeout(12000),redirect:'error'});const d=await r.json();if(!r.ok||!d.ok)throw Error('CRM delivery failed');return d;};
- let saved;try{saved=await post(p.lead);}catch{
- // Preserve the existing email notification even when CRM delivery is interrupted.
- try{await fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({access_key:mailKey,subject:p.subject+' | '+p.lead.name+' | '+p.lead.submission_id,from_name:'APLYNX Investments',name:p.lead.name,email:p.lead.email,message:'CRM delivery needs review. Reference: '+p.lead.submission_id+'\n'+p.lead.requirements,botcheck:''}),signal:AbortSignal.timeout(8000)});}catch{}
- return res.status(503).json({success:false,error:'CRM delivery could not be confirmed. Keep your answers and retry.'});
- }
  try{
- if(!saved.email_notified){
- const message=typeof b.message==='string'&&b.message.length<=16000?b.message:p.lead.requirements;
- const r=await fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify({access_key:mailKey,subject:p.subject+' | '+p.lead.name+' | '+p.lead.submission_id,from_name:p.kind==='listing-form'?'APLYNX Property Submissions':'APLYNX Investments',name:p.lead.name,email:p.lead.email,message,botcheck:''}),signal:AbortSignal.timeout(10000)});
- const d=await r.json();if(!r.ok||d.success!==true){console.error('Website notification rejected',{status:r.status,message:String(d.message||'').slice(0,250)});throw Error('Notification failed');}await post({action:'notification_received',submission_id:p.lead.submission_id});
- }
- // Read back the actual saved inquiry before reporting the connection as verified.
+ const saved=await post(p.lead);
+ if(b.action==='confirm_notification')await post({action:'notification_received',submission_id:p.lead.submission_id});
  const check=await fetch(endpoint+'?submission_id='+encodeURIComponent(p.lead.submission_id),{headers,signal:AbortSignal.timeout(8000),redirect:'error'});const result=await check.json();
  if(!check.ok||result.inquiry?.client_id!==saved.client_id)throw Error('CRM readback failed');
- await post({action:'verify_connection',submission_id:p.lead.submission_id});
- return res.status(200).json({success:true,reference:p.lead.submission_id});
- }catch(e){console.error('Website inquiry completion failed',{reason:String(e.message||'Unknown failure').slice(0,150)});return res.status(503).json({success:false,error:'Your inquiry is saved, but notification or verification needs a retry. Use the same reference.'});}
+ if(b.action==='confirm_notification')await post({action:'verify_connection',submission_id:p.lead.submission_id});
+ return res.status(200).json({success:true,reference:p.lead.submission_id,email_notified:!!result.inquiry.email_notified});
+ }catch(e){console.error('Website CRM delivery failed',{reason:String(e.message||'Unknown failure').slice(0,150)});return res.status(503).json({success:false,error:'CRM delivery could not be confirmed. Retry with the same reference.'});}
 }

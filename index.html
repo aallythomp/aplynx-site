@@ -530,6 +530,7 @@ body > #contact { padding-top:12px; }
 @media(prefers-reduced-motion:reduce) { .service-photo img { transition:none; } }
 
 </style>
+<script src="/assets/inquiry-delivery.js" defer></script>
 </head>
 
 <body>
@@ -1257,12 +1258,7 @@ async function submitInquiry(form, subject, lines, onSuccess) {
     if (form.dataset.inquiryFingerprint !== fingerprint) { form.dataset.inquiryReference = "APX-" + crypto.randomUUID(); form.dataset.inquiryDate = submittedAt; form.dataset.inquiryFingerprint = fingerprint; }
     const reference = form.dataset.inquiryReference;
     const emailField = form.querySelector('input[type="email"]');
-    const response = await fetch("/api/inquiry", {
-      method: "POST",
-      headers: { "Content-Type": "application/json", Accept: "application/json" },
-      signal: controller.signal,
-      body: JSON.stringify({ reference, submitted_at: form.dataset.inquiryDate, form_kind: form.id, lines, message: formatInquiryMessage(subject, lines, reference), botcheck: "" })
-    });
+    const response = await deliverWebsiteInquiry(form, { reference, submitted_at: form.dataset.inquiryDate, form_kind: form.id, lines, botcheck: "" }, { access_key: "d2516862-f49f-48dc-ab2b-f2e757be281e", subject: subject + " | " + fields.Name + " | " + reference, from_name: "APLYNX Investments", email: emailField.value.trim(), name: fields.Name, message: formatInquiryMessage(subject, lines, reference), botcheck: "" }, controller.signal);
     const result = await response.json();
     if (!response.ok || result.success !== true) throw new Error("Submission failed");
     form.reset();
