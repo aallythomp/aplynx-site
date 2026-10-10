@@ -1206,8 +1206,7 @@ function renderFernGallery() {
 document.getElementById("fern-prev").addEventListener("click", () => { fernPhotoIndex = (fernPhotoIndex - 1 + fernPhotos.length) % fernPhotos.length; renderFernGallery(); });
 document.getElementById("fern-next").addEventListener("click", () => { fernPhotoIndex = (fernPhotoIndex + 1) % fernPhotos.length; renderFernGallery(); });
 renderFernGallery();
-// Existing public form access key, intended for client-side use. See https://docs.web3forms.com/getting-started/faq
-const INQUIRY_ACCESS_KEY = "d2516862-f49f-48dc-ab2b-f2e757be281e";
+// Inquiries use the same-origin server bridge; credentials stay server-side.
 function formatInquiryMessage(subject, lines, reference) {
   const values = new Map(lines);
   const clean = value => String(value ?? "").trim().replace(/\r\n?/g, "\n");
@@ -1244,10 +1243,6 @@ async function submitInquiry(form, subject, lines, onSuccess) {
   }
   const spanish = document.documentElement.lang === "es" || document.querySelector("#home-lead-form .en").classList.contains("hide");
   const say = (en, es) => { status.textContent = spanish ? es : en; };
-  if (!INQUIRY_ACCESS_KEY) {
-    say("Online submission is being configured. Please call 470-374-4384 or email info@aplynxinvestments.com.", "Estamos configurando el envío. Llame al 470-374-4384 o escriba a info@aplynxinvestments.com.");
-    return;
-  }
   if (form.querySelector('[name="botcheck"]').checked) return;
   button.disabled = true;
   form.setAttribute("aria-busy", "true");
@@ -1256,17 +1251,22 @@ async function submitInquiry(form, subject, lines, onSuccess) {
   const timeout = setTimeout(() => controller.abort(), 20000);
   try {
     const fields = Object.fromEntries(lines);
-    const reference = "APX-" + (globalThis.crypto?.randomUUID?.() || Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 8));
+    const submittedAt = form.dataset.inquiryDate || new Date().toISOString();
+    lines = lines.map(([k,v]) => [k,k === "Acknowledged at" ? submittedAt : v]);
+    const fingerprint = JSON.stringify(lines);
+    if (form.dataset.inquiryFingerprint !== fingerprint) { form.dataset.inquiryReference = "APX-" + crypto.randomUUID(); form.dataset.inquiryDate = submittedAt; form.dataset.inquiryFingerprint = fingerprint; }
+    const reference = form.dataset.inquiryReference;
     const emailField = form.querySelector('input[type="email"]');
-    const response = await fetch("https://api.web3forms.com/submit", {
+    const response = await fetch("/api/inquiry", {
       method: "POST",
       headers: { "Content-Type": "application/json", Accept: "application/json" },
       signal: controller.signal,
-      body: JSON.stringify({ access_key: INQUIRY_ACCESS_KEY, subject: subject + " | " + fields.Name + " | " + reference, from_name: "APLYNX Investments", email: emailField.value.trim(), name: fields.Name, message: formatInquiryMessage(subject, lines, reference), botcheck: "" })
+      body: JSON.stringify({ reference, submitted_at: form.dataset.inquiryDate, form_kind: form.id, lines, message: formatInquiryMessage(subject, lines, reference), botcheck: "" })
     });
     const result = await response.json();
     if (!response.ok || result.success !== true) throw new Error("Submission failed");
     form.reset();
+    delete form.dataset.inquiryReference; delete form.dataset.inquiryDate; delete form.dataset.inquiryFingerprint;
     if (onSuccess) onSuccess();
     say("Your request was submitted successfully. Our team will follow up with you. A call or appointment is confirmed only after our team contacts you.", "Su solicitud se envió correctamente. Nuestro equipo se comunicará con usted. La llamada o cita se confirma después de que nuestro equipo le contacte.");
   } catch (error) {
