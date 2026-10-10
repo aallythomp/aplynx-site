@@ -36,12 +36,12 @@ export default async function handler(req,res){
  if(!saved.email_notified){
  const message=typeof b.message==='string'&&b.message.length<=16000?b.message:p.lead.requirements;
  const r=await fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify({access_key:mailKey,subject:p.subject+' | '+p.lead.name+' | '+p.lead.submission_id,from_name:p.kind==='listing-form'?'APLYNX Property Submissions':'APLYNX Investments',name:p.lead.name,email:p.lead.email,message,botcheck:''}),signal:AbortSignal.timeout(10000)});
- const d=await r.json();if(!r.ok||d.success!==true)throw Error('Notification failed');await post({action:'notification_received',submission_id:p.lead.submission_id});
+ const d=await r.json();if(!r.ok||d.success!==true){console.error('Website notification rejected',{status:r.status,message:String(d.message||'').slice(0,250)});throw Error('Notification failed');}await post({action:'notification_received',submission_id:p.lead.submission_id});
  }
  // Read back the actual saved inquiry before reporting the connection as verified.
  const check=await fetch(endpoint+'?submission_id='+encodeURIComponent(p.lead.submission_id),{headers,signal:AbortSignal.timeout(8000),redirect:'error'});const result=await check.json();
  if(!check.ok||result.inquiry?.client_id!==saved.client_id)throw Error('CRM readback failed');
  await post({action:'verify_connection',submission_id:p.lead.submission_id});
  return res.status(200).json({success:true,reference:p.lead.submission_id});
- }catch{return res.status(503).json({success:false,error:'Your inquiry is saved, but notification or verification needs a retry. Use the same reference.'});}
+ }catch(e){console.error('Website inquiry completion failed',{reason:String(e.message||'Unknown failure').slice(0,150)});return res.status(503).json({success:false,error:'Your inquiry is saved, but notification or verification needs a retry. Use the same reference.'});}
 }
