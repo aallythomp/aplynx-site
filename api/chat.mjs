@@ -1,11 +1,11 @@
 const SITE = 'https://www.aplynxinvestments.com';
-const EMAIL = 'allynsantiago.realtor@gmail.com';
-const PHONE = '(470) 374-4384';
+const EMAIL = 'info@aplynxinvestments.com';
+const PHONE = '(833) 393-1935';
 const IDX = 'https://members.smartapartmentdata.com/web-idx/9925ade4-ea93-492c-944e-57cab33712e7';
 const limits = new Map();
 
 const facts = `APLYNX Investments serves Greater Atlanta in English and Spanish. Allyn Santiago-Thompson helps with apartment searches, buying and selling homes, room rentals, and rental property management. Direct contact: ${PHONE}; ${EMAIL}. Real estate brokerage: Veribas Real Estate LLC, office (470) 688-0871.
-Apartment search: browse the public apartment search at ${IDX}. A participating-community search is free to the renter; a property may compensate the brokerage if the renter leases there. Broader custom search has a proposed $300 fee, subject to final written terms before paid work. It includes intake review, research, up to five options, availability checks where possible, and one follow-up round. No approval or placement guarantee. Property application fees, deposits, tours, and transportation are separate.
+Apartment search: start with the inquiry form at ${SITE}/#search-form. A valid email address is required before submitting a personalized search request and accessing the listings. A participating-community search is free to the renter; a property may compensate the brokerage if the renter leases there. No approval or placement guarantee. Property application fees, deposits, tours, and transportation are separate.
 1266 Fern Hill Drive, Lawrenceville, GA: individually furnished rooms in a shared house, not the whole house. Utilities and Wi-Fi are included. Ask Allyn which room is available and its current rent, deposit, and screening criteria. The site has a room application request form, after which Allyn sends current instructions. Do not invent availability, price, pet rules, or terms.
 Buyers and sellers: use the inquiry form in the Buy or Sell section or call Allyn. Property owners: use the Ask About Management link in the property management section. A brokerage relationship starts only with a separate written agreement. A third-party general Georgia residential lease template is linked in the lease section; it may need changes for a room rental.
 Visitors can request a property search call at ${SITE}/#book-search. Allyn will personally confirm a time; a request does not book an appointment.
@@ -20,8 +20,8 @@ function answerWithoutAI(question, spanish) {
     ? `1266 Fern Hill Drive ofrece habitaciones individuales en una casa compartida. Los servicios y Wi-Fi están incluidos. Allyn confirmará disponibilidad, renta y depósito. Use el formulario de habitaciones o llame al ${PHONE}.`
     : `1266 Fern Hill Drive offers individual furnished rooms in a shared house, with utilities and Wi-Fi included. Allyn can confirm current availability, rent, and deposit. Use the room request form or call ${PHONE}.`;
   if (/apartment|apartamento|apto|b[uú]squeda|search|300|fee|gratis|free/.test(q)) return spanish
-    ? `La búsqueda en comunidades participantes no tiene costo de búsqueda para usted; la búsqueda personalizada más amplia tiene una tarifa propuesta de $300, con condiciones por confirmar antes de comenzar. Explore apartamentos aquí: ${IDX}.`
-    : `A search of participating communities has no renter search fee. A broader custom search has a proposed $300 fee, with final terms confirmed before work begins. Browse apartments here: ${IDX}.`;
+    ? `La búsqueda en comunidades participantes no tiene tarifa de localización. Complete el formulario con un correo electrónico válido para recibir recomendaciones y acceder a los anuncios: ${SITE}/#search-form. Pueden aplicarse cargos de solicitud y depósitos.`
+    : `A search of participating communities has no renter search fee. Complete the form with a valid email address to receive recommendations and access the listings: ${SITE}/#search-form. Property application fees and deposits may apply.`;
   if (/buy|sell|comprar|vender|house|home|casa/.test(q)) return spanish
     ? `Allyn puede conversar sobre comprar o vender una casa. Complete el formulario de Comprar o Vender en ${SITE}/#buy-sell o llame al ${PHONE}.`
     : `Allyn can discuss buying or selling a home. Use the Buy or Sell inquiry form at ${SITE}/#buy-sell or call ${PHONE}.`;
