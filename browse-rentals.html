@@ -23,7 +23,7 @@ function render(){
   const card=document.createElement('article');card.className='listing';
   const add=(tag,value)=>{const el=document.createElement(tag);el.textContent=value;card.appendChild(el);return el;};
   if(Array.isArray(x.photo_urls)&&x.photo_urls.length){try{const u=new URL(x.photo_urls[0]);if(u.protocol==='https:'){const img=document.createElement('img');img.src=u.href;img.alt='Rental property photo';img.loading='lazy';card.appendChild(img)}}catch{}}
-  add('h3',x.property_type+' in '+x.city);add('p',money(x.monthly_rent)+' / month');add('p',(x.bedrooms??'—')+' beds · '+(x.bathrooms??'—')+' baths');if(x.available_on)add('p','Available '+x.available_on);
+  if(x.promotion_tier!=='basic')add('small',x.promotion_tier==='premium'?'Premium listing':'Featured listing');add('h3',x.property_type+' in '+x.city);add('p',money(x.monthly_rent)+' / month');add('p',(x.bedrooms??'—')+' beds · '+(x.bathrooms??'—')+' baths');if(x.available_on)add('p','Available '+x.available_on);
   if(x.description)add('p',x.description.length>220?x.description.slice(0,220)+'…':x.description);
   if(x.application_url){try{const u=new URL(x.application_url);if(u.protocol==='https:'){const a=document.createElement('a');a.className='btn';a.href=u.href;a.target='_blank';a.rel='noopener noreferrer';a.textContent='View application';card.appendChild(a)}}catch{}}
   results.appendChild(card);

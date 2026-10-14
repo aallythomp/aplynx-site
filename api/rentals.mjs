@@ -1,17 +1,6 @@
-// Public, read-only rental directory. Owner information is never returned.
-const expected='https://xobkinawxphmdcoaaxvs.supabase.co';
-export default async function handler(req,res){
- res.setHeader('Cache-Control','public, s-maxage=60, stale-while-revalidate=120');
- if(req.method!=='GET')return res.status(405).json({error:'Method not allowed'});
- const url=process.env.SUPABASE_URL?.replace(/\/$/,'');
- const key=process.env.SUPABASE_SERVICE_ROLE_KEY;
- if(url!==expected||!key)return res.status(503).json({error:'Rental directory unavailable'});
- try{
-  const upstream=await fetch(url+'/rest/v1/aplynx_public_rentals?select=id,property_type,city,state,postal_code,monthly_rent,deposit,bedrooms,bathrooms,available_on,description,photo_urls,application_url,published_at&order=published_at.desc&limit=100',{
-   headers:{apikey:key,Authorization:'Bearer '+key},signal:AbortSignal.timeout(8000)
-  });
-  if(!upstream.ok)throw Error('Database query failed');
-  const listings=await upstream.json();
-  return res.status(200).json({listings});
- }catch(e){console.error('Rental directory error',String(e.message).slice(0,100));return res.status(503).json({error:'Rental directory temporarily unavailable'});}
-}
+import {sb,signedPhoto} from '../lib/listings.mjs';
+export default async function handler(req,res){res.setHeader('Cache-Control','public, s-maxage=30, stale-while-revalidate=30');if(req.method!=='GET')return res.status(405).json({error:'GET required'});
+ try{const listings=await sb('/rest/v1/aplynx_public_rentals?select=*&order=published_at.desc&limit=100');const photos=listings.length?await sb('/rest/v1/rental_listing_photos?listing_id=in.('+listings.map(x=>x.id).join(',')+')&uploaded=eq.true&select=listing_id,object_path&order=created_at'):[];
+ const result=await Promise.all(listings.map(async x=>({...x,photo_urls:photos.some(p=>p.listing_id===x.id)?await Promise.all(photos.filter(p=>p.listing_id===x.id).map(p=>signedPhoto(p.object_path))):x.photo_urls})));
+ const rank={premium:2,featured:1,basic:0};result.sort((a,b)=>(rank[b.promotion_tier]||0)-(rank[a.promotion_tier]||0));return res.json({listings:req.query?.promoted==='premium'?result.filter(x=>x.promotion_tier==='premium'):result});
+ }catch{return res.status(503).json({error:'Rental directory temporarily unavailable'});}}

@@ -29,6 +29,10 @@ export default async function handler(req,res){
  const post=async(payload)=>{const r=await fetch(endpoint,{method:'POST',headers,body:JSON.stringify(payload),signal:AbortSignal.timeout(12000),redirect:'error'});const d=await r.json();if(!r.ok||!d.ok)throw Error('CRM delivery failed');return d;};
  try{
  const saved=await post(p.lead);
+ if(b.action==='send_notification'){
+ const previous=await fetch(endpoint+'?submission_id='+encodeURIComponent(p.lead.submission_id),{headers,signal:AbortSignal.timeout(8000),redirect:'error'});const state=await previous.json();if(!previous.ok)throw Error('Inquiry verification failed');
+ if(!state.inquiry?.email_notified){if(!process.env.WEB3FORMS_ACCESS_KEY)throw Error('Email notification unavailable');const mail=await fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({access_key:process.env.WEB3FORMS_ACCESS_KEY,subject:p.subject,from_name:'APLYNX Website',name:p.lead.name,email:p.lead.email,message:p.lead.requirements,botcheck:''}),signal:AbortSignal.timeout(12000)});const m=await mail.json();if(!mail.ok||m.success!==true)throw Error('Email notification failed');await post({action:'notification_received',submission_id:p.lead.submission_id});}
+ }
  if(b.action==='confirm_notification')await post({action:'notification_received',submission_id:p.lead.submission_id});
  const check=await fetch(endpoint+'?submission_id='+encodeURIComponent(p.lead.submission_id),{headers,signal:AbortSignal.timeout(8000),redirect:'error'});const result=await check.json();
  if(!check.ok||result.inquiry?.client_id!==saved.client_id)throw Error('CRM readback failed');
