@@ -1079,7 +1079,8 @@ function revealDestination(hash) {
   if (panel || hash === '#home' || hash === '#service-hub') {
     servicePanels.forEach(section => { section.hidden = section !== panel; });
     document.querySelectorAll('.service-photo').forEach(link => {
-      const destination = document.querySelector(link.getAttribute('href'));
+      const href = link.getAttribute('href') || '';
+      const destination = href.startsWith('#') ? document.querySelector(href) : null;
       if (panel && panel.contains(destination)) link.setAttribute('aria-current', 'true');
       else link.removeAttribute('aria-current');
     });
