@@ -2,6 +2,7 @@
 create schema if not exists aplynx_hub_private;
 revoke all on schema aplynx_hub_private from public,anon,authenticated;
 create table if not exists aplynx_hub_private.admins(user_id uuid primary key references auth.users(id));
+alter table aplynx_hub_private.admins enable row level security;
 insert into aplynx_hub_private.admins values ('890a102e-2878-4d2e-a1c0-08fee77c51ac'),('403cbbd9-8d74-4c0a-89da-a0fa1d04aa24') on conflict do nothing;
 create or replace function aplynx_hub_private.is_admin() returns boolean language sql stable security definer set search_path='' as $$select exists(select 1 from aplynx_hub_private.admins where user_id=auth.uid())$$;
 create table if not exists public.agent_hub_profiles(
@@ -90,7 +91,7 @@ begin
 end$$;
 create or replace function public.agent_hub_subscription(p_subscription jsonb) returns void language plpgsql security definer set search_path='' as $$
 declare uid uuid:=auth.uid();endpoint text:=p_subscription->>'endpoint';begin
- if uid is null then raise exception 'Sign in required.';end if;
+ if uid is null or not exists(select 1 from auth.users where id=uid and email_confirmed_at is not null) then raise exception 'Sign in with a verified email address.';end if;
  if endpoint !~ '^https://(fcm.googleapis.com/|updates.push.services.mozilla.com/|[a-zA-Z0-9.-]+\.push.apple.com/)' or length(endpoint)>2000 or length(p_subscription#>>'{keys,p256dh}') not between 40 and 200 or length(p_subscription#>>'{keys,auth}') not between 10 and 100 then raise exception 'Unsupported notification subscription.';end if;
  if exists(select 1 from public.agent_hub_push where agent_hub_push.endpoint=agent_hub_subscription.endpoint and user_id<>uid) then raise exception 'This browser is subscribed to another account. Unsubscribe first.';end if;
  if (select count(*) from public.agent_hub_push where user_id=uid)>=5 and not exists(select 1 from public.agent_hub_push where agent_hub_push.endpoint=agent_hub_subscription.endpoint and user_id=uid) then raise exception 'Device limit reached.';end if;
