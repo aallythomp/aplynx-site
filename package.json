@@ -1,0 +1,1 @@
+{"name":"aplynx-public-site","private":true,"type":"module","dependencies":{"web-push":"3.6.7"},"scripts":{"test:agent-hub":"node --test tests/agent-hub-api.test.mjs"}}
