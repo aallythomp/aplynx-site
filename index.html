@@ -534,6 +534,7 @@ body > #contact { padding-top:12px; }
 header#home{background:linear-gradient(90deg,rgba(8,24,43,.68),rgba(8,24,43,.22)),url("assets/georgia-apartments-hero.webp") center 38%/cover no-repeat;padding-bottom:32px;min-height:auto}
 .topbar{justify-content:space-between;align-items:center}.top-actions{display:flex;gap:16px;align-items:center}.list-property-button{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:52px;padding:15px 23px;border-radius:8px;background:#e3d4b8;color:#172c48;font-weight:700;font-size:1.05rem;box-shadow:0 4px 20px #0002}.list-property-button:hover{background:#f6e7c9}.hero-card{padding-top:35px}.hero-card h2{max-width:650px;text-shadow:0 2px 14px #0005}.hero-copy{max-width:620px;text-shadow:0 1px 6px #0008;font-size:1.12rem}.service-hub{margin-top:90px;grid-template-columns:repeat(3,minmax(0,1fr))}.service-photo,.service-photo:first-child,.service-photo:nth-child(2){grid-column:span 1;background:#142b43eb;backdrop-filter:blur(6px)}.service-photo img{height:125px}.service-photo.list-property-card{border:2px solid #e3d4b8;background:#e3d4b8;color:#172c48}.list-property-card small{color:#243c58}.card-action{display:block;margin-top:10px;font-weight:700}.hero-pricing,.broker-line{background:#102239db;max-width:none;padding:12px 16px;border-radius:8px}.hub-links a{background:#102239db;padding:0 12px;border-radius:6px}
 @media(max-width:600px){.top-actions{gap:8px;flex-wrap:wrap;justify-content:flex-end}.list-property-button{font-size:.95rem;padding:12px 14px;min-height:48px}.service-hub{margin-top:65px;grid-template-columns:repeat(2,minmax(0,1fr))}.service-photo:last-child{grid-column:span 1;display:block}.service-photo:last-child img{height:108px;min-height:0}.service-photo.list-property-card{grid-column:span 2;display:grid;grid-template-columns:110px 1fr}.list-property-card img{height:100%;min-height:130px}.brand-logo{width:66px}.hero-copy{font-size:1rem}}
+.maintenance-button{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:12px 18px;color:white;background:#142b43bd;border:1px solid #e3d4b8;border-radius:8px;font-weight:600}.maintenance-button:hover{background:#172c48}.top-actions{flex-wrap:wrap;justify-content:flex-end}@media(max-width:600px){.maintenance-button{font-size:.9rem;padding:10px 12px}.top-actions{max-width:250px;gap:8px}.topbar{gap:12px}}
 </style>
 <script src="/assets/inquiry-delivery.js" defer></script>
 </head>
@@ -543,7 +544,7 @@ header#home{background:linear-gradient(90deg,rgba(8,24,43,.68),rgba(8,24,43,.22)
 <header id="home">
   <div class="topbar">
     <a class="brand-link" href="/" aria-label="APLYNX Investments home"><img class="brand-logo" src="logo.png" alt="APLYNX Investments" width="1254" height="1254" fetchpriority="high"></a>
-    <nav class="top-actions" aria-label="Quick actions"><a class="list-property-button" href="/list-your-property.html"><span class="en">List Your Property</span><span class="es hide">Publique Su Propiedad</span><span aria-hidden="true"> ↗</span></a><button class="lang-btn" onclick="toggleLang()" id="langBtn">Español</button></nav>
+    <nav class="top-actions" aria-label="Quick actions"><a class="maintenance-button" href="/maintenance.html"><span class="en">Maintenance</span><span class="es hide">Mantenimiento</span></a><a class="list-property-button" href="/list-your-property.html"><span class="en">List Your Property</span><span class="es hide">Publique Su Propiedad</span><span aria-hidden="true"> ↗</span></a><button class="lang-btn" onclick="toggleLang()" id="langBtn">Español</button></nav>
   </div>
 
   <div class="hero-card">
@@ -564,6 +565,7 @@ header#home{background:linear-gradient(90deg,rgba(8,24,43,.68),rgba(8,24,43,.22)
       <a href="/about.html"><span class="en">About Us</span><span class="es hide">Sobre Nosotros</span></a>
       <a href="#buyer-intake"><span class="en">Buyer profile</span><span class="es hide">Perfil de comprador</span></a>
       <a href="#services"><span class="en">Lease services</span><span class="es hide">Servicios de contratos</span></a>
+      <a href="/maintenance.html"><span class="en">Maintenance portal</span><span class="es hide">Portal de mantenimiento</span></a>
       <a href="#plans"><span class="en">Owner tools</span><span class="es hide">Herramientas para propietarios</span></a>
     </nav>
     <p class="broker-line"><span data-i18n-en="Call APLYNX Investments:" data-i18n-es="Llame a APLYNX Investments:">Call APLYNX Investments:</span> <a href="tel:+18333931935">(833) 393-1935</a> · <span data-i18n-en="Real estate brokerage:" data-i18n-es="Correduría de bienes raíces:">Real estate brokerage:</span> <strong>Veribas Real Estate LLC</strong> · <span data-i18n-en="Office:" data-i18n-es="Oficina:">Office:</span> <a href="tel:+14706880871">(470) 688-0871</a></p>
@@ -742,7 +744,10 @@ header#home{background:linear-gradient(90deg,rgba(8,24,43,.68),rgba(8,24,43,.22)
 <section id="plans" class="section-muted"><details class="service-disclosure" open><summary><span class="en">Lease Help & Owner Tools</span><span class="es hide">Contratos y Herramientas</span></summary>
   <div class="container">
     <span class="eyebrow en">For Georgia rental owners</span><span class="eyebrow es hide">Para propietarios en Georgia</span>
-    <h2 class="en">Start with a Georgia residential lease</h2>
+    <h2 class="en">Tools for your rental property</h2><h2 class="es hide">Herramientas para su propiedad de alquiler</h2>
+    <p class="en">Open your private maintenance portal to report a repair, upload photos, and follow the request with your property owner or manager.</p><p class="es hide">Abra su portal privado para reportar una reparación, subir fotos y seguir la solicitud con su propietario o administrador.</p>
+    <a class="btn btn-dark" href="/maintenance.html"><span class="en">Open Maintenance Portal</span><span class="es hide">Abrir portal de mantenimiento</span> →</a>
+    <h3 class="en">Georgia lease resources</h3>
     <h2 class="es hide">Comience con un contrato residencial de Georgia</h2>
     <p class="en">Open a blank Georgia residential lease, complete the property and payment details, add any agreed special terms, and arrange for all parties to sign.</p>
     <p class="es hide">Abra un contrato residencial de Georgia, complete los datos de la propiedad y los pagos, añada las condiciones especiales acordadas y coordine las firmas de todas las partes.</p>
