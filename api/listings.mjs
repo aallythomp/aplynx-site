@@ -2,7 +2,7 @@ import {ORIGINS,sb,parseListing,owned,publicOwnerRow,signedPhoto} from '../lib/l
 const limits=new Map();
 export default async function handler(req,res){
  res.setHeader('Cache-Control','private, no-store');res.setHeader('Referrer-Policy','no-referrer');
- if(req.method!=='POST')return res.status(405).json({error:'POST required'});
+ if(req.method==='GET'){try{await sb('/rest/v1/rental_listings?select=id&limit=0');await sb('/storage/v1/bucket/aplynx-listing-photos');return res.json({ready:true});}catch{return res.status(503).json({ready:false,error:'Photo submissions are temporarily unavailable while our team completes the secure storage connection. Please call (833) 393-1935 for help.'});}}if(req.method!=='POST')return res.status(405).json({error:'POST required'});
  if(!ORIGINS.has(req.headers.origin))return res.status(403).json({error:'Invalid origin'});
  const ip=String(req.headers['x-forwarded-for']||'unknown').split(',')[0],now=Date.now();for(const [k,v]of limits)if(v.until<now)limits.delete(k);const q=limits.get(ip)||{n:0,until:now+600000};limits.set(ip,q);if(++q.n>60)return res.status(429).json({error:'Please wait before trying again'});
  try{const b=typeof req.body==='string'?JSON.parse(req.body):req.body;if(!b||JSON.stringify(b).length>15000||b.botcheck)throw Error('Invalid submission');

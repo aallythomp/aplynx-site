@@ -27,5 +27,5 @@ form.addEventListener('submit',async e=>{e.preventDefault();if(!form.reportValid
 document.getElementById('language').onclick=function(){document.documentElement.lang=es()?'en':'es';document.querySelectorAll('[data-en]').forEach(x=>x.textContent=x.dataset[es()?'es':'en']);this.textContent=es()?'English':'Español';refresh();};
 document.getElementById('view-submission').onclick=()=>{dialog.close();document.getElementById('submitted-listings').scrollIntoView({behavior:'smooth'});};
 document.getElementById('restore-submission').onsubmit=e=>{e.preventDefault();const f=e.currentTarget,access={id:f.elements.id.value.trim(),token:f.elements.token.value.trim()};if(!saved.some(x=>x.id===access.id)){saved.unshift(access);persist();}refresh();};
-refresh();
+const sendButton=form.querySelector('[type=submit]');sendButton.disabled=true;say('Checking photo submission availability…','Comprobando disponibilidad…');fetch('/api/listings').then(async r=>{const d=await r.json();if(!r.ok||!d.ready)throw Error(d.error||'Photo submissions are temporarily unavailable');sendButton.disabled=false;say('Upload your photos and submit for private review.','Suba sus fotos y envíe para revisión privada.');}).catch(e=>say(e.message));refresh();
 })();
