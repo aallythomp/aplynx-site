@@ -14,6 +14,8 @@ async function database(env, path, { token, method = 'GET', body, service = fals
   return response.status === 204 ? null : response.json();
 }
 
+const smsReady = env => Boolean(env.TWILIO_ACCOUNT_SID && env.TWILIO_AUTH_TOKEN && env.TWILIO_MESSAGING_SERVICE_SID && env.MAINTENANCE_SMS_ENABLED === 'true');
+
 async function deliver(env, item) {
   const url = new URL('/maintenance.html', env.MAINTENANCE_SITE_URL);
   if (item.request_id) url.searchParams.set('request', item.request_id);
@@ -31,9 +33,40 @@ async function deliver(env, item) {
   });
 }
 
+async function deliverText(env, item) {
+  if (!smsReady(env)) throw new Error('Text alerts are awaiting activation');
+  const claimed = await database(env, '/rest/v1/rpc/maintenance_claim_sms', {
+    service: true, method: 'POST', body: { p_notification: item.notification_id }
+  });
+  if (!claimed.length) return false;
+  const url = new URL('/maintenance.html', env.MAINTENANCE_SITE_URL);
+  url.searchParams.set('request', item.request_id);
+  const titles = { request: 'New maintenance request', message: 'New maintenance message', status: 'Maintenance status updated' };
+  // Keep private repair details and resident contact information out of lock-screen alerts.
+  const body = new URLSearchParams({ To: claimed[0].phone, MessagingServiceSid: env.TWILIO_MESSAGING_SERVICE_SID,
+    Body: `APLYNX: ${titles[item.kind] || 'Maintenance update'}. Sign in to view: ${url.href} Reply STOP to opt out; HELP for help.` });
+  let state = 'unknown', providerId = null;
+  try {
+    const result = await fetch(`https://api.twilio.com/2010-04-01/Accounts/${encodeURIComponent(env.TWILIO_ACCOUNT_SID)}/Messages.json`, {
+      method: 'POST', headers: { Authorization: 'Basic ' + Buffer.from(`${env.TWILIO_ACCOUNT_SID}:${env.TWILIO_AUTH_TOKEN}`).toString('base64'),
+        'Content-Type': 'application/x-www-form-urlencoded' }, body: body.toString(), signal: AbortSignal.timeout(10000)
+    });
+    // Ambiguous failures must not automatically send a duplicate paid text.
+    if (!result.ok) { state = result.status >= 500 ? 'unknown' : 'failed'; throw new Error('Text delivery unavailable'); }
+    const data = await result.json();
+    if (!data.sid) throw new Error('Text response could not be confirmed');
+    state = 'accepted'; providerId = data.sid;
+  } finally {
+    await database(env, `/rest/v1/maintenance_sms_deliveries?notification_id=eq.${item.notification_id}`, {
+      service: true, method: 'PATCH', body: { state, provider_id: providerId, updated_at: new Date().toISOString() }
+    });
+  }
+  return true;
+}
+
 export async function handle(request, env = process.env) {
   const config = Boolean(env.SUPABASE_URL && env.SUPABASE_ANON_KEY);
-  if (request.method === 'GET') return json({ ready: config, url: config ? env.SUPABASE_URL : null,
+  if (request.method === 'GET') return json({ ready: config, smsReady: smsReady(env), url: config ? env.SUPABASE_URL : null,
     key: config ? env.SUPABASE_ANON_KEY : null });
   if (request.method !== 'POST') return json({ error: 'Method not allowed' }, 405);
   if (!config || !env.SUPABASE_SERVICE_ROLE_KEY || !env.RESEND_API_KEY || !env.MAINTENANCE_FROM_EMAIL || !env.MAINTENANCE_SITE_URL)
@@ -64,17 +97,20 @@ export async function handle(request, env = process.env) {
         return json({ delivered: 1 });
       }
     }
-    const batch = await database(env, '/rest/v1/rpc/maintenance_email_batch', {
-      service: true, method: 'POST', body: { p_request: input.request || null, p_invite: input.invite || null }
+    const batch = await database(env, '/rest/v1/rpc/maintenance_alert_batch', {
+      service: true, method: 'POST', body: { p_request: input.request || null }
     });
-    let delivered = 0;
-    for (const item of batch) { await deliver(env, item); delivered++; }
+    let delivered = 0, pending = 0;
+    for (const item of batch) {
+      if (item.email_pending) { try { await deliver(env, item); delivered++; } catch { pending++; } }
+      if (item.sms_pending) { try { if (await deliverText(env, item)) delivered++; } catch { pending++; } }
+    }
     if (isCron) {
       const invites = await database(env, '/rest/v1/maintenance_invites?email_sent_at=is.null&accepted_at=is.null&expires_at=gt.' + encodeURIComponent(new Date().toISOString()) + '&limit=50', { service: true });
       for (const invite of invites) { await deliverInvite(env, invite); delivered++; }
     }
-    return json({ delivered });
-  } catch { return json({ error: 'Email alerts are pending. Your saved data remains available; delivery will be retried.' }, 502); }
+    return json({ delivered, pending }, pending ? 502 : 200);
+  } catch { return json({ error: 'Alerts are pending. Your saved data remains available in the portal.' }, 502); }
 }
 
 async function deliverInvite(env, invite) {

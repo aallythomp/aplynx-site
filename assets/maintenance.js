@@ -1,7 +1,7 @@
 import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.8/+esm';
 
 const $ = id => document.getElementById(id);
-let db, user, properties = [], activeProperty, activeRequest, profiles = new Map(), timer;
+let db, user, properties = [], activeProperty, activeRequest, profiles = new Map(), timer, textAlertsReady = false;
 const notify = text => { $('notice').textContent = text; };
 const check = result => { if (result.error) throw new Error(result.error.message); return result.data; };
 const rpc = async (name, args) => check(await db.rpc('maintenance_' + name, args));
@@ -22,8 +22,27 @@ async function alertEmail(input) {
     const session = check(await db.auth.getSession()).session;
     const res = await fetch('/api/maintenance', { method: 'POST', headers: { 'Content-Type': 'application/json',
       Authorization: 'Bearer ' + session.access_token }, body: JSON.stringify(input) });
-    if (!res.ok) notify('Saved in your private portal. Email delivery is pending; your owner or manager can still view it here.');
-  } catch { notify('Saved in your private portal. Email delivery is pending.'); }
+    if (!res.ok) notify('Saved in your private portal. Some selected alerts are pending; your owner or manager can still view the request here.');
+  } catch { notify('Saved in your private portal. Notification delivery is pending.'); }
+}
+
+function alertFields() {
+  const texting = $('alert-channel').value !== 'email';
+  $('sms-fields').hidden = !texting;
+  $('alert-phone').required = texting;
+  $('sms-consent').required = texting;
+}
+
+async function loadAlertPreferences() {
+  const rows = check(await db.from('maintenance_alert_preferences').select('channel,sms_phone,sms_consent_at').eq('user_id', user.id));
+  const p = rows[0];
+  $('alert-channel').value = p?.channel || 'email';
+  $('alert-phone').value = p?.sms_phone || '';
+  $('sms-consent').checked = Boolean(p?.sms_consent_at);
+  for (const option of $('alert-channel').options) option.disabled = option.value !== 'email' && !textAlertsReady;
+  $('alert-availability').textContent = textAlertsReady ? 'Email and text alerts are available.' : 'Email alerts are available now. Text and combined alerts will become available after Aplynx activates its texting service.';
+  $('saved-alert-preference').textContent = `Saved preference: ${{ email: 'Email', sms: 'Text message', both: 'Email and text message' }[p?.channel || 'email']}${p?.channel && p.channel !== 'email' && !textAlertsReady ? ' — text delivery is currently unavailable; choose email to receive email alerts.' : '.'}`;
+  alertFields();
 }
 
 function files(input) {
@@ -112,6 +131,7 @@ async function loadApp() {
   $('account-email').textContent = `Signed in as ${user.email}`;
   const profile = check(await db.from('maintenance_profiles').select('*').eq('id', user.id));
   $('name').value = profile[0]?.name || ''; $('phone').value = profile[0]?.phone || '';
+  await loadAlertPreferences();
   const admin = await rpc('is_admin', {}); $('admin-mode').hidden = !admin;
   const invites = check(await db.from('maintenance_invites').select('*').eq('email', user.email.toLowerCase()).is('accepted_at', null).gt('expires_at', new Date().toISOString()));
   $('invitations').hidden = !invites.length; $('invite-list').replaceChildren();
@@ -137,7 +157,14 @@ async function loadApp() {
 form('email-form', async () => { check(await db.auth.signInWithOtp({ email: $('email').value.trim() })); $('code-form').hidden = false; notify('Check your email for the sign-in code.'); });
 form('code-form', async () => { check(await db.auth.verifyOtp({ email: $('email').value.trim(), token: $('code').value.trim(), type: 'email' })); $('code').value = ''; notify('Signed in.'); await loadApp(); });
 form('profile-form', async () => { check(await db.from('maintenance_profiles').upsert({ id: user.id, email: user.email.toLowerCase(), name: $('name').value.trim(), phone: $('phone').value.trim(), updated_at: new Date().toISOString() })); notify('Contact information saved privately.'); });
-form('property-form', async () => { await rpc('create_property', { p_address: $('address').value, p_mode: $('new-mode').value }); $('address').value = ''; notify('Property added. You can now invite its tenants and owner.'); await loadApp(); });
+form('alert-form', async () => {
+  const channel = $('alert-channel').value;
+  if (channel !== 'email' && !textAlertsReady) throw new Error('Text alerts are not activated yet. Choose email for now.');
+  await rpc('save_alert_preferences', { p_channel: channel, p_phone: $('alert-phone').value, p_consent: $('sms-consent').checked });
+  await loadAlertPreferences(); notify('Your maintenance alert preference has been saved.');
+});
+$('alert-channel').addEventListener('change', alertFields);
+form('property-form', async () => { if (!$('property-authorized').checked) throw new Error('Confirm you are authorized to manage this property.'); await rpc('create_property', { p_address: $('address').value, p_mode: $('new-mode').value }); $('address').value = ''; $('property-authorized').checked = false; notify('Property added. You can now invite its residents.'); await loadApp(); });
 form('invite-form', async () => { const invite = await rpc('invite', { p_property: activeProperty.id, p_email: $('invite-email').value, p_role: $('invite-role').value }); $('invite-email').value = ''; notify('Invitation saved.'); await alertEmail({ invite }); });
 form('mode-form', async () => { await rpc('set_mode', { p_property: activeProperty.id, p_mode: $('mode').value }); notify('Request routing updated.'); await loadApp(); });
 form('request-form', async () => {
@@ -168,6 +195,7 @@ $('export').addEventListener('click', async () => {
 try {
   const res = await fetch('/api/maintenance'); if (!res.ok) throw new Error('Portal configuration unavailable');
   const config = await res.json();
+  textAlertsReady = config.smsReady === true;
   if (!config.ready) $('setup').hidden = false;
   else { db = createClient(config.url, config.key); await loadApp(); }
 } catch { $('setup').hidden = false; }
