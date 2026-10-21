@@ -545,7 +545,7 @@ header#home{background:linear-gradient(90deg,rgba(8,24,43,.68),rgba(8,24,43,.22)
 <header id="home">
   <div class="topbar">
     <a class="brand-link" href="/" aria-label="APLYNX Investments home"><img class="brand-logo" src="logo.png" alt="APLYNX Investments" width="1254" height="1254" fetchpriority="high"></a>
-    <nav class="top-actions" aria-label="Quick actions"><a class="maintenance-button" href="/browse-rentals.html"><span class="en">Homes for Rent</span><span class="es hide">Casas en alquiler</span></a><a class="maintenance-button" href="/agent-hub.html"><span class="en">Agent Hub</span><span class="es hide">Centro de agentes</span></a><a class="maintenance-button" href="/maintenance.html"><span class="en">Maintenance</span><span class="es hide">Mantenimiento</span></a><a class="list-property-button" href="/list-your-property.html"><span class="en">List Your Property</span><span class="es hide">Publique Su Propiedad</span><span aria-hidden="true"> ↗</span></a><button class="lang-btn" onclick="toggleLang()" id="langBtn">Español</button></nav>
+    <nav class="top-actions" aria-label="Quick actions"><a class="maintenance-button" href="/atlanta-apartment-locator.html"><span class="en">Apartment Search</span><span class="es hide">Buscar apartamentos</span></a><a class="maintenance-button" href="/browse-rentals.html"><span class="en">Homes for Rent</span><span class="es hide">Casas en alquiler</span></a><a class="maintenance-button" href="/agent-hub.html"><span class="en">Agent Hub</span><span class="es hide">Centro de agentes</span></a><a class="maintenance-button" href="/maintenance.html"><span class="en">Maintenance</span><span class="es hide">Mantenimiento</span></a><a class="list-property-button" href="/list-your-property.html"><span class="en">List Your Property</span><span class="es hide">Publique Su Propiedad</span><span aria-hidden="true"> ↗</span></a><button class="lang-btn" onclick="toggleLang()" id="langBtn">Español</button></nav>
   </div>
 
   <div class="hero-card">
@@ -584,8 +584,8 @@ header#home{background:linear-gradient(90deg,rgba(8,24,43,.68),rgba(8,24,43,.22)
       <h2 class="es hide">Búsqueda de apartamentos GRATIS</h2>
       <p class="en">Start with participating communities at no search cost to you. Share your budget, area, and move date so I can help narrow your options.</p>
       <p class="es hide">Empiece en comunidades participantes sin tarifa de búsqueda. Comparta su presupuesto, zona y fecha de mudanza para ayudarle a elegir opciones.</p>
-      <a class="btn btn-light en" href="#search-form">Browse Atlanta apartments</a>
-      <a class="btn btn-light es hide" href="#search-form">Ver apartamentos en Atlanta</a>
+      <a class="btn btn-light en" href="https://members.smartapartmentdata.com/web-idx/9925ade4-ea93-492c-944e-57cab33712e7" target="_blank" rel="noopener noreferrer">Search Apartment Listings ↗</a>
+      <a class="btn btn-light es hide" href="https://members.smartapartmentdata.com/web-idx/9925ade4-ea93-492c-944e-57cab33712e7" target="_blank" rel="noopener noreferrer">Buscar apartamentos ↗</a>
       <div class="listing">
         <div class="free-price"><span class="en">FREE</span><span class="es hide">GRATIS</span></div>
         <p class="en"><strong>Participating communities.</strong> No search fee for you. A participating property may pay my brokerage if you lease there. Availability and property screening criteria apply.</p>
@@ -594,7 +594,7 @@ header#home{background:linear-gradient(90deg,rgba(8,24,43,.68),rgba(8,24,43,.22)
       </div>
     </div>
     <div class="intake-card">
-      <h3 class="en">Tell Us What You’re Looking For</h3><h3 class="es hide">Cuéntenos Qué Busca</h3><p class="en">Share your search details, then browse apartments. Our team will review your request and contact you with next steps.</p><p class="es hide">Comparta lo que busca y luego explore apartamentos. Nuestro equipo revisará su solicitud y se comunicará con los próximos pasos.</p>
+      <h3 class="en">Tell Us What You’re Looking For</h3><h3 class="es hide">Cuéntenos Qué Busca</h3><p class="en">Browse apartment listings directly, or request personalized help below. Our team will review your request and contact you with next steps.</p><p class="es hide">Explore los apartamentos directamente o solicite ayuda personalizada abajo. Nuestro equipo revisará su solicitud y se comunicará con los próximos pasos.</p>
       <details class="form-disclosure"><summary><span class="en">Request help with my search</span><span class="es hide">Solicitar ayuda con mi búsqueda</span></summary><form id="search-form">
       <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
         <div class="field"><label for="s-path" data-i18n-en="How would you like me to search?" data-i18n-es="¿Cómo desea que busque?">How would you like me to search?</label>
@@ -1129,20 +1129,12 @@ function setChatAnswer(bubble, message) {
       if (url.protocol === 'https:' && ['www.aplynxinvestments.com', 'aplynxinvestments.com', 'members.smartapartmentdata.com'].includes(url.hostname)) {
         const link = document.createElement('a');
         const apartmentLink = url.hostname === 'members.smartapartmentdata.com';
-        link.href = apartmentLink ? '#search-form' : url.href;
+        link.href = apartmentLink ? 'https://members.smartapartmentdata.com/web-idx/9925ade4-ea93-492c-944e-57cab33712e7' : url.href;
         link.textContent = apartmentLink
-          ? (chatIsSpanish() ? 'Comenzar mi búsqueda' : 'Start my apartment search')
+          ? (chatIsSpanish() ? 'Buscar apartamentos' : 'Search apartment listings')
           : address;
-        if (apartmentLink) {
-          link.addEventListener('click', () => {
-            chatPanel.hidden = true;
-            chatLaunch.setAttribute('aria-expanded', 'false');
-            revealDestination('#search-form');
-          });
-        } else {
-          link.target = '_blank';
-          link.rel = 'noopener noreferrer';
-        }
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
         parts.push(link);
       } else parts.push(document.createTextNode(address));
     } catch { parts.push(document.createTextNode(address)); }
