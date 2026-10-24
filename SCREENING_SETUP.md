@@ -48,3 +48,12 @@ https://tenant.checkr.com/developers .
 - Checkr Settings requires sign-in in the task browser.
 
 Tests: `node --test tests/screening.test.mjs`.
+
+
+## Verified October 23, 2026
+- Supabase migration successfully applied: public.rental_screening_payments and public.rental_screening_webhook_events. Both confirmed RLS-enabled.
+- Checkr webhook receiver now verifies requests and inserts idempotent, non-sensitive event identifiers; returns 503 on storage failure.
+- Test cases added for HMAC verification and replay-window rejection. Test execution has not yet been verified.
+- Vercel Preview deployed the Checkr persistence update. Customer checkout stays disabled.
+- Remaining external requirements: Checkr test webhook signing secret, provider-confirmed signature/test-event delivery, live API approval/key, production Stripe authorization and webhook secret, legal review of the proposed $79 charge, and signed end-to-end payment/screening tests.
+- WARNING: CHECKR_TEST_API_KEY still also exists in the Production environment. The connector declined editing its target to Preview because a Preview entry already exists. Remove the Production-scoped test key through Vercel before going live; do not use it for production orders.
