@@ -1,0 +1,10 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {createHmac} from 'node:crypto';
+import {verifyTenantSignature} from '../api/checkr-tenant-webhook.mjs';
+const now=1792806000, body=Buffer.from(JSON.stringify({object:'event',id:'evt_example',type:'report.completed'})), secret='test-only-fixture';
+const sign=(ts,payload=body)=>'t='+ts+',v1='+createHmac('sha256',secret).update(ts+'.').update(payload).digest('hex');
+test('accepts valid signed body',()=>assert.equal(verifyTenantSignature(body,sign(now),secret,now),true));
+test('rejects modified payload',()=>assert.equal(verifyTenantSignature(Buffer.from('{}'),sign(now),secret,now),false));
+test('rejects old signatures and wrong key',()=>{assert.equal(verifyTenantSignature(body,sign(now-301),secret,now),false);assert.equal(verifyTenantSignature(body,sign(now),'wrong-key',now),false)});
+test('rejects malformed signature',()=>assert.equal(verifyTenantSignature(body,'bad',secret,now),false));
