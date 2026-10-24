@@ -1,4 +1,5 @@
 import {createHmac, timingSafeEqual} from 'node:crypto';
+import {sb} from '../lib/listings.mjs';
 
 // Checkr Tenant's Tenant-Signature uses HMAC-SHA256 over timestamp.rawBody.
 // This endpoint intentionally fails closed until a signing secret and durable
@@ -32,7 +33,21 @@ export default async function handler(req,res){
   try{event=JSON.parse(raw.toString('utf8'));}catch{return res.status(400).end();}
   if(event?.object!=='event'||!/^evt_[\w-]+$/.test(event?.id||'')||typeof event?.type!=='string')
     return res.status(400).end();
-  // Never acknowledge until events can be durably recorded with a unique
-  // event id. Checkr retries non-2xx responses. No PII or reports logged.
-  return res.status(503).json({error:'Event persistence not configured'});
+  // Record only non-sensitive identifiers; event ID is unique, making retries safe.
+  // A database failure returns 503 so Checkr can retry delivery.
+  const occurred=event.created_at || event.createdAt || event.created;
+  const when=occurred ? new Date(typeof occurred==='number' ? occurred*1000 : occurred) : new Date();
+  if(Number.isNaN(when.valueOf()))return res.status(400).end();
+  const resource=event.data?.object || {};
+  try{
+    await sb('/rest/v1/rental_screening_webhook_events?on_conflict=checkr_event_id',{
+      method:'POST',headers:{Prefer:'resolution=ignore-duplicates'},body:{
+        checkr_event_id:event.id,event_type:event.type.slice(0,120),
+        checkr_order_id:typeof resource.order_id==='string'?resource.order_id.slice(0,160):null,
+        resource_id:typeof resource.id==='string'?resource.id.slice(0,160):null,
+        occurred_at:when.toISOString(),environment:'test'
+      }
+    });
+    return res.status(200).json({received:true});
+  }catch{return res.status(503).json({error:'Webhook persistence unavailable'});}
 }
