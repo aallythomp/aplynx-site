@@ -27,7 +27,7 @@ export default async function handler(req,res){
     for await(const c of req){length+=c.length;if(length>262144) return res.status(413).end();chunks.push(c);}
     raw=Buffer.concat(chunks);
   }catch{return res.status(400).end();}
-  if(!verifyTenantSignature(raw,req.headers['tenant-signature'],process.env.CHECKR_TEST_WEBHOOK_SECRET))
+  // Checkr dashboard sends an unsigned, empty-body connectivity probe.\n  if(raw.length===0 && !req.headers['tenant-signature'] && req.headers['user-agent']==='CheckrTenant/1')return res.status(204).end();\n  if(!verifyTenantSignature(raw,req.headers['tenant-signature'],process.env.CHECKR_TEST_WEBHOOK_SECRET))
     return res.status(401).json({error:'Invalid signature'});
   let event;
   try{event=JSON.parse(raw.toString('utf8'));}catch{return res.status(400).end();}
@@ -38,7 +38,7 @@ export default async function handler(req,res){
   const occurred=event.created_at || event.createdAt || event.created;
   const when=occurred ? new Date(typeof occurred==='number' ? occurred*1000 : occurred) : new Date();
   if(Number.isNaN(when.valueOf()))return res.status(400).end();
-  const resource=event.data?.object || {};
+  // Checkr event data is a flat {id,order_id} envelope, not data.object.\n  const resource=event.data || {};
   try{
     await sb('/rest/v1/rental_screening_webhook_events?on_conflict=checkr_event_id',{
       method:'POST',headers:{Prefer:'resolution=ignore-duplicates'},body:{
