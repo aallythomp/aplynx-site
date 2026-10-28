@@ -1,7 +1,9 @@
--- TEST STAGING ONLY. Apply to a separate test database; never copy real applicants.
-create table public.screening_applications (
+-- TEST STAGING ONLY. Apply to a existing APLYNX database; this table is reserved for synthetic tests; never copy real applicants.
+create table public.screening_test_applications (
  id uuid primary key,
  token_hash text not null,
+ payment_reference text not null,
+ stripe_payment_link_id text not null,
  applicant jsonb not null,
  property jsonb not null,
  amount_cents integer not null check (amount_cents = 7900),
@@ -18,7 +20,17 @@ create table public.screening_applications (
  paid_at timestamptz,
  created_at timestamptz not null default now()
 );
-alter table public.screening_applications enable row level security;
-revoke all on public.screening_applications from public, anon, authenticated;
-grant select,insert,update on public.screening_applications to service_role;
+alter table public.screening_test_applications enable row level security;
+revoke all on public.screening_test_applications from public, anon, authenticated;
+grant select,insert,update on public.screening_test_applications to service_role;
 -- No browser table access; Vercel checks administrator sessions or invitation tokens.
+
+create table public.screening_test_payment_reviews (
+ application_id uuid references public.screening_test_applications(id),
+ stripe_session_id text primary key,
+ reason text not null,
+ created_at timestamptz not null default now()
+);
+alter table public.screening_test_payment_reviews enable row level security;
+revoke all on public.screening_test_payment_reviews from public,anon,authenticated;
+grant select,insert on public.screening_test_payment_reviews to service_role;
