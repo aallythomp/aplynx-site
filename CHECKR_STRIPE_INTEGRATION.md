@@ -35,3 +35,62 @@ Status: TEST STAGING ONLY. DO NOT ENABLE LIVE CUSTOMER CHECKOUT.
 - Validate Georgia + Powder Springs local application fee rules and fair housing practices.
 
 Official docs: https://tenant.checkr.com/developers , https://tenant.checkr.com/resources/faq
+
+## Implementation updated October 28, 2026
+
+A $79 Stripe SANDBOX Payment Link is configured for the single-payment flow.
+Stripe's signed paid event is the only trigger for a business-paid Checkr Essential
+test order. Sensitive identity information is entered directly with Checkr.
+No live payments or live screening orders are enabled.
+
+Runtime flags and credentials are stored in Vercel. All Checkr calls require a
+`ckr_sk_test_` key. The payment link must be a Stripe `/test_` URL. A separate
+admin Bearer token protects test invitations, connection tests and status polling.
+No credentials are included in source or browser JavaScript.
+
+The synthetic test ledger is `screening_test_applications`, isolated from real
+client records in the existing Supabase project. RLS is enabled; anonymous and
+signed-in visitors have no direct access. The server uses the existing service
+role. `screening_test_payment_reviews` tracks extra paid test sessions requiring
+review. No raw reports, SSNs or DOBs are persisted.
+
+Public page: `/rental-screening.html` displays the planned $79 price and clearly
+states real payments are not yet open. Private test page: `/screening-payment.html`.
+Invitation tokens are in the fragment and removed from browser history on load.
+
+Configuration (server only):
+- CHECKR_TEST_API_KEY
+- SCREENING_TEST_ENABLED=true
+- SCREENING_TEST_SITE_URL=https://www.aplynxinvestments.com
+- STRIPE_SCREENING_TEST_PAYMENT_URL
+- STRIPE_SCREENING_TEST_LINK_ID
+- STRIPE_SCREENING_TEST_WEBHOOK_SECRET
+- SCREENING_TEST_ADMIN_TOKEN
+- Existing SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY
+
+`POST /api/screening-test` requires an Origin matching the configured site.
+Staff requests also require the test admin Bearer token. Staff actions:
+- `connectivity`: Checkr test API authentication check, no order.
+- `smoke`: one synthetic Essential order; returns only its id and status.
+- `invite`: applicant first_name,last_name,email; Georgia property street,city,
+  state,zipcode,unit; availability_confirmed,fee_rules_reviewed,own_organization
+  must all be true. Returns a private test checkout link.
+- `refresh`: application UUID to poll the order and save report product statuses.
+
+The applicant follows the invitation, reviews terms, and visits Stripe's sandbox
+checkout. A signed successful payment with the correct amount, currency, link id
+and private application reference claims the test row atomically before ordering.
+Checkr test mode does not replay idempotency keys. Ambiguous failures enter
+`needs_review` and are never blindly retried. `consider` requires human review;
+no automatic approval or denial exists.
+
+Tests: `node --test tests/screening.test.mjs tests/listings.test.mjs`.
+Additional provider smoke script: `node scripts/checkr-smoke-test.mjs` after saving
+a new test key locally (never put the key in chat). End-to-end payment, failed
+payment, refund/reconciliation and provider testing are required before going live.
+
+Live launch requires a connected live Stripe account, Checkr live access and
+organization billing, final fee/refund disclosures, availability checks, controlled
+report access and monitored reconciliation. This implementation deliberately uses
+only sandbox payments and Checkr test keys. Testing on the production hostname
+does not make payments live. Do not swap in a live key to enable this test code.
