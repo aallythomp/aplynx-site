@@ -10,9 +10,14 @@ export default async function handler(req,res){
   if(req.method!=='POST')return res.status(405).json({error:'POST required'});
   if(req.headers.origin!==cfg.origin)return res.status(403).json({error:'Invalid origin'});
   const b=req.body||{};
-  if(['invite','refresh','connectivity','smoke'].includes(b.action)){
+  if(['invite','refresh','connectivity','smoke','order_status'].includes(b.action)){
    const expected=process.env.SCREENING_TEST_ADMIN_TOKEN,actual=String(req.headers.authorization||'').replace(/^Bearer /,'');
    if(!expected||expected.length<32||actual.length!==expected.length||!timingSafeEqual(Buffer.from(actual),Buffer.from(expected)))return res.status(401).json({error:'Administrator sign-in required'});
+   if(b.action==='order_status'){
+    if(typeof b.order_id!=='string'||!/^ord_test_[A-Za-z0-9_-]+$/.test(b.order_id))return res.status(400).json({error:'Valid test order ID required'});
+    const order=await new CheckrTenant().status(b.order_id);
+    return res.json({order_id:order.id,status:order.status,live_mode:false});
+   }
    if(b.action==='connectivity'){await new CheckrTenant().request('/orders?per_page=1');return res.json({connected:true,mode:'test'});}
    if(b.action==='smoke'){
     const client=new CheckrTenant();const o=await client.request('/orders',{method:'POST',idempotencyKey:randomBytes(16).toString('hex'),body:{order:{package:'essential',payer:'organization',property:{street:'1 Market St',city:'San Francisco',state:'CA',zipcode:'94105'},applicant:{first_name:'Herbert',last_name:'Humphrey',email:'herbert.humphrey@example.com',dob:'1996-04-27',ssn:'111-11-1111'}}}});
