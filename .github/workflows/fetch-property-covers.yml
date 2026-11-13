@@ -1,0 +1,107 @@
+name: Fetch approved property cover photos
+on:
+  push:
+    paths:
+      - '.github/workflows/fetch-property-covers.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install requests beautifulsoup4 pillow
+      - name: Match and save address-specific photos
+        shell: bash
+        run: |
+          python - <<'PY'
+          import os,re,io,time,html as h,requests
+          from PIL import Image
+          from bs4 import BeautifulSoup
+          from urllib.parse import urljoin,urlparse
+          sources = {
+            "654 Ladora Drive": ["https://www.mackreynolds.com/homes-for-sale/654-Ladora-Drive-Dallas-GA-30157-437516761","https://movewithmomentum.com/listings/idx-gamls/654-ladora-drive-dallas"],
+            "9450 Pebble Creek Court":["https://www.georgiamls.com/9450-pebble-creek-court-villa-rica-ga-30180/10757184"],
+            "70 S Beckman Court S":["https://www.mackreynolds.com/homes-for-sale/70-S-Beckman-Court-Dallas-GA-30132-434874027"],
+            "434 Hunt Creek Drive":["https://hollidayrealtors.com/homes-for-sale/434-Hunt-Creek-Drive-Acworth-GA-30101-428489816"],
+            "3801 Stonewall Drive":["https://movewithmomentum.com/listings/idx-gamls/3801-stonewall-drive-kennesaw","https://www.coldwellbankerhomes.com/ga/kennesaw/3801-stonewall-dr/pid_69759550/"],
+            "5012 Serenity Point Lane":["https://www.crye-leike.com/p/5012-Serenity-Point-Lane-Villa-Rica-GA-30180/dmgid_188888333","https://movewithmomentum.com/listings/idx-gamls/5012-serenity-point-lane-villa-rica"],
+            "330 Peach Crossing Drive":["https://www.zillow.com/homedetails/330-Peach-Crossing-Dr-Dallas-GA-30132/237702190_zpid/"],
+            "228 Stephens Mill Drive":["https://www.mackreynolds.com/homes-for-sale/228-Stephens-Mill-Drive-Dallas-GA-30157-432787826"],
+            "4423 Turnberry Court":["https://www.coldwellbankerhomes.com/ga/douglasville/4423-turnberry-ct/pid_72300119/"],
+            "6061 Ridge Way":["https://www.coldwellbankerhomes.com/ga/douglasville/6061-ridge-way/pid_71422395/"],
+            "383 Robin Hood Drive":["https://www.innovateonline.com/tinadamato/homes-for-sale/383-Robin-Hood-Drive-Douglasville-GA-30134-436011565","https://movewithmomentum.com/listings/idx-gamls/383-robin-hood-drive-douglasville"],
+            "51 Bridgemill Run":["https://www.mackreynolds.com/homes-for-sale/51-Bridgemill-Run-Douglasville-GA-30134-427767310","https://movewithmomentum.com/listings/idx-gamls/51-bridgemill-run-douglasville"],
+            "252 Bridge Place":["https://www.mackreynolds.com/homes-for-sale/252-Bridge-Place-Douglasville-GA-30134-429195732","https://movewithmomentum.com/listings/idx-gamls/252-bridge-place-douglasville"],
+          }
+          session=requests.Session()
+          session.headers.update({"User-Agent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/130.0 Safari/537.36", "Accept-Language":"en-US,en;q=0.9"})
+          page=open("homes-for-sale.html",encoding="utf-8").read()
+          os.makedirs("assets/property-covers",exist_ok=True)
+          count=0
+          for name, urls in sources.items():
+            slug=re.sub(r'[^a-z0-9]+','-',name.lower()).strip('-')
+            photo_path=f"assets/property-covers/{slug}.jpg"
+            if os.path.isfile(photo_path):
+              continue
+            success=False
+            for url in urls:
+              try:
+                resp=session.get(url,timeout=15)
+                if resp.status_code!=200: print(name,"page HTTP",resp.status_code); continue
+                if name.lower().split()[0] not in resp.text.lower(): continue
+                soup=BeautifulSoup(resp.text,"html.parser")
+                candidates=[]
+                for key in ("og:image","og:image:secure_url","twitter:image"):
+                  for m in soup.find_all("meta",attrs={"property":key})+soup.find_all("meta",attrs={"name":key}):
+                    if m.get("content"):candidates.append(urljoin(url,h.unescape(m["content"])))
+                for img in soup.select("img"):
+                  alt=img.get("alt","").lower()
+                  if name.lower() in alt or ("photo 1" in alt and name.lower().split()[0] in alt):
+                    for attr in ("data-src","src","data-lazy-src"):
+                      if img.get(attr): candidates.append(urljoin(url,h.unescape(img[attr])))
+                for img_url in dict.fromkeys(candidates):
+                  try:
+                    if urlparse(img_url).scheme not in ("https","http"):continue
+                    response=session.get(img_url,timeout=15)
+                    if response.status_code!=200 or len(response.content)<6000 or len(response.content)>9000000:continue
+                    image=Image.open(io.BytesIO(response.content))
+                    if image.width<420 or image.height<280:continue
+                    image.thumbnail((1200,900),Image.Resampling.LANCZOS)
+                    image.convert("RGB").save(photo_path,"JPEG",quality=83,optimize=True)
+                    success=True
+                    print("FOUND",name,photo_path,image.width,image.height,img_url)
+                    break
+                  except Exception as ex:print("photo skip",name,str(ex)[:100])
+                if success:break
+              except Exception as ex:print("page skip",name,str(ex)[:100])
+            if not success:
+              print("MISSING",name)
+              continue
+            imgurl="/"+photo_path
+            pattern=r'(<h2>'+re.escape(name)+r'</h2>[\s\S]*?<div class="property-media">)([\s\S]*?)(</div><div class="price">)'
+            m=re.search(pattern,page)
+            if m and 'photo-placeholder' in m.group(2):
+              inner=re.sub(r'<div class="photo-placeholder">[\s\S]*?</div>', f'<button type="button" class="photo-launch" data-fullimage="{imgurl}" data-photoaddress="{h.escape(name)}"><img loading="lazy" alt="Front exterior of {h.escape(name)}" src="{imgurl}"><span class="photo-overlay">Click to enlarge</span></button>',m.group(2),count=1)
+              page=page[:m.start(2)]+inner+page[m.end(2):]
+              count+=1
+          open("homes-for-sale.html","w",encoding="utf-8").write(page)
+          print("New images embedded:",count)
+          PY
+      - name: Commit completed photo covers
+        run: |
+          git config user.name "APLYNX Website Photos"
+          git config user.email "actions@users.noreply.github.com"
+          git add assets/property-covers homes-for-sale.html
+          if ! git diff --cached --quiet; then
+            git commit -m "Add address-matched approved property cover photos"
+            git push
+          else
+            echo "No new property photographs retrieved"
+          fi
