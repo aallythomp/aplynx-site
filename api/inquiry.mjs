@@ -37,6 +37,18 @@ export default async function handler(req,res){
  const check=await fetch(endpoint+'?submission_id='+encodeURIComponent(p.lead.submission_id),{headers,signal:AbortSignal.timeout(8000),redirect:'error'});const result=await check.json();
  if(!check.ok||result.inquiry?.client_id!==saved.client_id)throw Error('CRM readback failed');
  if(b.action==='confirm_notification')await post({action:'verify_connection',submission_id:p.lead.submission_id});
- return res.status(200).json({success:true,reference:p.lead.submission_id,email_notified:!!result.inquiry.email_notified});
+ let auto_reply_sent=false;
+ if(b.action==='confirm_notification'&&p.kind==='aplynx-property-lead'&&process.env.RESEND_API_KEY){
+  try{
+   const fields=Object.fromEntries(b.lines);
+   const property=String(fields.Property||'the home you selected').slice(0,180);
+   const firstName=String(p.lead.name||'there').split(/\s+/)[0].slice(0,70);
+   const emailText='Hello '+firstName+',\n\nThank you for contacting APLYNX Investments. We received your request about '+property+'.\n\nA member of our team will be in touch soon to discuss availability and coordinate next steps. Your showing has not yet been confirmed.\n\nAPLYNX Investments\nReal estate services through BuyBox Realty\n833-393-1935';
+   const emailResp=await fetch('https://api.resend.com/emails',{method:'POST',headers:{Authorization:'Bearer '+process.env.RESEND_API_KEY,'Content-Type':'application/json','Idempotency-Key':'showing-confirm-'+p.lead.submission_id},body:JSON.stringify({from:'APLYNX Investments <info@aplynxinvestments.com>',to:[p.lead.email],reply_to:'info@aplynxinvestments.com',subject:'We received your showing request | APLYNX Investments',text:emailText}),signal:AbortSignal.timeout(10000)});
+   auto_reply_sent=emailResp.ok;
+   if(!emailResp.ok)console.error('Showing confirmation email failed',{status:emailResp.status});
+  }catch(e){console.error('Showing confirmation email unavailable',{reason:String(e.message||'Send error').slice(0,100)});}
+ }
+ return res.status(200).json({success:true,reference:p.lead.submission_id,email_notified:!!result.inquiry.email_notified,auto_reply_sent});
  }catch(e){console.error('Website CRM delivery failed',{reason:String(e.message||'Unknown failure').slice(0,150)});return res.status(503).json({success:false,error:'CRM delivery could not be confirmed. Retry with the same reference.'});}
 }
