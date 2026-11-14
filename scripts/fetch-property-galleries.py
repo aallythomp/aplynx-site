@@ -60,7 +60,7 @@ def candidates(soup, base, name):
   if urlparse(u).scheme not in ("https","http"):continue
   if any(x in u.lower() for x in ("logo","avatar","icon","mapbox","maps.googleapis","streetview","captcha","floorplan","floor-plan","sprite","badge")):continue
   result.append(u)
- return result[:75]
+ return result[:180]
 
 for address, sources in SOURCES.items():
  key=slug(address); existing=[]
@@ -69,13 +69,18 @@ for address, sources in SOURCES.items():
  folder=outdir/key
  folder.mkdir(parents=True,exist_ok=True)
  saved=[]
- for existing_file in sorted(folder.glob("photo-*.jpg"))[:12]:saved.append("/"+existing_file.as_posix())
- if len(saved)>=8:
+ for existing_file in sorted(folder.glob("photo-*.jpg"))[:42]:saved.append("/"+existing_file.as_posix())
+ if len(saved)>=36:
   mapping[key]=saved
   continue
  hashset=set()
+ for path in sorted(folder.glob("photo-*.jpg")):
+  try:
+   current=Image.open(path).convert('L').resize((16,16),Image.Resampling.BILINEAR)
+   hashset.add(hash(tuple(current.getdata())))
+  except Exception: pass
  for p in sources:
-  if len(saved)>=9:break
+  if len(saved)>=36:break
   try:
    resp=session.get(p,timeout=14)
    if not resp.ok:continue
