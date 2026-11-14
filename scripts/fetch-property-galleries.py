@@ -90,7 +90,7 @@ for address, sources in SOURCES.items():
    photos=candidates(soup,resp.url,address)
    print(key,"source",p,"candidates",len(photos),flush=True)
    for u in photos:
-    if len(saved)>=9:break
+    if len(saved)>=36:break
     try:
      image_resp=session.get(u,timeout=12)
      if not image_resp.ok or len(image_resp.content)>7500000 or len(image_resp.content)<11000:continue
