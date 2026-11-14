@@ -27,7 +27,7 @@ session = requests.Session()
 session.headers.update({"User-Agent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/130.0 Safari/537.36","Accept-Language":"en-US,en;q=0.9"})
 outdir=Path("assets/property-galleries")
 outdir.mkdir(parents=True, exist_ok=True)
-mapping={}
+mapping=json.loads(Path('assets/property-galleries.json').read_text('utf8')) if Path('assets/property-galleries.json').exists() else {}
 page=Path("homes-for-sale.html").read_text("utf8")
 
 def slug(name):
