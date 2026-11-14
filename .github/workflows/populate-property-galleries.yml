@@ -32,3 +32,5 @@ jobs:
           else
             echo "No property galleries changed"
           fi
+
+# Refresh remaining Beckman and Peach property galleries.
