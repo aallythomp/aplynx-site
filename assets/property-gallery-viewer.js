@@ -9,7 +9,6 @@
   const thumbs = document.getElementById('gallery-thumbnails');
   const prev = document.getElementById('gallery-prev');
   const next = document.getElementById('gallery-next');
-  const email = document.getElementById('gallery-request');
   const close = document.getElementById('gallery-close');
   let collections = null;
   let active = [];
@@ -73,7 +72,6 @@
       if (!active.length) return;
       index = 0;
       title.textContent = label;
-      email.href = 'mailto:info@aplynxinvestments.com?subject=' + encodeURIComponent('Showing and photos: ' + label);
       render();
       dialog.showModal();
     });
