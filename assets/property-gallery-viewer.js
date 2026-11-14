@@ -68,7 +68,7 @@
       const coverUrl = cover && (cover.getAttribute('src') || cover.src);
       const data = await loadCollections();
       const photos = Array.isArray(data[normalize(label)]) ? data[normalize(label)] : [];
-      active = [...new Set([coverUrl, ...photos].filter(url => typeof url === 'string' && url.startsWith('/assets/')).concat(photos.filter(url => /^https:\/\//i.test(url))))];
+      active = [...new Set([coverUrl, ...photos].filter(url => typeof url === 'string' && (url.startsWith('/assets/') || /^https:\/\//i.test(url))))];
       if (!active.length && coverUrl) active = [coverUrl];
       if (!active.length) return;
       index = 0;
