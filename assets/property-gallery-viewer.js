@@ -17,6 +17,10 @@
   const normalize = (value) => value.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
   const loadCollections = async () => {
     if (collections) return collections;
+    const embedded = document.getElementById('aplynx-property-photo-data');
+    if (embedded) {
+      try { const parsed = JSON.parse(embedded.textContent); if (parsed && typeof parsed === 'object') { collections = parsed; return collections; } } catch (_) {}
+    }
     try {
       const response = await fetch('/assets/property-galleries.json', {cache:'no-cache'});
       if (response.ok) {
@@ -46,8 +50,7 @@
       b.addEventListener('click', () => { index = i; render(); });
       thumbs.appendChild(b);
     });
-    const selected = thumbs.children[index];
-    if (selected) selected.scrollIntoView({block:'nearest', inline:'nearest', behavior:'smooth'});
+    // Avoid scrolling the background page while thumbnails are rendered.
   };
   const move = (delta) => { if (active.length) { index = (index + delta + active.length) % active.length; render(); } };
   prev.addEventListener('click', () => move(-1));
@@ -58,7 +61,7 @@
     if (e.key === 'ArrowLeft') { e.preventDefault(); move(-1); }
     if (e.key === 'ArrowRight') { e.preventDefault(); move(1); }
   });
-  document.querySelectorAll('.gallery-open').forEach(button => {
+  document.querySelectorAll('.gallery-open, .gallery-teaser').forEach(button => {
     button.addEventListener('click', async () => {
       const card = button.closest('.property');
       if (!card) return;
@@ -70,7 +73,7 @@
       active = [...new Set([coverUrl, ...photos].filter(url => typeof url === 'string' && (url.startsWith('/assets/') || /^https:\/\//i.test(url))))];
       if (!active.length && coverUrl) active = [coverUrl];
       if (!active.length) return;
-      index = 0;
+      index = button.classList.contains('gallery-teaser') ? Math.min(Number(button.dataset.index || 0), active.length - 1) : 0;
       title.textContent = label;
       render();
       dialog.showModal();
