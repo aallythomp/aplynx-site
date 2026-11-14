@@ -53,6 +53,10 @@
     // Avoid scrolling the background page while thumbnails are rendered.
   };
   const move = (delta) => { if (active.length) { index = (index + delta + active.length) % active.length; render(); } };
+  // Swipe between listing photos on phones without interfering with vertical scrolling.
+  let touchStartX = 0, touchStartY = 0;
+  hero.addEventListener('touchstart', e => { if (e.touches.length === 1) { touchStartX = e.touches[0].clientX; touchStartY = e.touches[0].clientY; } }, {passive:true});
+  hero.addEventListener('touchend', e => { if (!e.changedTouches.length) return; const dx = e.changedTouches[0].clientX - touchStartX; const dy = e.changedTouches[0].clientY - touchStartY; if (Math.abs(dx) > 48 && Math.abs(dx) > Math.abs(dy) * 1.3) move(dx < 0 ? 1 : -1); }, {passive:true});
   prev.addEventListener('click', () => move(-1));
   next.addEventListener('click', () => move(1));
   close.addEventListener('click', () => dialog.close());
