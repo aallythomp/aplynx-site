@@ -7,6 +7,7 @@
   },
   "scripts": {
     "test:agent-hub": "node --test tests/agent-hub-api.test.mjs",
-    "build": "node scripts/build-property-covers.mjs"
+    "build": "node scripts/build-property-covers.mjs",
+    "prebuild": "node --check api/inquiry.mjs && node --check assets/property-lead-form.js && node --check assets/property-gallery-viewer.js"
   }
 }
