@@ -21,6 +21,8 @@
     status.textContent="";
     pane.classList.remove("hidden");
     success.classList.add("hidden");
+    document.getElementById("lead-email-confirmation")?.classList.add("hidden");
+    status.classList.remove("error");
     if(gallery?.open)gallery.close();
     dialog.showModal();
     document.getElementById("lead-name").focus();
@@ -47,7 +49,7 @@
       const response=await deliverWebsiteInquiry(form,payload,notification,controller.signal);
       const result=await response.json();
       if(!response.ok||result.success!==true)throw Error("Submission not confirmed");
-      pane.classList.add("hidden");success.classList.remove("hidden");success.focus();
+      pane.classList.add("hidden");success.classList.remove("hidden");document.getElementById("lead-email-confirmation")?.classList.toggle("hidden",result.auto_reply_sent!==true);success.focus();
       form.reset();
     }catch(error){
       status.textContent="We couldn't confirm your request. Please try again or call APLYNX at 833-393-1935.";
